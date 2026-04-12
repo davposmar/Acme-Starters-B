@@ -32,8 +32,8 @@
 			<acme:button code="inventor.invention.form.button.part" action="/inventor/part/list?inventionId=${id}"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
-			<acme:form-double code="inventor.invention.form.label.monthsActive" path="monthsActive"/>
-			<acme:form-double code="inventor.invention.form.label.cost" path="cost"/>
+			<acme:form-double readonly="true" code="inventor.invention.form.label.monthsActive" path="monthsActive"/>
+			<acme:form-double readonly="true" code="inventor.invention.form.label.cost" path="cost"/>
 			<acme:button code="inventor.invention.form.button.part" action="/inventor/part/list?inventionId=${id}"/>
 			<acme:submit code="inventor.invention.form.button.update" action="/inventor/invention/update"/>
 			<acme:submit code="inventor.invention.form.button.delete" action="/inventor/invention/delete"/>
