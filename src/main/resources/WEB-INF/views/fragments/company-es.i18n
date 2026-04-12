@@ -1,0 +1,21 @@
+# company-es.i18n
+#
+# Copyright (C) 2012-2026 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+master.company.title = La empresa
+master.company.text = \
+	Acme Starters, S.A. es una empresa ficticia que se especializa \
+	en ayudar a los emprendedores a publicitar sus ideas. \
+	El objetivo de este proyecto es desarrollar un sistema de información web \
+	que ayude a estas compañías a administrar sus negocios.
+master.company.name = Acme Starters, S.A.
+master.company.address = 221B Acme Street, Eorcity, Earthland
+master.company.phone = +1 800 555 2368
+master.company.email = starters@acme.com
+
