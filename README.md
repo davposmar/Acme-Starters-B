@@ -1,4 +1,4 @@
-# Acme-Starters-C
+# Acme-Starters-B
 
 Copyright (C) 2012-2026 Rafael Corchuelo.
 In keeping with the traditional purpose of furthering education and research, it is
