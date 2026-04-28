@@ -1,5 +1,5 @@
 /*
- * AuthenticatedSpokespersonRepository.java
+ * 
  *
  * Copyright (C) 2012-2026 Rafael Corchuelo.
  *
@@ -18,14 +18,18 @@ import org.springframework.stereotype.Repository;
 import acme.client.components.principals.UserAccount;
 import acme.client.repositories.AbstractRepository;
 import acme.realms.Manager;
+import acme.realms.ProjectSquad;
 
 @Repository
 public interface AuthenticatedManagerRepository extends AbstractRepository {
 
 	@Query("select m from Manager m where m.userAccount.id = :id")
-	Manager findOneManagernByUserAccountId(int id);
+	Manager findOneManagerByUserAccountId(int id);
 
 	@Query("select ua from UserAccount ua where ua.id = :id")
 	UserAccount findOneUserAccountById(int id);
+
+	@Query("select p from ProjectSquad p  where p.userAccount.id = :id")
+	ProjectSquad findProjectSquadByUserAccountId(int id);
 
 }

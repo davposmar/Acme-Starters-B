@@ -38,7 +38,7 @@ public class AuthenticatedManagerUpdateService extends AbstractService<Authentic
 		int userAccountId;
 
 		userAccountId = super.getRequest().getPrincipal().getAccountId();
-		this.manager = this.repository.findOneManagernByUserAccountId(userAccountId);
+		this.manager = this.repository.findOneManagerByUserAccountId(userAccountId);
 	}
 
 	@Override
