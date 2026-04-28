@@ -26,7 +26,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class ProjectMember extends AbstractSquad {
+public class ProjectSquad extends AbstractSquad {
 
 	// Serialisation identifier -----------------------------------------------
 

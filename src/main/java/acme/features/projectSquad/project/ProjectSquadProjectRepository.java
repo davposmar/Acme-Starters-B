@@ -1,0 +1,28 @@
+
+package acme.features.projectSquad.project;
+
+import java.util.Collection;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import acme.client.repositories.AbstractRepository;
+import acme.entities.projects.Project;
+
+@Repository
+public interface ProjectSquadProjectRepository extends AbstractRepository {
+
+	/*
+	 * @Query("SELECT DISTINCT p FROM Project p  WHERE (p.manager.id = :managerId AND :managerId IS NOT NULL) OR EXISTS ( SELECT m FROM Member m WHERE m.project.id = p.id AND m.projectSquad.id = :projectSquadId ) ")
+	 * Collection<Project> findProjectsByProjectSquadIdOrManagerId(final int projectSquadId, Integer managerId);
+	 */
+
+	@Query("SELECT DISTINCT m.project FROM Member m WHERE m.projectSquad.id = :projectSquadId  ")
+	Collection<Project> findProjectsByProjectSquadId(final int projectSquadId);
+
+	@Query("select p from Project p where p.id = :projectId")
+	Project findProjectById(int projectId);
+
+	@Query("SELECT  COUNT(m) > 0 FROM Member m  WHERE m.project.id = :projectId AND m.projectSquad.id = :projectSquadId ")
+	boolean isMemberOfTheProject(Integer projectId, Integer projectSquadId);
+}
