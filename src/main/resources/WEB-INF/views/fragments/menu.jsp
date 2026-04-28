@@ -45,8 +45,6 @@
 		
 		<acme:menu-option code="master.menu.projectSquad" access="hasRealm('ProjectSquad')">
 			<acme:menu-suboption code="master.menu.projectSquad.list-my-projects" action="/project-squad/project/list"/>
-			<acme:menu-separator/>
-			
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
