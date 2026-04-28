@@ -15,21 +15,18 @@ package acme.realms;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.basis.AbstractSquad;
 import acme.client.components.validation.Mandatory;
-import acme.entities.projects.Project;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Member extends AbstractSquad {
+public class ProjectMember extends AbstractSquad {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -49,11 +46,4 @@ public class Member extends AbstractSquad {
 
 		return result;
 	}
-
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Project project;
-
 }
