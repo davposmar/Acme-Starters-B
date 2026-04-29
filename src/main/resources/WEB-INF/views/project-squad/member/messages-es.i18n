@@ -1,0 +1,6 @@
+project-squad.member.list.title = Miembros del proyecto
+project-squad.member.list.label.projectTicker = Ticker del proyecto
+project-squad.member.list.label.projectTitle = Título del proyecto
+project-squad.member.list.label.name = Nombre
+project-squad.member.list.label.surname = Apellido
+project-squad.member.list.label.email = Correo electrónico
