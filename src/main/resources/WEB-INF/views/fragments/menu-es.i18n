@@ -17,6 +17,7 @@ master.menu.anonymous.list-campaigns = Campañas
 master.menu.anonymous.list-sponsorships = Patrocinios
 master.menu.anonymous.list-inventions = Inventos
 master.menu.anonymous.list-strategies = Estrategias
+master.menu.anonymous.list-projects = Proyectos
 
 # master.menu.authenticated #######################################################
 

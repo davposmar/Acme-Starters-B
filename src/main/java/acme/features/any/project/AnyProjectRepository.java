@@ -1,5 +1,5 @@
 /*
- * AuthenticatedSpokespersonRepository.java
+ * AnyCampaignRepository.java
  *
  * Copyright (C) 2012-2026 Rafael Corchuelo.
  *
@@ -10,26 +10,23 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.spokesperson;
+package acme.features.any.project;
+
+import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import acme.client.components.principals.UserAccount;
 import acme.client.repositories.AbstractRepository;
-import acme.realms.ProjectSquad;
-import acme.realms.Spokesperson;
+import acme.entities.projects.Project;
 
 @Repository
-public interface AuthenticatedSpokespersonRepository extends AbstractRepository {
+public interface AnyProjectRepository extends AbstractRepository {
 
-	@Query("select s from Spokesperson s where s.userAccount.id = :id")
-	Spokesperson findOneSpokespersonByUserAccountId(int id);
+	@Query("select p from Project p where p.id = :id")
+	Project findProjectById(int id);
 
-	@Query("select ua from UserAccount ua where ua.id = :id")
-	UserAccount findOneUserAccountById(int id);
-
-	@Query("select p from ProjectSquad p  where p.userAccount.id = :id")
-	ProjectSquad findProjectSquadByUserAccountId(int id);
+	@Query("select p from Project p where p.draftMode = false")
+	Collection<Project> findPublishedProjects();
 
 }

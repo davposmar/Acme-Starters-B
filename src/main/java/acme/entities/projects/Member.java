@@ -7,7 +7,7 @@ import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
-import acme.realms.ProjectMember;
+import acme.realms.ProjectSquad;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +27,7 @@ public class Member extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private ProjectMember		projectMember;
+	private ProjectSquad		projectSquad;
 
 	@Mandatory
 	@Valid

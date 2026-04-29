@@ -23,7 +23,8 @@
 			<acme:menu-suboption code="master.menu.anonymous.list-campaigns" action="/any/campaign/list" />
 			<acme:menu-suboption code="master.menu.anonymous.list-sponsorships" action="/any/sponsorship/list" />
 			<acme:menu-suboption code="master.menu.anonymous.list-inventions" action="/any/invention/list" />
-      <acme:menu-suboption code="master.menu.anonymous.list-strategies" action="/any/strategy/list"/>
+      		<acme:menu-suboption code="master.menu.anonymous.list-strategies" action="/any/strategy/list"/>
+      		 <acme:menu-suboption code="master.menu.anonymous.list-projects" action="/any/project/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
@@ -31,7 +32,8 @@
       		<acme:menu-suboption code="master.menu.anonymous.list-campaigns" action="/any/campaign/list" />
       		<acme:menu-suboption code="master.menu.anonymous.list-sponsorships" action="/any/sponsorship/list" />
       		<acme:menu-suboption code="master.menu.anonymous.list-inventions" action="/any/invention/list" />
-          <acme:menu-suboption code="master.menu.anonymous.list-strategies" action="/any/strategy/list"/>
+          	<acme:menu-suboption code="master.menu.anonymous.list-strategies" action="/any/strategy/list"/>
+            <acme:menu-suboption code="master.menu.anonymous.list-projects" action="/any/project/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
@@ -43,6 +45,10 @@
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.projectSquad" access="hasRealm('ProjectSquad')">
+			<acme:menu-suboption code="master.menu.projectSquad.list-my-projects" action="/project-squad/project/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
@@ -69,8 +75,11 @@
 			<acme:menu-suboption code="master.menu.inventor.list-my-inventions" action="/inventor/invention/list" />
 		</acme:menu-option>
     
-    <acme:menu-option code="master.menu.fundraiser" access="hasRealm('Fundraiser')">
+    	<acme:menu-option code="master.menu.fundraiser" access="hasRealm('Fundraiser')">
 			<acme:menu-suboption code="master.menu.fundraiser.list-my-strategies" action="/fundraiser/strategy/list"/>
+		</acme:menu-option>
+		<acme:menu-option code="master.menu.manager" access="hasRealm('Manager')">
+			<acme:menu-suboption code="master.menu.manager.dashboard" action="/manager/dashboard/show"/>
 		</acme:menu-option>
 		
 	</acme:menu-left>

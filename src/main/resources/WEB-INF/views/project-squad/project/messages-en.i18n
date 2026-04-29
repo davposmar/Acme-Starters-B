@@ -1,0 +1,28 @@
+
+project-squad.project.form.title = Project form
+project-squad.project.list.title = Listing of projects
+
+project-squad.project.form.label.ticker = Ticker:
+project-squad.project.form.label.title = Title:
+project-squad.project.form.label.description = Description:
+project-squad.project.form.label.keyWords = Key words:
+project-squad.project.form.label.kickOff = Kick off moment:
+project-squad.project.form.label.closeOut = Close out moment:
+project-squad.project.form.label.effort = Effort: (Calculated)
+project-squad.project.form.label.manager = Manager:
+
+project-squad.project.form.button.invention = Inventions
+project-squad.project.form.button.strategy = Strategies
+project-squad.project.form.button.campaign = Campaigns
+project-squad.project.form.button.member = Members
+project-squad.project.form.button.update = Update
+project-squad.project.form.button.delete = Delete
+project-squad.project.form.button.publish = Publish
+project-squad.project.form.button.create = Create
+
+
+projectSquad.project.list.label.ticker = Ticker
+projectSquad.project.list.label.title = Title
+projectSquad.project.list.label.kickOff = Kick off
+projectSquad.project.list.label.closeOut = Close Out
+projectSquad.project.list.button.create = Create

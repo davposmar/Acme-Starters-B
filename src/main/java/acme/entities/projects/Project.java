@@ -19,6 +19,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
 import acme.client.components.validation.ValidNumber;
 import acme.constraints.ValidHeader;
+import acme.constraints.ValidProject;
 import acme.constraints.ValidText;
 import acme.constraints.ValidTicker;
 import acme.features.manager.project.member.MemberRepository;
@@ -27,7 +28,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-//@ValidProject
+@ValidProject
 @Getter
 @Setter
 public class Project extends AbstractEntity {
@@ -47,6 +48,11 @@ public class Project extends AbstractEntity {
 	@ValidHeader
 	@Column
 	private String				title;
+
+	@Mandatory
+	@ValidText
+	@Column
+	private String				description;
 
 	@Mandatory
 	@ValidText
@@ -87,9 +93,9 @@ public class Project extends AbstractEntity {
 	private MemberRepository	memberRepository;
 
 
-	public Double getEffort() {
+	public Double computeEffort() {
 		Double months = this.getTotalActiveMonths();
-		long people = this.memberRepository.countNumPeople(this.getId()) + 1;
+		long people = this.memberRepository.countNumPeople(this.getId());
 		return months / people;
 	}
 

@@ -1,0 +1,16 @@
+
+manager.project.form.title = Project form
+
+
+manager.project.form.label.ticker = Ticker:
+manager.project.form.label.title = Title:
+manager.project.form.label.description = Description:
+manager.project.form.label.keyWords = Key words:
+manager.project.form.label.kickOff = Kick off moment:
+manager.project.form.label.closeOut = Close out moment:
+manager.project.form.label.effort = Effort: (Calculated)
+manager.project.form.label.manager = Manager:
+
+manager.project.form.button.create = Create
+
+
