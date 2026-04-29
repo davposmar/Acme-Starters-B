@@ -93,9 +93,9 @@ public class Project extends AbstractEntity {
 	private MemberRepository	memberRepository;
 
 
-	public Double getEffort() {
+	public Double computeEffort() {
 		Double months = this.getTotalActiveMonths();
-		long people = this.memberRepository.countNumPeople(this.getId()); // +1 
+		long people = this.memberRepository.countNumPeople(this.getId());
 		return months / people;
 	}
 
