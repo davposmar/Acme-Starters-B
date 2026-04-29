@@ -21,6 +21,7 @@ import acme.client.components.models.Tuple;
 import acme.client.services.AbstractService;
 import acme.entities.fundraising.Strategy;
 import acme.entities.fundraising.Tactic;
+import acme.entities.projects.Project;
 import acme.realms.Fundraiser;
 
 @Service
@@ -65,6 +66,18 @@ public class FundraiserStrategyDeleteService extends AbstractService<Fundraiser,
 	@Override
 	public void execute() {
 		Collection<Tactic> tactics;
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Strategy previousStrategy = this.repository.findStrategyById(id);
+
+		Project project = previousStrategy.getProject();
+
+		if (project != null) {
+			project.updateEffortUsingComponentValues(previousStrategy.getMonthsActive(), 0.0);
+			this.repository.save(project);
+		}
 
 		tactics = this.repository.findTacticsByStrategyId(this.strategy.getId());
 		this.repository.deleteAll(tactics);

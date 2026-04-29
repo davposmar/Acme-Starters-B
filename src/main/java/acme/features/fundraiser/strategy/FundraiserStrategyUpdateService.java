@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.services.AbstractService;
 import acme.entities.fundraising.Strategy;
+import acme.entities.projects.Project;
 import acme.realms.Fundraiser;
 
 @Service
@@ -61,7 +62,18 @@ public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser,
 
 	@Override
 	public void execute() {
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Strategy previousStrategy = this.repository.findStrategyById(id);
+
+		Project project = previousStrategy.getProject();
 		this.repository.save(this.strategy);
+		if (project != null) {
+			project.updateEffortUsingComponentValues(previousStrategy.getMonthsActive(), this.strategy.getMonthsActive());
+			this.repository.save(project);
+		}
 	}
 
 	@Override

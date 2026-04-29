@@ -10,6 +10,7 @@ import acme.client.components.models.Tuple;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.entities.inventions.Invention;
+import acme.entities.projects.Project;
 import acme.realms.Inventor;
 
 @Service
@@ -83,8 +84,19 @@ public class InventorInventionPublishService extends AbstractService<Inventor, I
 
 	@Override
 	public void execute() {
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Invention previousInvention = this.repository.findinventionById(id);
+		Project project = previousInvention.getProject();
 		this.invention.setDraftMode(false);
 		this.repository.save(this.invention);
+		if (project != null) {
+			project.updateEffortUsingComponentValues(previousInvention.getMonthsActive(), this.invention.getMonthsActive());
+			this.repository.save(project);
+		}
+
 	}
 
 	@Override
