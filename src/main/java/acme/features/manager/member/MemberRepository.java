@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.manager.project.member;
+package acme.features.manager.member;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
