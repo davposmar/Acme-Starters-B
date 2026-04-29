@@ -1,0 +1,17 @@
+
+manager.project.form.title = Detalles del proyecto
+
+
+manager.project.form.label.ticker = Referencia:
+manager.project.form.label.title = Título:
+manager.project.form.label.keyWords = Palabras claves:
+manager.project.form.label.description = Descripción:
+manager.project.form.label.kickOff = Fecha de la reunión de incio:
+manager.project.form.label.closeOut = Fecha de fin del proyecto:
+manager.project.form.label.effort = Esfuerzo: (Calculado)
+manager.project.form.label.manager = Manager:
+
+
+manager.project.form.button.create = Crear
+
+
