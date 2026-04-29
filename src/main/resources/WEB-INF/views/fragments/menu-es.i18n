@@ -66,6 +66,16 @@ master.menu.inventor.list-my-inventions = Lista mis inventos
 master.menu.fundraiser = Recaudador de Fondos
 master.menu.fundraiser.list-my-strategies = Listar mis estrategias
 
+# master.menu.projectSquad ##########################################################
+
+master.menu.projectSquad = Proyectos
+master.menu.projectSquad.list-my-projects = Listar mis proyectos
+
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.dashboard = Estadísticas
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
@@ -84,3 +94,5 @@ master.menu.user-account.become-inventor = Hazte un inventor
 master.menu.user-account.inventor-profile =Perfil de Inventor
 master.menu.user-account.become-fundraiser = Hazte recaudador de fondos
 master.menu.user-account.fundraiser-profile = Ver perfil de recaudador de fondos
+master.menu.user-account.become-manager = Hazte manager
+master.menu.user-account.manager-profile = Perfil de manager
