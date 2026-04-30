@@ -1,0 +1,5 @@
+key,enabled,identity,password,username
+user-account-manager-00,true,"UserIdentity{name: 'Eren', surname: 'manager', email: 'eren@acme.com'}",manager0,manager0
+user-account-manager-01,true,"UserIdentity{name: 'Mikasa', surname: 'аудитор', email: 'mikasa@acme.com'}","manager1",""
+user-account-manager-02,true,"UserIdentity{name: 'Levy', surname: '監査人', email: 'levy@acme.com'}","",manager2
+user-account-manager-03,true,"UserIdentity{name: 'Eren', surname: 'manager', email: 'eren@acme.com'}",manager3,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tem"

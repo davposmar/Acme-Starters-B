@@ -1,0 +1,11 @@
+key,key:userAccount,position,skills,executive
+# base entity
+manager-00,user-account-manager-00,managerFirms,"Lorem ipsum dolor sit amet, consectetu",TRUE
+# position
+manager-01,user-account-manager-00,"","Lorem ipsum dolor sit amet, consectetu",TRUE
+manager-02,user-account-manager-00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i","Lorem ipsum dolor sit amet, consectetu",TRUE
+# skills
+manager-03,user-account-manager-00,CEO,"",TRUE
+manager-04,user-account-manager-00,CEO,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i",FALSE
+#executive
+manager-05,user-account-manager-00,CEO,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tem",""
