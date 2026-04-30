@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
 import acme.client.components.validation.ValidScore;
@@ -24,6 +25,7 @@ import acme.constraints.ValidHeader;
 import acme.constraints.ValidStrategy;
 import acme.constraints.ValidText;
 import acme.constraints.ValidTicker;
+import acme.entities.projects.Project;
 import acme.realms.Fundraiser;
 import lombok.Getter;
 import lombok.Setter;
@@ -77,6 +79,11 @@ public class Strategy extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Fundraiser			fundraiser;
+
+	@Optional
+	@Valid
+	@ManyToOne
+	private Project				project;
 
 	// Derived attributes --------------------------------------------
 
