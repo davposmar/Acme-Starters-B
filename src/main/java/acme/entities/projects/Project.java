@@ -22,7 +22,7 @@ import acme.constraints.ValidHeader;
 import acme.constraints.ValidProject;
 import acme.constraints.ValidText;
 import acme.constraints.ValidTicker;
-import acme.features.manager.project.member.MemberRepository;
+import acme.features.manager.member.MemberRepository;
 import acme.realms.Manager;
 import lombok.Getter;
 import lombok.Setter;

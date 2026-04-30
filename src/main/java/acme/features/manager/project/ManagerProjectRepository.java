@@ -1,5 +1,5 @@
 
-package acme.features.manager.project.project;
+package acme.features.manager.project;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

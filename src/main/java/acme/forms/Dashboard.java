@@ -27,10 +27,11 @@ public class Dashboard extends AbstractForm {
 	// Attributes -------------------------------------------------------------
 
 	Integer						totalProjects;
+	Double						deviationProjects;
 	Double						minEffort;
 	Double						maxEffort;
 	Double						averageEffort;
-	Double						deviation;
+	Double						deviationEffort;
 
 	// Derived attributes -----------------------------------------------------
 
