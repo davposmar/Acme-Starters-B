@@ -9,3 +9,5 @@ manager-03,user-account-manager-00,CEO,"",TRUE
 manager-04,user-account-manager-00,CEO,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i",FALSE
 #executive
 manager-05,user-account-manager-00,CEO,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tem",""
+#userAccount
+manager-06,"",CEO,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tem",TRUE
