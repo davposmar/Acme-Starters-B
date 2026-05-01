@@ -86,17 +86,15 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 	public void unbind() {
 		Collection<Project> publishedProjects;
 		SelectChoices projects;
-		Project selectedProject;
 		Tuple tuple;
 
 		publishedProjects = this.repository.findPublishedProjects();
-		selectedProject = this.project != null ? this.project : this.sponsorship.getProject();
-		projects = SelectChoices.from(publishedProjects, "ticker", selectedProject);
+		projects = SelectChoices.from(publishedProjects, "ticker", this.project != null ? this.project : this.sponsorship.getProject());
 
-		tuple = super.unbindObject(this.sponsorship, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "sponsor.identity.fullName", "project");
+		tuple = super.unbindObject(this.sponsorship, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "sponsor.identity.fullName", "project.ticker");
 		tuple.put("monthsActive", this.sponsorship.getMonthsActive());
 		tuple.put("totalMoney", this.sponsorship.getTotalMoney());
-		tuple.put("project", selectedProject);
+		tuple.put("sponsorId", this.sponsorship.getSponsor().getId());
 		tuple.put("projects", projects);
 	}
 
