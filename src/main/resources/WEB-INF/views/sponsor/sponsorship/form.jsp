@@ -5,7 +5,7 @@
 
 <acme:form>
 	<jstl:choose>	 
-		<jstl:when test="${acme:anyOf(_command, 'show|update') && draftMode == false}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|assign') && draftMode == false}">
 			<acme:form-textbox readonly="true" code="sponsor.sponsorship.form.label.ticker" path="ticker"/>
 			<acme:form-textbox readonly="true" code="sponsor.sponsorship.form.label.name" path="name"/>
 			<acme:form-textarea readonly="true" code="sponsor.sponsorship.form.label.description" path="description"/>
@@ -16,11 +16,11 @@
 			<acme:form-double readonly="true" code="sponsor.sponsorship.form.label.totalMoney" path="totalMoney"/>
 			<acme:form-textbox readonly="true" code="sponsor.sponsorship.form.label.sponsor.identity.fullName" path="sponsor.identity.fullName"/>
 			
-			<acme:form-select readonly="false" code="sponsor.sponsorship.project.form.label.ticker" path="projectTicker" choices="${projects}"/>
+			<acme:form-select readonly="false" code="sponsor.sponsorship.project.form.label.ticker" path="project" choices="${projects}"/>
 			
 			<acme:button code="sponsor.sponsorship.form.button.donations" action="/sponsor/donation/list?sponsorshipId=${id}"/>	
 			
-			<acme:submit code="sponsor.sponsorship.project.form.button.assign" action="/sponsor/sponsorship/assign?sponsorshipId=${id}"/>
+			<acme:submit code="sponsor.sponsorship.project.form.button.assign" action="/sponsor/sponsorship/assign"/>
 					
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">

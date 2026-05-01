@@ -33,8 +33,7 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 	private SponsorSponsorshipRepository	repository;
 
 	private Sponsorship						sponsorship;
-	private String							projectTicker;
-	private Project						project;
+	private Project							project;
 
 	// AbstractService interface -------------------------------------------
 
@@ -43,10 +42,10 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 	public void load() {
 		int id;
 
-		id = super.getRequest().getData("sponsorshipId", int.class);
+		id = super.getRequest().getData("id", int.class);
 		this.sponsorship = this.repository.findSponsorshipById(id);
-		this.project = this.sponsorship.getProject();
-		this.projectTicker = this.project != null ? this.project.getTicker() : "";
+
+		this.project = this.sponsorship != null ? this.sponsorship.getProject() : null;
 	}
 
 	@Override
@@ -60,23 +59,20 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 
 	@Override
 	public void bind() {
-		String projectTicker;
-
-		projectTicker = super.getRequest().getData("projectTicker", String.class);
-		this.projectTicker = projectTicker != null ? projectTicker.trim() : null;
-		this.project = null;
+		super.bindObject(this.sponsorship, "project");
+		this.project = this.sponsorship != null ? this.sponsorship.getProject() : null;
 	}
 
 	@Override
 	public void validate() {
-		boolean isEmpty;
+		super.validateObject(this.sponsorship);
 
-		isEmpty = this.projectTicker == null || this.projectTicker.isBlank();
-
-		super.state(!isEmpty, "projectTicker", "acme.validation.project.required.message");
-		if (!isEmpty) {
-			this.project = this.repository.findPublishedProjectByTicker(this.projectTicker);
-			super.state(this.project != null, "projectTicker", "acme.validation.project.not-found.message");
+		if (this.sponsorship != null) {
+			this.project = this.sponsorship.getProject();
+			super.state(this.project != null, "project", "acme.validation.project.required.message");
+			if (this.project != null) {
+				super.state(this.repository.findPublishedProjectByTicker(this.project.getTicker()) != null, "project", "acme.validation.project.not-found.message");
+			}
 		}
 	}
 
@@ -94,13 +90,13 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 		Tuple tuple;
 
 		publishedProjects = this.repository.findPublishedProjects();
-		selectedProject = this.project != null ? this.project : (this.projectTicker == null || this.projectTicker.isBlank() ? null : this.repository.findPublishedProjectByTicker(this.projectTicker));
+		selectedProject = this.project != null ? this.project : this.sponsorship.getProject();
 		projects = SelectChoices.from(publishedProjects, "ticker", selectedProject);
 
-		tuple = super.unbindObject(this.sponsorship, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "sponsor.identity.fullName");
+		tuple = super.unbindObject(this.sponsorship, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "sponsor.identity.fullName", "project");
 		tuple.put("monthsActive", this.sponsorship.getMonthsActive());
 		tuple.put("totalMoney", this.sponsorship.getTotalMoney());
-		tuple.put("projectTicker", this.projectTicker);
+		tuple.put("project", selectedProject);
 		tuple.put("projects", projects);
 	}
 
