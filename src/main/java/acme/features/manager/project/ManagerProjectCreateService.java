@@ -1,5 +1,5 @@
 
-package acme.features.manager.project.project;
+package acme.features.manager.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

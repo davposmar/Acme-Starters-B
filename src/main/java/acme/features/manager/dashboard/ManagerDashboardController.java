@@ -1,5 +1,5 @@
 /*
- * SponsorSponsorshipController.java
+ * ManagerDashboardController.java
  *
  * Copyright (C) 2012-2026 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.sponsor.sponsorship;
+package acme.features.manager.dashboard;
 
 import javax.annotation.PostConstruct;
 
@@ -18,11 +18,11 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 
 import acme.client.controllers.AbstractController;
-import acme.entities.sponsorships.Sponsorship;
-import acme.realms.Sponsor;
+import acme.forms.Dashboard;
+import acme.realms.Manager;
 
 @Controller
-public class SponsorSponsorshipController extends AbstractController<Sponsor, Sponsorship> {
+public class ManagerDashboardController extends AbstractController<Manager, Dashboard> {
 
 	// Constructors -----------------------------------------------------------
 
@@ -30,14 +30,7 @@ public class SponsorSponsorshipController extends AbstractController<Sponsor, Sp
 	protected void initialise() {
 		super.setMediaType(MediaType.TEXT_HTML);
 
-		super.addBasicCommand("list", SponsorSponsorshipListService.class);
-		super.addBasicCommand("show", SponsorSponsorshipShowService.class);
-		super.addBasicCommand("create", SponsorSponsorshipCreateService.class);
-		super.addBasicCommand("update", SponsorSponsorshipUpdateService.class);
-		super.addBasicCommand("delete", SponsorSponsorshipDeleteService.class);
-
-		super.addCustomCommand("publish", "update", SponsorSponsorshipPublishService.class);
-		super.addCustomCommand("assign", "update", SponsorSponsorshipAssignService.class);
+		super.addBasicCommand("show", ManagerDashboardShowService.class);
 	}
 
 }
