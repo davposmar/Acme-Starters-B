@@ -10,3 +10,7 @@
     <acme:list-column code="project-squad.member.list.label.email" path="projectSquad.identity.email" width="34%"/>
     <acme:list-hidden path="project.id"/>
 </acme:list>
+
+<acme:button code="project-squad.member.list.button.addInventor" action="/project-squad/inventor/list?projectId=${param.projectId}"/>
+<acme:button code="project-squad.member.list.button.addFundraiser" action="/project-squad/fundraiser/list?projectId=${param.projectId}"/>
+<acme:button code="project-squad.member.list.button.addSpokesperson" action="/project-squad/spokesperson/list?projectId=${param.projectId}"/>

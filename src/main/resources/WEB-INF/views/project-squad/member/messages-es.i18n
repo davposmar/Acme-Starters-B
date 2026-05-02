@@ -4,3 +4,6 @@ project-squad.member.list.label.projectTitle = Título del proyecto
 project-squad.member.list.label.name = Nombre
 project-squad.member.list.label.surname = Apellido
 project-squad.member.list.label.email = Correo electrónico
+project-squad.member.list.button.addInventor = Añadir inventor
+project-squad.member.list.button.addFundraiser = Añadir fundador
+project-squad.member.list.button.addSpokesperson = Añadir portavoz
