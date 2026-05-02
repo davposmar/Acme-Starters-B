@@ -45,7 +45,8 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 		id = super.getRequest().getData("id", int.class);
 		this.sponsorship = this.repository.findSponsorshipById(id);
 
-		this.project = this.sponsorship != null ? this.sponsorship.getProject() : null;
+		this.project = this.sponsorship != null ? this.sponsorship.getProject() : super.newObject(Project.class);
+		this.sponsorship.setProject(this.project);
 	}
 
 	@Override
@@ -60,7 +61,7 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 	@Override
 	public void bind() {
 		super.bindObject(this.sponsorship, "project");
-		this.project = this.sponsorship != null ? this.sponsorship.getProject() : null;
+		this.project = this.sponsorship != null ? this.sponsorship.getProject() : super.newObject(Project.class);
 	}
 
 	@Override
@@ -70,9 +71,8 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 		if (this.sponsorship != null) {
 			this.project = this.sponsorship.getProject();
 			super.state(this.project != null, "project", "acme.validation.project.required.message");
-			if (this.project != null) {
+			if (this.project != null)
 				super.state(this.repository.findPublishedProjectByTicker(this.project.getTicker()) != null, "project", "acme.validation.project.not-found.message");
-			}
 		}
 	}
 
@@ -91,7 +91,7 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 		publishedProjects = this.repository.findPublishedProjects();
 		projects = SelectChoices.from(publishedProjects, "ticker", this.project != null ? this.project : this.sponsorship.getProject());
 
-		tuple = super.unbindObject(this.sponsorship, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "sponsor.identity.fullName", "project.ticker");
+		tuple = super.unbindObject(this.sponsorship, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "sponsor.identity.fullName", "project");
 		tuple.put("monthsActive", this.sponsorship.getMonthsActive());
 		tuple.put("totalMoney", this.sponsorship.getTotalMoney());
 		tuple.put("sponsorId", this.sponsorship.getSponsor().getId());

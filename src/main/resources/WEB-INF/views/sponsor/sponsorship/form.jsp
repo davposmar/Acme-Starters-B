@@ -15,7 +15,6 @@
 			<acme:form-double readonly="true" code="sponsor.sponsorship.form.label.monthsActive" path="monthsActive"/>
 			<acme:form-double readonly="true" code="sponsor.sponsorship.form.label.totalMoney" path="totalMoney"/>
 			<acme:form-textbox readonly="true" code="sponsor.sponsorship.form.label.sponsor.identity.fullName" path="sponsor.identity.fullName"/>
-			
 			<acme:form-select readonly="false" code="sponsor.sponsorship.project.form.label.ticker" path="project" choices="${projects}"/>
 			
 			<acme:button code="sponsor.sponsorship.form.button.donations" action="/sponsor/donation/list?sponsorshipId=${id}"/>	
