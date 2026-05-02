@@ -1,0 +1,7 @@
+project-squad.member.list.title = Members of the project
+project-squad.member.list.label.name = Name
+project-squad.member.list.label.surname = Surname
+project-squad.member.list.label.email = Email
+project-squad.member.list.button.addInventor = Add Inventor
+project-squad.member.list.button.addFundraiser = Add Fundraiser
+project-squad.member.list.button.addSpokesperson = Add Spokesperson
