@@ -1,0 +1,34 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2026 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+project-squad.invention.list.title = Lista de inventos
+project-squad.invention.form.title = Detalles del invento
+
+project-squad.invention.list.label.name = Nombre:
+project-squad.invention.list.label.draftMode = Modo borrador:
+project-squad.invention.list.label.ticker = Referencia:
+project-squad.invention.list.label.startMoment = Fecha de Inicio:
+project-squad.invention.list.label.endMoment = Fecha de fin: 
+project-squad.invention.list.label.inventor.identity.fullName = Inventor:
+project-squad.invention.list.button.create = crear
+
+project-squad.invention.form.label.ticker = Referencia:
+project-squad.invention.form.label.inventor = Inventor:
+project-squad.invention.form.label.name = Nombre:
+project-squad.invention.form.label.description = Descripción:
+project-squad.invention.form.label.startMoment = Fecha de inicio:
+project-squad.invention.form.label.endMoment = Fecha de fin:
+project-squad.invention.form.label.moreInfo = Más información: (Opcional)
+project-squad.invention.form.label.monthsActive = Meses activo: (Calculado)
+project-squad.invention.form.label.cost = Coste: (Calculado)
+
+project-squad.invention.form.button.part = Partes
+project-squad.invention.form.button.edit = Editar
+project-squad.invention.form.button.unlink = Desenlazar
