@@ -22,6 +22,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
 import acme.entities.campaigns.Campaign;
 import acme.entities.projects.Project;
+import acme.realms.ProjectSquad;
 import acme.realms.Spokesperson;
 
 @Service
@@ -46,7 +47,7 @@ public class SpokespersonCampaignShowService extends AbstractService<Spokesperso
 		id = super.getRequest().getData("id", int.class);
 		this.campaign = this.repository.findCampaignById(id);
 
-		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		this.projectSquadId = super.getRequest().getPrincipal().getRealmOfType(ProjectSquad.class).getId();
 
 		this.project = this.campaign != null ? this.campaign.getProject() : null;
 	}
