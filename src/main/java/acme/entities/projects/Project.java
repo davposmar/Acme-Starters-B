@@ -93,15 +93,15 @@ public class Project extends AbstractEntity {
 	private MemberRepository	memberRepository;
 
 
-	public Double computeEffort() {
+	public Double computeEffort(final long people) {
 		Double months = this.getTotalActiveMonths();
-		long people = this.memberRepository.countNumPeople(this.getId());
+		//long people = this.memberRepository.countNumPeople(this.getId());
 		return months / people;
 	}
 
-	public void updateEffortUsingComponentValues(final Double previousActiveMonths, final Double newActiveMonths) {
+	public void updateEffortUsingComponentValues(final Double previousActiveMonths, final Double newActiveMonths, final long people) {
 		this.setTotalActiveMonths(Math.max(this.totalActiveMonths - previousActiveMonths + newActiveMonths, 0.0));
-		this.setEffort(this.computeEffort());
+		this.setEffort(this.computeEffort(people));
 	}
 
 	// Relationships ----------------------------------------------------------

@@ -24,4 +24,7 @@ public interface FundraiserStrategyRepository extends AbstractRepository {
 
 	@Query("Select count(t) from Tactic t where t.strategy.id = :strategyId")
 	Long countTacticsByStrategyId(int strategyId);
+
+	@Query("select count(m) from Member m where m.project.id = :projectId")
+	Long countNumPeople(int projectId);
 }

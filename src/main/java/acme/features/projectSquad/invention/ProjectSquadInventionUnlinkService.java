@@ -57,7 +57,8 @@ public class ProjectSquadInventionUnlinkService extends AbstractService<ProjectS
 		Project project = previousInvention.getProject();
 
 		if (project != null) {
-			project.updateEffortUsingComponentValues(previousInvention.getMonthsActive(), 0.0);
+			long numPeople = this.repository.countNumPeople(project.getId());
+			project.updateEffortUsingComponentValues(previousInvention.getMonthsActive(), 0.0, numPeople);
 			this.repository.save(project);
 		}
 		previousInvention.setProject(null);

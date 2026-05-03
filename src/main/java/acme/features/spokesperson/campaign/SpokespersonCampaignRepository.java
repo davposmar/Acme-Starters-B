@@ -40,4 +40,7 @@ public interface SpokespersonCampaignRepository extends AbstractRepository {
 	@Query("select distinct m.project from Member m where m.projectSquad.id = :projectSquadId and m.project.draftMode = true")
 	Collection<Project> findMyNotPublishedProjects(int projectSquadId);
 
+	@Query("select count(m) from Member m where m.project.id = :projectId")
+	Long countNumPeople(int projectId);
+
 }

@@ -59,7 +59,9 @@ public class InventorInventionUpdateService extends AbstractService<Inventor, In
 		Project project = previousInvention.getProject();
 		this.repository.save(this.invention);
 		if (project != null) {
-			project.updateEffortUsingComponentValues(previousInvention.getMonthsActive(), this.invention.getMonthsActive());
+			long numPeople = this.repository.countNumPeople(project.getId());
+			//project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), this.campaign.getMonthsActive());
+			project.updateEffortUsingComponentValues(previousInvention.getMonthsActive(), this.invention.getMonthsActive(), numPeople);
 			this.repository.save(project);
 		}
 
