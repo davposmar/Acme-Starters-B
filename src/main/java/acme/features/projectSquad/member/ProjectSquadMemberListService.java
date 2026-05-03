@@ -49,5 +49,7 @@ public class ProjectSquadMemberListService extends AbstractService<ProjectSquad,
 	@Override
 	public void unbind() {
 		super.unbindObjects(this.members, "projectSquad.identity.name", "projectSquad.identity.surname", "projectSquad.identity.email");
+		super.unbindGlobal("draftMode", this.project.getDraftMode());
+		super.unbindGlobal("isManager", this.project.getManager().isPrincipal());
 	}
 }
