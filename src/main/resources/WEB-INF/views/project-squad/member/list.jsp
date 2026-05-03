@@ -9,3 +9,11 @@
     <acme:list-column code="project-squad.member.list.label.surname" path="projectSquad.identity.surname" width="33%"/>
     <acme:list-column code="project-squad.member.list.label.email" path="projectSquad.identity.email" width="34%"/>
 </acme:list>
+
+<jstl:choose>
+	<jstl:when test="${draftMode == true && isManager == true}">
+		<acme:button code="project-squad.member.list.button.addInventor" action="/project-squad/inventor/list?projectId=${param.projectId}"/>
+		<acme:button code="project-squad.member.list.button.addFundraiser" action="/project-squad/fundraiser/list?projectId=${param.projectId}"/>
+		<acme:button code="project-squad.member.list.button.addSpokesperson" action="/project-squad/spokesperson/list?projectId=${param.projectId}"/>
+	</jstl:when>
+</jstl:choose>

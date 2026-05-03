@@ -1,0 +1,13 @@
+project-squad.campaign.list.title = Campañas
+project-squad.campaign.list.label.ticker = Identificador
+project-squad.campaign.list.label.name = Nombre
+project-squad.campaign.list.label.startMoment = Momento de inicio
+project-squad.campaign.list.label.endMoment = Momento de fin
+
+project-squad.campaign.form.title = Campaña
+project-squad.campaign.form.label.ticker = Identificador
+project-squad.campaign.form.label.name = Nombre
+project-squad.campaign.form.label.description = Descripción 
+project-squad.campaign.form.label.startMoment = Momento de inicio
+project-squad.campaign.form.label.endMoment = Momento de fin
+project-squad.campaign.form.label.moreInfo = Más info
