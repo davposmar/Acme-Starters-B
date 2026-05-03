@@ -13,3 +13,5 @@ acme.validation.strategy.tactic.message = La estrategia debe tener al menos una 
 acme.validation.strategy.moments.message = El momento de inicio debe ser anterior al momento final
 acme.validation.strategy.startMoment.message = El momento inicial debe ser futuro
 acme.validation.strategy.endMoment.message = El momento final debe ser futuro
+
+fundraiser.acme.validation.project.not-found.message = El ticker del proyecto debe corresponder a un proyecto no publicado, del cual tienes que ser miembro

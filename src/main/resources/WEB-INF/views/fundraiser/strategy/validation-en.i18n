@@ -13,3 +13,5 @@ acme.validation.strategy.tactic.message = The strategy must have at least one ta
 acme.validation.strategy.moments.message = Start moment must be before end moment
 acme.validation.strategy.startMoment.message = Start moment must be in the future
 acme.validation.strategy.endMoment.message = End moment must be in the future
+
+fundraiser.acme.validation.project.not-found.message = The project ticker must correspond to an unpublished project of which you are a member
