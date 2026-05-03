@@ -11,6 +11,9 @@
 inventor.invention.list.title = Listing of Inventions
 inventor.invention.form.title = Invention form
 
+inventor.invention.project.form.label.ticker = Project Ticker: (Optional)
+inventor.invention.project.form.button.assign = Assign Project
+
 inventor.invention.list.label.name = Name:
 inventor.invention.list.label.draftMode = Draft mode:
 inventor.invention.list.label.ticker = Ticker:

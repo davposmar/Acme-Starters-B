@@ -14,3 +14,5 @@ acme.validation.invention.moments.message = El momento de inicio debe ser anteri
 acme.validation.invention.startMoment.message = El momento de inicio debe ser futuro
 acme.validation.invention.endMoment.message = El momento final debe ser futuro
 acme.validation.invention.part.message = El invento debe tener al menos una parte
+
+inventor.acme.validation.project.not-found.message = El ticker del proyecto debe corresponder a un proyecto no publicado, del cual tienes que ser miembro
