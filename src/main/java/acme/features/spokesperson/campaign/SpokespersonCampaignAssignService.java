@@ -44,10 +44,11 @@ public class SpokespersonCampaignAssignService extends AbstractService<Spokesper
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		this.campaign = this.repository.findCampaignById(id);
 
 		this.project = this.campaign != null ? this.campaign.getProject() : null;
+
+		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
 	}
 
 	@Override
@@ -67,12 +68,14 @@ public class SpokespersonCampaignAssignService extends AbstractService<Spokesper
 
 	@Override
 	public void validate() {
-		if (this.campaign != null && this.project != null) {
-			boolean projectIsAvailable;
-
-			projectIsAvailable = this.repository.findMyNotPublishedProjects(this.projectSquadId).stream().anyMatch(project -> project.getId() == this.project.getId());
-			super.state(projectIsAvailable, "project", "acme.validation.project.not-found.message");
-		}
+		/*
+		 * if (this.campaign != null && this.project != null) {
+		 * boolean projectIsAvailable;
+		 * 
+		 * projectIsAvailable = this.repository.findMyNotPublishedProjects(this.projectSquadId).stream().anyMatch(project -> project.getId() == this.project.getId());
+		 * super.state(projectIsAvailable, "project", "spokesperson.acme.validation.project.not-found.message");
+		 * }
+		 */
 	}
 
 	@Override
@@ -88,9 +91,12 @@ public class SpokespersonCampaignAssignService extends AbstractService<Spokesper
 		Tuple tuple;
 
 		myNotPublishedProjects = this.repository.findMyNotPublishedProjects(this.projectSquadId);
+
+		myNotPublishedProjects.add(this.project != null ? this.project : this.campaign.getProject());
+
 		projects = SelectChoices.from(myNotPublishedProjects, "ticker", this.project != null ? this.project : this.campaign.getProject());
 
-		tuple = super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "auditor.identity.fullName", "project");
+		tuple = super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "spokesperson.identity.fullName", "project");
 		tuple.put("monthsActive", this.campaign.getMonthsActive());
 		tuple.put("effort", this.campaign.getEffort());
 		tuple.put("projects", projects);
