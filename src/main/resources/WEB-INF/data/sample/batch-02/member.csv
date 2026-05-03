@@ -3,23 +3,19 @@ key,key:projectSquad,key:project
 member-01,project-squad-01,project-56
 member-02,project-squad-02,project-01
 member-03,project-squad-02,project-00
-
 # Spokesperson
 member-04,project-squad-04,project-00
 member-05,project-squad-05,project-00
 member-06,project-squad-06,project-00
 member-07,project-squad-07,project-01
-member-08,project-squad-07,project-56
-
+member-08,project-squad-04,project-56
 #Fundraiser
 member-09,project-squad-28,project-56
 member-10,project-squad-29,project-00
 member-11,project-squad-30,project-00
 member-12,project-squad-31,project-01
 member-13,project-squad-31,project-00
-
-
-#Manager 
+#Manager
 member-14,project-squad-52,project-00
 member-15,project-squad-52,project-01
 member-16,project-squad-52,project-02
