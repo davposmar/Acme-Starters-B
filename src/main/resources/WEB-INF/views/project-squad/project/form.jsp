@@ -13,7 +13,7 @@
 			<acme:form-moment code="project-squad.project.form.label.kickOff" path="kickOff"/>
 			<acme:form-moment code="project-squad.project.form.label.closeOut" path="closeOut"/>
 		</jstl:when>
-		<jstl:when test="${isManager == false}">
+		<jstl:when test="${isManager == false || draftMode == false}">
 			<acme:form-textbox  readonly="true" code="project-squad.project.form.label.ticker" path="ticker"/>
 			<acme:form-textbox readonly="true" code="project-squad.project.form.label.title" path="title"/>
 			<acme:form-textbox readonly="true" code="project-squad.project.form.label.keyWords" path="keyWords"/>
