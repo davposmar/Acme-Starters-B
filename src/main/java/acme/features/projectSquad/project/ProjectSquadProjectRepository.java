@@ -42,4 +42,16 @@ public interface ProjectSquadProjectRepository extends AbstractRepository {
 	@Query("SELECT m FROM Member m WHERE m.project.id = :projectId")
 	Collection<Member> findMembersByProject(int projectId);
 
+	@Query("SELECT COUNT(i) = 0 FROM Invention i WHERE i.project.id = :projectId AND NOT EXISTS ( SELECT p FROM Part p WHERE p.invention = i)")
+	Boolean canInventionsBePublished(int projectId);
+
+	@Query("SELECT COUNT(c) = 0 FROM Campaign c WHERE c.project.id = :projectId AND NOT EXISTS ( SELECT m FROM Milestone m WHERE m.campaign = c)")
+	Boolean canCampaignsBePublished(int projectId);
+
+	@Query("SELECT COUNT(s) = 0 FROM Strategy s WHERE s.project.id = :projectId AND NOT EXISTS ( SELECT t FROM Tactic t WHERE t.strategy = s)")
+	Boolean canStrategiesBePublished(int projectId);
+
+	@Query("SELECT COUNT(i) FROM Invention i WHERE i.project.id = :projectId")
+	Long countInvetionsOfPorject(int projectId);
+
 }
