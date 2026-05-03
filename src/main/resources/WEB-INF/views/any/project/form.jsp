@@ -14,8 +14,8 @@
 	
 	<acme:form-double readonly="true" code="any.project.form.label.effort" path="effort"/>
 	<acme:form-textbox readonly="true" code="any.project.form.label.manager" path="manager.identity.fullName"/>
-	<acme:button code="any.project.form.button.invention" action="/project-squad/invention/list?projectId=${id}"/>
-	<acme:button code="any.project.form.button.strategy" action="/project-squad/strategy/list?projectId=${id}"/>
-	<acme:button code="any.project.form.button.campaign" action="/project-squad/campaign/list?projectId=${id}"/>
-	<acme:button code="any.project.form.button.member" action="/project-squad/member/list?projectId=${id}"/>
+	<acme:button code="any.project.form.button.invention" action="/any/invention/list?projectId=${id}"/>
+	<acme:button code="any.project.form.button.strategy" action="/any/strategy/list?projectId=${id}"/>
+	<acme:button code="any.project.form.button.campaign" action="/any/campaign/list?projectId=${id}"/>
+	<acme:button code="any.project.form.button.member" action="/any/member/list?projectId=${id}"/>
 </acme:form>

@@ -24,5 +24,6 @@ projectSquad.project.list.label.ticker = Referencia
 projectSquad.project.list.label.title = Título
 projectSquad.project.list.label.kickOff = Fecha de Reunión de incio
 projectSquad.project.list.label.closeOut = Fecha de fin del proyecto
+projectSquad.project.list.label.draftMode = Modo borrador 
 projectSquad.project.list.button.create = Crear
 

@@ -47,7 +47,7 @@ public class ProjectSquadProjectListService extends AbstractService<ProjectSquad
 	@Override
 	public void unbind() {
 		super.unbindObjects(this.projects, //
-			"ticker", "title", "description", "kickOff", "closeOut", //
+			"ticker", "title", "description", "kickOff", "closeOut", "draftMode", //
 			"manager.identity.fullName");
 
 		super.unbindGlobal("showCreate", this.isManager);

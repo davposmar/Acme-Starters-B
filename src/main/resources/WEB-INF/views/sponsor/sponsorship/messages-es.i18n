@@ -18,6 +18,9 @@ sponsor.sponsorship.form.button.delete = Borrar
 sponsor.sponsorship.form.button.publish = Publicar
 sponsor.sponsorship.form.button.create = Crear
 
+sponsor.sponsorship.project.form.label.ticker = Referencia del Proyecto: (Opcional)
+sponsor.sponsorship.project.form.button.assign = Asignar Proyecto
+
 sponsor.sponsorship.list.label.ticker = Referencia 
 sponsor.sponsorship.list.label.name = Nombre
 sponsor.sponsorship.list.label.startMoment = Fecha de inicio

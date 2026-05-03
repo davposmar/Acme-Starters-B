@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.services.AbstractService;
 import acme.entities.inventions.Invention;
+import acme.entities.projects.Project;
 import acme.realms.Inventor;
 
 @Service
@@ -50,7 +51,18 @@ public class InventorInventionUpdateService extends AbstractService<Inventor, In
 
 	@Override
 	public void execute() {
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Invention previousInvention = this.repository.findinventionById(id);
+		Project project = previousInvention.getProject();
 		this.repository.save(this.invention);
+		if (project != null) {
+			project.updateEffortUsingComponentValues(previousInvention.getMonthsActive(), this.invention.getMonthsActive());
+			this.repository.save(project);
+		}
+
 	}
 
 	@Override
