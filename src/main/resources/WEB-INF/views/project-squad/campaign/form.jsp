@@ -11,3 +11,6 @@
 	<acme:form-moment code="project-squad.campaign.form.label.endMoment" path="endMoment" readonly="true"/>
 	<acme:form-url code="project-squad.campaign.form.label.moreInfo" path="moreInfo" readonly="true"/>
 </acme:form>
+
+
+<acme:button code="project-squad.campaign.form.button.milestones" action="/project-squad/milestone/list?campaignId=${id}"/>

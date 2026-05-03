@@ -1,0 +1,14 @@
+
+project-squad.milestone.form.title = Milestone form
+project-squad.milestone.list.title = Listing of milestones
+
+project-squad.milestone.form.label.campaign = Campaign name:
+project-squad.milestone.form.label.title = Title:
+project-squad.milestone.form.label.achievements = Achievements:
+project-squad.milestone.form.label.effort = Effort:
+project-squad.milestone.form.label.kind = Kind:
+
+project-squad.milestone.list.label.title = Title
+project-squad.milestone.list.label.kind = Kind
+project-squad.milestone.list.label.effort = Effort
+

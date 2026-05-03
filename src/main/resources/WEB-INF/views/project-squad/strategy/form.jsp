@@ -11,3 +11,5 @@
 	<acme:form-moment code="project-squad.strategy.form.label.endMoment" path="endMoment" readonly="true"/>
 	<acme:form-url code="project-squad.strategy.form.label.moreInfo" path="moreInfo" readonly="true"/>
 </acme:form>
+
+<acme:button code="project-squad.strategy.form.button.tactics" action="/project-squad/tactic/list?strategyId=${id}"/>
