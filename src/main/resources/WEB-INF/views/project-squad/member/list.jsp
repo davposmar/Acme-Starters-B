@@ -5,9 +5,10 @@
 
 
 <acme:list navigable="false">
-    <acme:list-column code="project-squad.member.list.label.name" path="projectSquad.identity.name" width="33%"/>
-    <acme:list-column code="project-squad.member.list.label.surname" path="projectSquad.identity.surname" width="33%"/>
-    <acme:list-column code="project-squad.member.list.label.email" path="projectSquad.identity.email" width="34%"/>
+	<acme:list-column code="project-squad.member.list.label.name" path="projectSquad.identity.name" width="25%"/>
+	<acme:list-column code="project-squad.member.list.label.surname" path="projectSquad.identity.surname" width="25%"/>
+	<acme:list-column code="project-squad.member.list.label.email" path="projectSquad.identity.email" width="25%"/>
+	<acme:list-column code="project-squad.member.list.label.username" path="projectSquad.userAccount.username" width="25%"/>
 </acme:list>
 
 <jstl:choose>
