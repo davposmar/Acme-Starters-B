@@ -11,6 +11,7 @@ project-squad.project.form.label.closeOut = Close out moment:
 project-squad.project.form.label.effort = Effort: (Calculated)
 project-squad.project.form.label.manager = Manager:
 
+
 project-squad.project.form.button.invention = Inventions
 project-squad.project.form.button.strategy = Strategies
 project-squad.project.form.button.campaign = Campaigns
@@ -25,4 +26,5 @@ projectSquad.project.list.label.ticker = Ticker
 projectSquad.project.list.label.title = Title
 projectSquad.project.list.label.kickOff = Kick off
 projectSquad.project.list.label.closeOut = Close Out
+projectSquad.project.list.label.draftMode = Draft mode 
 projectSquad.project.list.button.create = Create
