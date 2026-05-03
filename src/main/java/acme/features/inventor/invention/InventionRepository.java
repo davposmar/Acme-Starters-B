@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.inventions.Invention;
 import acme.entities.inventions.Part;
+import acme.entities.projects.Project;
 
 @Repository
 public interface InventionRepository extends AbstractRepository {
@@ -30,4 +31,8 @@ public interface InventionRepository extends AbstractRepository {
 
 	@Query("select p from Part p where p.invention.id = :inventionId")
 	Collection<Part> findPartsByInventionId(int inventionId);
+
+	@Query("select distinct m.project from Member m where m.projectSquad.id = :projectSquadId and m.project.draftMode = true")
+	Collection<Project> findMyNotPublishedProjects(int projectSquadId);
+
 }
