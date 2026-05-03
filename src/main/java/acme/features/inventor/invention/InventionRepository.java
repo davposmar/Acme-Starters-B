@@ -32,6 +32,8 @@ public interface InventionRepository extends AbstractRepository {
 	@Query("select p from Part p where p.invention.id = :inventionId")
 	Collection<Part> findPartsByInventionId(int inventionId);
 
+	@Query("select count(m) from Member m where m.project.id = :projectId")
+	Long countNumPeople(int projectId);
 	@Query("select distinct m.project from Member m where m.projectSquad.id = :projectSquadId and m.project.draftMode = true")
 	Collection<Project> findMyNotPublishedProjects(int projectSquadId);
 

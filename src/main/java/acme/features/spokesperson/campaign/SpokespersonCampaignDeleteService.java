@@ -75,7 +75,8 @@ public class SpokespersonCampaignDeleteService extends AbstractService<Spokesper
 		Project project = previousCampaign.getProject();
 
 		if (project != null) {
-			project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), 0.0);
+			long numPeople = this.repository.countNumPeople(project.getId());
+			project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), 0.0, numPeople);
 			this.repository.save(project);
 		}
 

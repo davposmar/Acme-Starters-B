@@ -81,6 +81,23 @@ public class SpokespersonCampaignAssignService extends AbstractService<Spokesper
 
 	@Override
 	public void execute() {
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Campaign previousCampaign = this.repository.findCampaignById(id);
+		Project previousProject = previousCampaign.getProject();
+		if (previousProject != null) {
+			long numPeople = this.repository.countNumPeople(previousProject.getId());
+			previousProject.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), 0.0, numPeople);
+			this.repository.save(previousProject);
+		}
+		if (this.project != null) {
+			long numPeople = this.repository.countNumPeople(this.project.getId());
+			this.project.updateEffortUsingComponentValues(0.0, previousCampaign.getMonthsActive(), numPeople);
+			this.repository.save(this.project);
+		}
+
 		this.campaign.setProject(this.project);
 		this.repository.save(this.campaign);
 	}
