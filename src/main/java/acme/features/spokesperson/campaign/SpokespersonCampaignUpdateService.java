@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.services.AbstractService;
 import acme.entities.campaigns.Campaign;
+import acme.entities.projects.Project;
 import acme.realms.Spokesperson;
 
 @Service
@@ -61,7 +62,18 @@ public class SpokespersonCampaignUpdateService extends AbstractService<Spokesper
 
 	@Override
 	public void execute() {
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Campaign previousCampaign = this.repository.findCampaignById(id);
+		Project project = previousCampaign.getProject();
+
 		this.repository.save(this.campaign);
+		if (project != null) {
+			project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), this.campaign.getMonthsActive());
+			this.repository.save(project);
+		}
 	}
 
 	@Override

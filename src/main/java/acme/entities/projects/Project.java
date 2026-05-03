@@ -99,6 +99,11 @@ public class Project extends AbstractEntity {
 		return months / people;
 	}
 
+	public void updateEffortUsingComponentValues(final Double previousActiveMonths, final Double newActiveMonths) {
+		this.setTotalActiveMonths(Math.max(this.totalActiveMonths - previousActiveMonths + newActiveMonths, 0.0));
+		this.setEffort(this.computeEffort());
+	}
+
 	// Relationships ----------------------------------------------------------
 
 

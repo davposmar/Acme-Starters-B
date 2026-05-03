@@ -18,6 +18,9 @@ sponsor.sponsorship.form.button.delete = Delete
 sponsor.sponsorship.form.button.publish = Publish
 sponsor.sponsorship.form.button.create = Create
 
+sponsor.sponsorship.project.form.label.ticker = Project Ticker: (Optional)
+sponsor.sponsorship.project.form.button.assign = Assign Project
+
 sponsor.sponsorship.list.label.ticker = Ticker 
 sponsor.sponsorship.list.label.name = Name
 sponsor.sponsorship.list.label.startMoment = Start Moment

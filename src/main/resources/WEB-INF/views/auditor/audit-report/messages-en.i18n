@@ -12,6 +12,9 @@ auditor.audit-report.form.label.auditor.identity.fullName = Auditor:
 auditor.audit-report.form.label.monthsActive = Months Active: (Calculated)
 auditor.audit-report.form.label.hours = Hours: (Calculated)
 
+auditor.audit-report.project.form.label.ticker = Project Ticker: (Optional)
+auditor.audit-report.project.form.button.assign = Assign Project
+
 auditor.audit-report.form.button.audit-sections = Audit Sections
 auditor.audit-report.form.button.update = Update
 auditor.audit-report.form.button.delete = Delete

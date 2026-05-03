@@ -13,3 +13,4 @@ acme.validation.sponsorship.minimun-donations.message = Debe tener al menos un D
 acme.validation.sponsorship.moments.message = El momento de inicio debe ser anterior al momento final.
 acme.validation.sponsorship.moments.start.future.message = El momento de inicio debe ser futuro.
 acme.validation.sponsorship.moments.end.future.message = El momento de fin debe ser futuro.
+acme.validation.project.not-found.message = El ticker del proyecto debe corresponder a un proyecto publicado.
