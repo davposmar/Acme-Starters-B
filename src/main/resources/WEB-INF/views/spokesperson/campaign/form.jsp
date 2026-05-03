@@ -4,12 +4,22 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:form-textbox code="spokesperson.campaign.form.label.ticker" path="ticker"/>
-	<acme:form-textbox code="spokesperson.campaign.form.label.name" path="name"/>
-	<acme:form-textarea code="spokesperson.campaign.form.label.description" path="description"/>
-	<acme:form-moment code="spokesperson.campaign.form.label.startMoment" path="startMoment"/>
-	<acme:form-moment code="spokesperson.campaign.form.label.endMoment" path="endMoment"/>
-	<acme:form-url code="spokesperson.campaign.form.label.moreInfo" path="moreInfo"/>
+	<jstl:choose>
+		<jstl:when test="${canEdit}">
+			<acme:form-select readonly="false" code="spokesperson.campaign.project.form.label.ticker" path="project" choices="${projects}"/>
+			<acme:submit code="spokesperson.campaign.project.form.button.assign" action="/spokesperson/campaign/assign"/>
+		</jstl:when>
+		<jstl:otherwise>
+			<acme:form-select readonly="true" code="spokesperson.campaign.project.form.label.ticker" path="project" choices="${projects}"/>
+		</jstl:otherwise>
+	</jstl:choose>
+	
+	<acme:form-textbox readonly="${draftMode == false}" code="spokesperson.campaign.form.label.ticker" path="ticker"/>
+	<acme:form-textbox readonly="${draftMode == false}" code="spokesperson.campaign.form.label.name" path="name"/>
+	<acme:form-textarea readonly="${draftMode == false}" code="spokesperson.campaign.form.label.description" path="description"/>
+	<acme:form-moment readonly="${draftMode == false}" code="spokesperson.campaign.form.label.startMoment" path="startMoment"/>
+	<acme:form-moment readonly="${draftMode == false}" code="spokesperson.campaign.form.label.endMoment" path="endMoment"/>
+	<acme:form-url readonly="${draftMode == false}" code="spokesperson.campaign.form.label.moreInfo" path="moreInfo"/>
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">
 			<acme:form-double code="spokesperson.campaign.form.label.monthsActive" path="monthsActive"/>
