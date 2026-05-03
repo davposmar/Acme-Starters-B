@@ -4,21 +4,31 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:form-textbox code="sponsor.sponsorship.form.label.ticker" path="ticker"/>
-	<acme:form-textbox code="sponsor.sponsorship.form.label.name" path="name"/>
-	<acme:form-textarea code="sponsor.sponsorship.form.label.description" path="description"/>
-	<acme:form-moment code="sponsor.sponsorship.form.label.startMoment" path="startMoment"/>
-	<acme:form-moment code="sponsor.sponsorship.form.label.endMoment" path="endMoment"/>
-	<acme:form-url code="sponsor.sponsorship.form.label.moreInfo" path="moreInfo"/>
-	
 	<jstl:choose>	 
-		<jstl:when test="${_command == 'show' && draftMode == false}">
-			<acme:form-double code="sponsor.sponsorship.form.label.monthsActive" path="monthsActive"/>
-			<acme:form-double code="sponsor.sponsorship.form.label.totalMoney" path="totalMoney"/>
-			<acme:form-textbox code="sponsor.sponsorship.form.label.sponsor.identity.fullName" path="sponsor.identity.fullName"/>
-			<acme:button code="sponsor.sponsorship.form.button.donations" action="/sponsor/donation/list?sponsorshipId=${id}"/>			
+		<jstl:when test="${acme:anyOf(_command, 'show|update|assign') && draftMode == false}">
+			<acme:form-textbox readonly="true" code="sponsor.sponsorship.form.label.ticker" path="ticker"/>
+			<acme:form-textbox readonly="true" code="sponsor.sponsorship.form.label.name" path="name"/>
+			<acme:form-textarea readonly="true" code="sponsor.sponsorship.form.label.description" path="description"/>
+			<acme:form-moment readonly="true" code="sponsor.sponsorship.form.label.startMoment" path="startMoment"/>
+			<acme:form-moment readonly="true" code="sponsor.sponsorship.form.label.endMoment" path="endMoment"/>
+			<acme:form-url readonly="true" code="sponsor.sponsorship.form.label.moreInfo" path="moreInfo"/>
+			<acme:form-double readonly="true" code="sponsor.sponsorship.form.label.monthsActive" path="monthsActive"/>
+			<acme:form-double readonly="true" code="sponsor.sponsorship.form.label.totalMoney" path="totalMoney"/>
+			<acme:form-textbox readonly="true" code="sponsor.sponsorship.form.label.sponsor.identity.fullName" path="sponsor.identity.fullName"/>
+			<acme:form-select readonly="false" code="sponsor.sponsorship.project.form.label.ticker" path="project" choices="${projects}"/>
+			
+			<acme:button code="sponsor.sponsorship.form.button.donations" action="/sponsor/donation/list?sponsorshipId=${id}"/>	
+			
+			<acme:submit code="sponsor.sponsorship.project.form.button.assign" action="/sponsor/sponsorship/assign"/>
+					
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+			<acme:form-textbox readonly="false" code="sponsor.sponsorship.form.label.ticker" path="ticker"/>
+			<acme:form-textbox readonly="false" code="sponsor.sponsorship.form.label.name" path="name"/>
+			<acme:form-textarea readonly="false" code="sponsor.sponsorship.form.label.description" path="description"/>
+			<acme:form-moment readonly="false" code="sponsor.sponsorship.form.label.startMoment" path="startMoment"/>
+			<acme:form-moment readonly="false" code="sponsor.sponsorship.form.label.endMoment" path="endMoment"/>
+			<acme:form-url readonly="false" code="sponsor.sponsorship.form.label.moreInfo" path="moreInfo"/>
 			<acme:form-double readonly="true" code="sponsor.sponsorship.form.label.monthsActive" path="monthsActive"/>
 			<acme:form-double readonly="true" code="sponsor.sponsorship.form.label.totalMoney" path="totalMoney"/>
 			<acme:button code="sponsor.sponsorship.form.button.donations" action="/sponsor/donation/list?sponsorshipId=${id}"/>

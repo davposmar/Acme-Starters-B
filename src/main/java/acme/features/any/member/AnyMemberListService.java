@@ -39,7 +39,7 @@ public class AnyMemberListService extends AbstractService<Any, Member> {
 	public void authorise() {
 		boolean res;
 
-		res = this.project != null && this.project.getDraftMode() == false;
+		res = this.project != null && !this.project.getDraftMode();
 		super.setAuthorised(res);
 	}
 

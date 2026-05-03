@@ -1,5 +1,5 @@
 /*
- * SponsorSponsorshipShowService.java
+ * SponsorSponsorshipAssignService.java
  *
  * Copyright (C) 2012-2026 Rafael Corchuelo.
  *
@@ -25,7 +25,7 @@ import acme.entities.sponsorships.Sponsorship;
 import acme.realms.Sponsor;
 
 @Service
-public class SponsorSponsorshipShowService extends AbstractService<Sponsor, Sponsorship> {
+public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sponsorship> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -52,29 +52,45 @@ public class SponsorSponsorshipShowService extends AbstractService<Sponsor, Spon
 	public void authorise() {
 		boolean status;
 
-		status = this.sponsorship != null && (this.sponsorship.getSponsor().isPrincipal() || !this.sponsorship.getDraftMode());
+		status = this.sponsorship != null && !this.sponsorship.getDraftMode() && this.sponsorship.getSponsor().isPrincipal();
 
 		super.setAuthorised(status);
 	}
 
 	@Override
-	public void unbind() {
-		SelectChoices projects = null;
-		if (!this.sponsorship.getDraftMode()) {
-			Collection<Project> publishedProjects;
+	public void bind() {
+		super.bindObject(this.sponsorship, "project");
+		this.project = this.sponsorship != null ? this.sponsorship.getProject() : null;
+	}
 
-			publishedProjects = this.repository.findPublishedProjects();
-			projects = SelectChoices.from(publishedProjects, "ticker", this.project != null ? this.project : this.sponsorship.getProject());
-		}
+	@Override
+	public void validate() {
+		//super.validateObject(this.sponsorship);
+
+		if (this.sponsorship != null && this.project != null)
+			super.state(this.repository.findPublishedProjectByTicker(this.project.getTicker()) != null, "project", "acme.validation.project.not-found.message");
+	}
+
+	@Override
+	public void execute() {
+		this.sponsorship.setProject(this.project);
+		this.repository.save(this.sponsorship);
+	}
+
+	@Override
+	public void unbind() {
+		Collection<Project> publishedProjects;
+		SelectChoices projects;
 		Tuple tuple;
+
+		publishedProjects = this.repository.findPublishedProjects();
+		projects = SelectChoices.from(publishedProjects, "ticker", this.project != null ? this.project : this.sponsorship.getProject());
 
 		tuple = super.unbindObject(this.sponsorship, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "sponsor.identity.fullName", "project");
 		tuple.put("monthsActive", this.sponsorship.getMonthsActive());
 		tuple.put("totalMoney", this.sponsorship.getTotalMoney());
 		tuple.put("sponsorId", this.sponsorship.getSponsor().getId());
-
-		if (!this.sponsorship.getDraftMode())
-			tuple.put("projects", projects);
+		tuple.put("projects", projects);
 	}
 
 }
