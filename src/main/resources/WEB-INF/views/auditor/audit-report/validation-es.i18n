@@ -14,3 +14,5 @@ acme.validation.audit-report.interval.message		   = El momento de inicio debe se
 
 acme.validation.audit-report.startMoment.message	   = El momento de inicio debe ser en el futuro
 acme.validation.audit-report.endMoment.message		   = El momento de fin debe ser en el futuro
+
+acme.validation.project.not-found.message = El ticker del proyecto debe corresponder a un proyecto publicado.

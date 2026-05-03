@@ -1,5 +1,5 @@
 /*
- * AnyAuditorShowService.java
+ * SponsorSponsorshipAssignService.java
  *
  * Copyright (C) 2012-2026 Rafael Corchuelo.
  *
@@ -25,7 +25,7 @@ import acme.entities.projects.Project;
 import acme.realms.Auditor;
 
 @Service
-public class AuditorAuditReportShowService extends AbstractService<Auditor, AuditReport> {
+public class AuditorAuditReportAssignService extends AbstractService<Auditor, AuditReport> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -52,29 +52,44 @@ public class AuditorAuditReportShowService extends AbstractService<Auditor, Audi
 	public void authorise() {
 		boolean status;
 
-		status = this.auditReport != null && (this.auditReport.getAuditor().isPrincipal() || !this.auditReport.getDraftMode());
+		status = this.auditReport != null && !this.auditReport.getDraftMode() && this.auditReport.getAuditor().isPrincipal();
 
 		super.setAuthorised(status);
 	}
 
 	@Override
+	public void bind() {
+		super.bindObject(this.auditReport, "project");
+		this.project = this.auditReport != null ? this.auditReport.getProject() : null;
+	}
+
+	@Override
+	public void validate() {
+		//super.validateObject(this.auditReport);
+
+		if (this.auditReport != null && this.project != null)
+			super.state(this.repository.findPublishedProjectByTicker(this.project.getTicker()) != null, "project", "acme.validation.project.not-found.message");
+	}
+
+	@Override
+	public void execute() {
+		this.auditReport.setProject(this.project);
+		this.repository.save(this.auditReport);
+	}
+
+	@Override
 	public void unbind() {
-		SelectChoices projects = null;
-		if (!this.auditReport.getDraftMode()) {
-			Collection<Project> publishedProjects;
-
-			publishedProjects = this.repository.findPublishedProjects();
-			projects = SelectChoices.from(publishedProjects, "ticker", this.project != null ? this.project : this.auditReport.getProject());
-		}
-
+		Collection<Project> publishedProjects;
+		SelectChoices projects;
 		Tuple tuple;
+
+		publishedProjects = this.repository.findPublishedProjects();
+		projects = SelectChoices.from(publishedProjects, "ticker", this.project != null ? this.project : this.auditReport.getProject());
 
 		tuple = super.unbindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "auditor.identity.fullName", "project");
 		tuple.put("monthsActive", this.auditReport.getMonthsActive());
 		tuple.put("hours", this.auditReport.getHours());
-
-		if (!this.auditReport.getDraftMode())
-			tuple.put("projects", projects);
+		tuple.put("projects", projects);
 	}
 
 }

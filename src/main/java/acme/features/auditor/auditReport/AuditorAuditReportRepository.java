@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.audits.AuditReport;
 import acme.entities.audits.AuditSection;
+import acme.entities.projects.Project;
 
 @Repository
 public interface AuditorAuditReportRepository extends AbstractRepository {
@@ -35,4 +36,10 @@ public interface AuditorAuditReportRepository extends AbstractRepository {
 
 	@Query("Select COUNT(a) from AuditSection a where a.auditReport.id = :auditReportId")
 	Integer findCountAuditReportsByAuditReportId(int auditReportId);
+
+	@Query("select p from Project p where p.ticker = :ticker and p.draftMode = false")
+	Project findPublishedProjectByTicker(String ticker);
+
+	@Query("select p from Project p where p.draftMode = false")
+	Collection<Project> findPublishedProjects();
 }
