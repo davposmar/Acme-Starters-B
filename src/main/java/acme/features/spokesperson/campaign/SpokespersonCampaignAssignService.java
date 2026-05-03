@@ -93,8 +93,6 @@ public class SpokespersonCampaignAssignService extends AbstractService<Spokesper
 
 		myNotPublishedProjects = this.repository.findMyNotPublishedProjects(this.projectSquadId);
 
-		//myNotPublishedProjects.add(this.project != null ? this.project : this.campaign.getProject());
-
 		projects = SelectChoices.from(myNotPublishedProjects, "ticker", this.project != null ? this.project : this.campaign.getProject());
 
 		tuple = super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "spokesperson.identity.fullName", "project");
