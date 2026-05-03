@@ -68,14 +68,14 @@ public class SpokespersonCampaignAssignService extends AbstractService<Spokesper
 
 	@Override
 	public void validate() {
-		/*
-		 * if (this.campaign != null && this.project != null) {
-		 * boolean projectIsAvailable;
-		 * 
-		 * projectIsAvailable = this.repository.findMyNotPublishedProjects(this.projectSquadId).stream().anyMatch(project -> project.getId() == this.project.getId());
-		 * super.state(projectIsAvailable, "project", "spokesperson.acme.validation.project.not-found.message");
-		 * }
-		 */
+
+		if (this.campaign != null && this.project != null) {
+			boolean projectIsAvailable;
+
+			projectIsAvailable = this.repository.findMyNotPublishedProjects(this.projectSquadId).stream().anyMatch(project -> project.getId() == this.project.getId());
+			super.state(projectIsAvailable, "project", "spokesperson.acme.validation.project.not-found.message");
+		}
+
 	}
 
 	@Override
