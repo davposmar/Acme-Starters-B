@@ -45,6 +45,6 @@ public class AnyMemberListService extends AbstractService<Any, Member> {
 
 	@Override
 	public void unbind() {
-		super.unbindObjects(this.members, "projectSquad.identity.name", "projectSquad.identity.surname", "projectSquad.identity.email");
+		super.unbindObjects(this.members, "projectSquad.identity.name", "projectSquad.identity.surname", "projectSquad.identity.email", "projectSquad.userAccount.username");
 	}
 }

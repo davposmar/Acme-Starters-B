@@ -1,3 +1,5 @@
 key,key:inventor,ticker,name,description,startMoment,endMoment,moreInfo,draftMode,key:project
-# base entity
-invention-60,inventor-01,AB88-LoremIP,My first invention,This is a valid one,2026/01/01 00:00,2028/01/28 00:00,http://www.lorem-ipsum.org,true,project-56
+# Published
+invention-60,inventor-01,AB88-LoremIP,My first invention,This is a valid one,2026/01/01 00:00,2028/01/28 00:00,http://www.lorem-ipsum.org,FALSE,project-56
+# Draft Mode
+invention-61,inventor-02,AB88-Inven61,My first invention,This is a valid one,2026/01/01 00:00,2028/01/28 00:00,http://www.lorem-ipsum.org,TRUE,project-00
