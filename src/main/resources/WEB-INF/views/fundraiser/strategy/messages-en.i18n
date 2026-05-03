@@ -11,6 +11,9 @@
 fundraiser.strategy.form.title = Strategy form
 fundraiser.strategy.list.title = Listing of strategies
 
+fundraiser.strategy.project.form.label.ticker = Project Ticker: (Optional)
+fundraiser.strategy.project.form.button.assign = Assign Project
+
 fundraiser.strategy.form.label.ticker = Ticker:
 fundraiser.strategy.form.label.fundraiser = Fundraiser:
 fundraiser.strategy.form.label.name = Name:

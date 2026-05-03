@@ -11,6 +11,9 @@
 fundraiser.strategy.form.title = Detalles de estrategia
 fundraiser.strategy.list.title = Lista de estrategias
 
+fundraiser.strategy.project.form.label.ticker = Referencia del Proyecto: (Opcional)
+fundraiser.strategy.project.form.button.assign = Asignar Proyecto
+
 fundraiser.strategy.form.label.ticker = Referencia:
 fundraiser.strategy.form.label.fundraiser = Recaudador de fondos:
 fundraiser.strategy.form.label.name = Nombre:
