@@ -1,0 +1,13 @@
+
+project-squad.milestone.form.title = Detalles de hito
+project-squad.milestone.list.title = Lista de hitos
+
+project-squad.milestone.form.label.campaign = Nombre de campaña:
+project-squad.milestone.form.label.title = Título:
+project-squad.milestone.form.label.achievements = Logros:
+project-squad.milestone.form.label.effort = Esfuerzo:
+project-squad.milestone.form.label.kind = Tipo:
+
+project-squad.milestone.list.label.title = Título
+project-squad.milestone.list.label.kind = Tipo
+project-squad.milestone.list.label.effort = Esfuerzo
