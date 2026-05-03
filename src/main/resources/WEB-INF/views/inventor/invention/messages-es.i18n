@@ -11,6 +11,9 @@
 inventor.invention.list.title = Lista de inventos
 inventor.invention.form.title = Detalles del invento
 
+inventor.invention.project.form.label.ticker = Referencia del Proyecto: (Opcional)
+inventor.invention.project.form.button.assign = Asignar Proyecto
+
 inventor.invention.list.label.name = Nombre:
 inventor.invention.list.label.draftMode = Modo borrador:
 inventor.invention.list.label.ticker = Referencia:

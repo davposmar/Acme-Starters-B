@@ -10,7 +10,7 @@
 			<acme:submit code="spokesperson.campaign.project.form.button.assign" action="/spokesperson/campaign/assign"/>
 		</jstl:when>
 		<jstl:otherwise>
-			<acme:form-select readonly="true" code="spokesperson.campaign.project.form.label.ticker" path="project" choices="${projects}"/>
+			<acme:form-textbox readonly="true" code="spokesperson.campaign.project.form.label.ticker" path="proTick"/>
 		</jstl:otherwise>
 	</jstl:choose>
 	
@@ -22,9 +22,9 @@
 	<acme:form-url readonly="${draftMode == false}" code="spokesperson.campaign.form.label.moreInfo" path="moreInfo"/>
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">
-			<acme:form-double code="spokesperson.campaign.form.label.monthsActive" path="monthsActive"/>
-			<acme:form-double code="spokesperson.campaign.form.label.effort" path="effort"/>
-			<acme:form-textbox code="spokesperson.campaign.form.label.spokesperson" path="spokesperson.identity.fullName"/>
+			<acme:form-double readonly="true" code="spokesperson.campaign.form.label.monthsActive" path="monthsActive"/>
+			<acme:form-double readonly="true" code="spokesperson.campaign.form.label.effort" path="effort"/>
+			<acme:form-textbox readonly="true" code="spokesperson.campaign.form.label.spokesperson" path="spokesperson.identity.fullName"/>
 			<acme:button code="spokesperson.campaign.form.button.milestones" action="/spokesperson/milestone/list?campaignId=${id}"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
