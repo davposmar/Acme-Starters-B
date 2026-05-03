@@ -10,7 +10,7 @@
 			<acme:submit code="spokesperson.campaign.project.form.button.assign" action="/spokesperson/campaign/assign"/>
 		</jstl:when>
 		<jstl:otherwise>
-			<acme:form-select readonly="true" code="spokesperson.campaign.project.form.label.ticker" path="project" choices="${projects}"/>
+			<acme:form-textbox readonly="true" code="spokesperson.campaign.project.form.label.ticker" path="proTick"/>
 		</jstl:otherwise>
 	</jstl:choose>
 	

@@ -76,8 +76,10 @@ public class SpokespersonCampaignShowService extends AbstractService<Spokesperso
 		if (this.project == null || this.project != null && this.project.getDraftMode()) {
 			tuple.put("projects", projects);
 			tuple.put("canEdit", true);
-		} else
+		} else {
 			tuple.put("canEdit", false);
+			tuple.put("proTick", this.project.getTicker());
+		}
 	}
 
 }
