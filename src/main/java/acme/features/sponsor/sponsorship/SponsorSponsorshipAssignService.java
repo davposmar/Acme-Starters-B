@@ -45,8 +45,7 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 		id = super.getRequest().getData("id", int.class);
 		this.sponsorship = this.repository.findSponsorshipById(id);
 
-		this.project = this.sponsorship != null ? this.sponsorship.getProject() : super.newObject(Project.class);
-		this.sponsorship.setProject(this.project);
+		this.project = this.sponsorship != null ? this.sponsorship.getProject() : null;
 	}
 
 	@Override
@@ -61,19 +60,15 @@ public class SponsorSponsorshipAssignService extends AbstractService<Sponsor, Sp
 	@Override
 	public void bind() {
 		super.bindObject(this.sponsorship, "project");
-		this.project = this.sponsorship != null ? this.sponsorship.getProject() : super.newObject(Project.class);
+		this.project = this.sponsorship != null ? this.sponsorship.getProject() : null;
 	}
 
 	@Override
 	public void validate() {
-		super.validateObject(this.sponsorship);
+		//super.validateObject(this.sponsorship);
 
-		if (this.sponsorship != null) {
-			this.project = this.sponsorship.getProject();
-			super.state(this.project != null, "project", "acme.validation.project.required.message");
-			if (this.project != null)
-				super.state(this.repository.findPublishedProjectByTicker(this.project.getTicker()) != null, "project", "acme.validation.project.not-found.message");
-		}
+		if (this.sponsorship != null && this.project != null)
+			super.state(this.repository.findPublishedProjectByTicker(this.project.getTicker()) != null, "project", "acme.validation.project.not-found.message");
 	}
 
 	@Override
