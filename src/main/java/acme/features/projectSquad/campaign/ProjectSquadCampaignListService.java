@@ -1,5 +1,5 @@
 
-package acme.features.projectSquad.member;
+package acme.features.projectSquad.campaign;
 
 import java.util.Collection;
 
@@ -7,35 +7,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.services.AbstractService;
-import acme.entities.projects.Member;
+import acme.entities.campaigns.Campaign;
 import acme.entities.projects.Project;
 import acme.realms.ProjectSquad;
 
 @Service
-public class ProjectSquadMemberListService extends AbstractService<ProjectSquad, Member> {
+public class ProjectSquadCampaignListService extends AbstractService<ProjectSquad, Campaign> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ProjectSquadMemberRepository	repository;
+	private ProjectSquadCampaignRepository	repository;
 
 	private Project							project;
 	private int								projectId;
 	private int								projectSquadId;
-	private Collection<Member>				members;
+	private Collection<Campaign>			campaigns;
 
 	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void load() {
-
-		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
 		this.projectId = super.getRequest().getData("projectId", int.class);
-
+		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		this.project = this.repository.findProjectById(this.projectId);
-		this.members = this.repository.findMembersByProjectId(this.projectId);
+		this.campaigns = this.repository.findCampaignsInProject(this.projectId);
 	}
 
 	@Override
@@ -43,13 +40,13 @@ public class ProjectSquadMemberListService extends AbstractService<ProjectSquad,
 		boolean res;
 
 		res = this.project != null && this.repository.isMemberOfTheProject(this.projectId, this.projectSquadId);
+
 		super.setAuthorised(res);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObjects(this.members, "projectSquad.identity.name", "projectSquad.identity.surname", "projectSquad.identity.email");
-		super.unbindGlobal("draftMode", this.project.getDraftMode());
-		super.unbindGlobal("isManager", this.project.getManager().isPrincipal());
+		super.unbindObjects(this.campaigns, "ticker", "name", "description", "startMoment", "endMoment", "spokesperson.identity.fullName");
+		super.unbindGlobal("projectId", this.projectId);
 	}
 }

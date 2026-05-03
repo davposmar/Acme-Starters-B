@@ -1,0 +1,13 @@
+project-squad.strategy.list.title = Strategies
+project-squad.strategy.list.label.ticker = Ticker
+project-squad.strategy.list.label.name = Name
+project-squad.strategy.list.label.startMoment = Start Moment
+project-squad.strategy.list.label.endMoment = End Moment
+
+project-squad.strategy.form.title = Strategy
+project-squad.strategy.form.label.ticker = Ticker
+project-squad.strategy.form.label.name = Name
+project-squad.strategy.form.label.description = Description 
+project-squad.strategy.form.label.startMoment = Start Moment
+project-squad.strategy.form.label.endMoment = End Moment
+project-squad.strategy.form.label.moreInfo = More info
