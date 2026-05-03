@@ -1,5 +1,5 @@
 /*
- * SpokespersonCampaignShowService.java
+ * SponsorSponsorshipAssignService.java
  *
  * Copyright (C) 2012-2026 Rafael Corchuelo.
  *
@@ -22,11 +22,10 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
 import acme.entities.campaigns.Campaign;
 import acme.entities.projects.Project;
-import acme.realms.ProjectSquad;
 import acme.realms.Spokesperson;
 
 @Service
-public class SpokespersonCampaignShowService extends AbstractService<Spokesperson, Campaign> {
+public class SpokespersonCampaignAssignService extends AbstractService<Spokesperson, Campaign> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -37,7 +36,7 @@ public class SpokespersonCampaignShowService extends AbstractService<Spokesperso
 	private Project							project;
 	private int								projectSquadId;
 
-	// AbstractService interface ----------------------------------------------
+	// AbstractService interface -------------------------------------------
 
 
 	@Override
@@ -47,37 +46,60 @@ public class SpokespersonCampaignShowService extends AbstractService<Spokesperso
 		id = super.getRequest().getData("id", int.class);
 		this.campaign = this.repository.findCampaignById(id);
 
-		this.projectSquadId = super.getRequest().getPrincipal().getRealmOfType(ProjectSquad.class).getId();
-
 		this.project = this.campaign != null ? this.campaign.getProject() : null;
+
+		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = this.campaign != null && (this.campaign.getSpokesperson().isPrincipal() || !this.campaign.getDraftMode());
+		status = this.campaign != null && this.campaign.getSpokesperson().isPrincipal();
 
 		super.setAuthorised(status);
 	}
 
 	@Override
-	public void unbind() {
-		SelectChoices projects = null;
-		if (this.project == null || this.project != null && this.project.getDraftMode()) {
-			Collection<Project> availableProjects = this.repository.findMyNotPublishedProjects(this.projectSquadId);
-			projects = SelectChoices.from(availableProjects, "ticker", this.project != null ? this.project : this.campaign.getProject());
+	public void bind() {
+		super.bindObject(this.campaign, "project");
+		this.project = this.campaign != null ? this.campaign.getProject() : null;
+	}
+
+	@Override
+	public void validate() {
+
+		if (this.campaign != null && this.project != null) {
+			boolean projectIsAvailable;
+
+			projectIsAvailable = this.repository.findMyNotPublishedProjects(this.projectSquadId).stream().anyMatch(project -> project.getId() == this.project.getId());
+			super.state(projectIsAvailable, "project", "spokesperson.acme.validation.project.not-found.message");
 		}
+
+	}
+
+	@Override
+	public void execute() {
+		this.campaign.setProject(this.project);
+		this.repository.save(this.campaign);
+	}
+
+	@Override
+	public void unbind() {
+		Collection<Project> myNotPublishedProjects;
+		SelectChoices projects;
 		Tuple tuple;
+
+		myNotPublishedProjects = this.repository.findMyNotPublishedProjects(this.projectSquadId);
+
+		myNotPublishedProjects.add(this.project != null ? this.project : this.campaign.getProject());
+
+		projects = SelectChoices.from(myNotPublishedProjects, "ticker", this.project != null ? this.project : this.campaign.getProject());
 
 		tuple = super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "spokesperson.identity.fullName", "project");
 		tuple.put("monthsActive", this.campaign.getMonthsActive());
 		tuple.put("effort", this.campaign.getEffort());
-		if (this.project == null || this.project != null && this.project.getDraftMode()) {
-			tuple.put("projects", projects);
-			tuple.put("canEdit", true);
-		} else
-			tuple.put("canEdit", false);
+		tuple.put("projects", projects);
 	}
 
 }
