@@ -22,6 +22,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
 import acme.entities.campaigns.Campaign;
 import acme.entities.projects.Project;
+import acme.realms.ProjectSquad;
 import acme.realms.Spokesperson;
 
 @Service
@@ -48,7 +49,7 @@ public class SpokespersonCampaignAssignService extends AbstractService<Spokesper
 
 		this.project = this.campaign != null ? this.campaign.getProject() : null;
 
-		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		this.projectSquadId = super.getRequest().getPrincipal().getRealmOfType(ProjectSquad.class).getId();
 	}
 
 	@Override
@@ -92,7 +93,7 @@ public class SpokespersonCampaignAssignService extends AbstractService<Spokesper
 
 		myNotPublishedProjects = this.repository.findMyNotPublishedProjects(this.projectSquadId);
 
-		myNotPublishedProjects.add(this.project != null ? this.project : this.campaign.getProject());
+		//myNotPublishedProjects.add(this.project != null ? this.project : this.campaign.getProject());
 
 		projects = SelectChoices.from(myNotPublishedProjects, "ticker", this.project != null ? this.project : this.campaign.getProject());
 
