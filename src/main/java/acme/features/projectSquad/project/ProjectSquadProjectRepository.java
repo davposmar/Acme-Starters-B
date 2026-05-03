@@ -7,6 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.campaigns.Campaign;
+import acme.entities.fundraising.Strategy;
+import acme.entities.inventions.Invention;
+import acme.entities.projects.Member;
 import acme.entities.projects.Project;
 
 @Repository
@@ -25,4 +29,17 @@ public interface ProjectSquadProjectRepository extends AbstractRepository {
 
 	@Query("SELECT  COUNT(m) > 0 FROM Member m  WHERE m.project.id = :projectId AND m.projectSquad.id = :projectSquadId ")
 	boolean isMemberOfTheProject(Integer projectId, Integer projectSquadId);
+
+	@Query("select i from Invention i where i.project.id = :projectId")
+	Collection<Invention> findInventionsByProjectId(int projectId);
+
+	@Query("SELECT c FROM Campaign c WHERE c.project.id = :projectId")
+	Collection<Campaign> findCampaignsInProject(int projectId);
+
+	@Query("SELECT s FROM Strategy s WHERE s.project.id = :projectId")
+	Collection<Strategy> findStrategiesByProject(int projectId);
+
+	@Query("SELECT m FROM Member m WHERE m.project.id = :projectId")
+	Collection<Member> findMembersByProject(int projectId);
+
 }

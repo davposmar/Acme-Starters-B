@@ -12,16 +12,22 @@
 
 package acme.features.projectSquad.project;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.components.models.Tuple;
 import acme.client.services.AbstractService;
+import acme.entities.campaigns.Campaign;
+import acme.entities.fundraising.Strategy;
+import acme.entities.inventions.Invention;
 import acme.entities.projects.Project;
 import acme.realms.ProjectSquad;
 
 @Service
-public class ProjectSquadProjectUpdateService extends AbstractService<ProjectSquad, Project> {
+public class ProjectSquadProjectDeleteService extends AbstractService<ProjectSquad, Project> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -59,12 +65,32 @@ public class ProjectSquadProjectUpdateService extends AbstractService<ProjectSqu
 
 	@Override
 	public void validate() {
-		super.validateObject(this.project);
+		;
 	}
 
 	@Override
 	public void execute() {
-		this.repository.save(this.project);
+
+		List<Invention> inventions = this.repository.findInventionsByProjectId(this.project.getId()).stream().map(invention -> {
+			invention.setProject(null);
+			return invention;
+		}).toList();
+
+		Collection<Campaign> campaigns = this.repository.findCampaignsInProject(this.project.getId()).stream().map(campaign -> {
+			campaign.setProject(null);
+			return campaign;
+		}).toList();
+
+		Collection<Strategy> strategies = this.repository.findStrategiesByProject(this.project.getId()).stream().map(strategy -> {
+			strategy.setProject(null);
+			return strategy;
+		}).toList();
+
+		this.repository.saveAll(inventions);
+		this.repository.saveAll(campaigns);
+		this.repository.saveAll(strategies);
+		this.repository.deleteAll(this.repository.findMembersByProject(this.project.getId()));
+		this.repository.delete(this.project);
 	}
 
 	@Override

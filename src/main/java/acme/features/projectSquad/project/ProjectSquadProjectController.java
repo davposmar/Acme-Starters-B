@@ -20,7 +20,7 @@ public class ProjectSquadProjectController extends AbstractController<ProjectSqu
 		super.addBasicCommand("list", ProjectSquadProjectListService.class);
 		super.addBasicCommand("show", ProjectSquadProjectShowService.class);
 		super.addBasicCommand("update", ProjectSquadProjectUpdateService.class);
-		//super.addBasicCommand("delete", FundraiserStrategyDeleteService.class);
+		super.addBasicCommand("delete", ProjectSquadProjectDeleteService.class);
 		//super.addCustomCommand("publish", "update", FundraiserStrategyPublishService.class);
 	}
 

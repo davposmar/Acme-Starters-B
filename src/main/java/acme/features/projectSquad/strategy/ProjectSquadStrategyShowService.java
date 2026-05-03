@@ -47,7 +47,8 @@ public class ProjectSquadStrategyShowService extends AbstractService<ProjectSqua
 	public void authorise() {
 		boolean status;
 
-		status = this.strategy != null && (this.strategy.getDraftMode() == false || this.repository.isMemberOfTheProject(this.strategy.getProject().getId(), this.projectSquadId));
+		boolean isMemeber = this.strategy != null && this.strategy.getProject() != null && this.repository.isMemberOfTheProject(this.strategy.getProject().getId(), this.projectSquadId);
+		status = this.strategy != null && (this.strategy.getDraftMode() == false || isMemeber);
 
 		super.setAuthorised(status);
 	}
@@ -55,6 +56,7 @@ public class ProjectSquadStrategyShowService extends AbstractService<ProjectSqua
 	@Override
 	public void unbind() {
 		super.unbindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "fundraiser.identity.fullName");
+		super.unbindGlobal("isOwner", this.strategy.getFundraiser().isPrincipal());
 	}
 
 }
