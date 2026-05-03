@@ -11,3 +11,5 @@ project-squad.campaign.form.label.description = Description
 project-squad.campaign.form.label.startMoment = Start Moment
 project-squad.campaign.form.label.endMoment = End Moment
 project-squad.campaign.form.label.moreInfo = More info
+
+project-squad.campaign.form.button.milestones = Milestones

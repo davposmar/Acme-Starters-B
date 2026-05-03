@@ -11,3 +11,5 @@ project-squad.campaign.form.label.description = Descripción
 project-squad.campaign.form.label.startMoment = Momento de inicio
 project-squad.campaign.form.label.endMoment = Momento de fin
 project-squad.campaign.form.label.moreInfo = Más info
+
+project-squad.campaign.form.button.milestones = Hitos

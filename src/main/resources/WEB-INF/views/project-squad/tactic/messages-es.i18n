@@ -1,0 +1,11 @@
+project-squad.tactic.list.title = Título
+project-squad.tactic.list.label.name = Nombre
+project-squad.tactic.list.label.kind = Tipo
+project-squad.tactic.list.label.expectedPercentage = Porcentaje esperado
+
+project-squad.tactic.form.title = Título
+project-squad.tactic.form.label.strategy = Estrategia
+project-squad.tactic.form.label.name = Nombre
+project-squad.tactic.form.label.notes = Notas
+project-squad.tactic.form.label.expectedPercentage = Porcentaje esperado
+project-squad.tactic.form.label.kind = Tipo
