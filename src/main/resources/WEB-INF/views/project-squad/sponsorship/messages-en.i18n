@@ -1,0 +1,31 @@
+
+project-squad.sponsorship.form.title = Sponsorship form
+project-squad.sponsorship.list.title = Listing of sponsorships
+
+project-squad.sponsorship.form.label.ticker = Ticker:
+project-squad.sponsorship.form.label.name = Name:
+project-squad.sponsorship.form.label.description = Description:
+project-squad.sponsorship.form.label.startMoment = Start Moment:
+project-squad.sponsorship.form.label.endMoment = End Moment:
+project-squad.sponsorship.form.label.moreInfo = More info: (Optional)
+project-squad.sponsorship.form.label.project-squad.identity.fullName = Sponsor:
+project-squad.sponsorship.form.label.monthsActive = Months Active: (Calculated)
+project-squad.sponsorship.form.label.totalMoney = Total Money: (Calculated)
+
+project-squad.sponsorship.form.button.donations = Donations
+project-squad.sponsorship.form.button.update = Update
+project-squad.sponsorship.form.button.delete = Delete
+project-squad.sponsorship.form.button.publish = Publish
+project-squad.sponsorship.form.button.create = Create
+
+project-squad.sponsorship.project.form.label.ticker = Project Ticker: (Optional)
+project-squad.sponsorship.project.form.button.assign = Assign Project
+
+project-squad.sponsorship.list.label.ticker = Ticker 
+project-squad.sponsorship.list.label.name = Name
+project-squad.sponsorship.list.label.startMoment = Start Moment
+project-squad.sponsorship.list.label.endMoment = End Moment
+project-squad.sponsorship.list.label.draftMode = DraftMode
+
+project-squad.sponsorship.list.button.create = Create
+
