@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.auditSection;
+package acme.features.projectSquad.auditSection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,19 +18,21 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
+import acme.entities.audits.AuditReport;
 import acme.entities.audits.AuditSection;
 import acme.entities.audits.SectionKind;
-import acme.realms.Auditor;
+import acme.realms.ProjectSquad;
 
 @Service
-public class AuditorAuditSectionShowService extends AbstractService<Auditor, AuditSection> {
+public class ProjectSquadAuditSectionShowService extends AbstractService<ProjectSquad, AuditSection> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditorAuditSectionRepository	repository;
+	private ProjectSquadAuditSectionRepository	repository;
 
-	private AuditSection					auditSection;
+	private AuditSection						auditSection;
+	private AuditReport							auditReport;
 
 	// AbstractService interface -------------------------------------------
 
@@ -41,13 +43,16 @@ public class AuditorAuditSectionShowService extends AbstractService<Auditor, Aud
 
 		id = super.getRequest().getData("id", int.class);
 		this.auditSection = this.repository.findAuditSectionById(id);
+		this.auditReport = this.auditSection.getAuditReport();
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
+		int projectSquadId = super.getRequest().getPrincipal().getRealmOfType(ProjectSquad.class).getId();
 
-		status = this.auditSection != null && (this.auditSection.getAuditReport().getAuditor().isPrincipal() || !this.auditSection.getAuditReport().getDraftMode());
+		boolean isMemeber = this.auditReport != null && this.auditReport.getProject() != null && this.repository.isMemberOfTheProject(this.auditReport.getProject().getId(), projectSquadId);
+		status = this.auditReport != null && (isMemeber || !this.auditReport.getDraftMode());
 
 		super.setAuthorised(status);
 	}

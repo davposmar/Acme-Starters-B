@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.auditSection;
+package acme.features.projectSquad.auditSection;
 
 import java.util.Collection;
 
@@ -20,18 +20,18 @@ import org.springframework.stereotype.Service;
 import acme.client.services.AbstractService;
 import acme.entities.audits.AuditReport;
 import acme.entities.audits.AuditSection;
-import acme.realms.Auditor;
+import acme.realms.ProjectSquad;
 
 @Service
-public class AuditorAuditSectionListService extends AbstractService<Auditor, AuditSection> {
+public class ProjectSquadAuditSectionListService extends AbstractService<ProjectSquad, AuditSection> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditorAuditSectionRepository	repository;
+	private ProjectSquadAuditSectionRepository	repository;
 
-	private AuditReport						auditReport;
-	private Collection<AuditSection>		auditSections;
+	private AuditReport							auditReport;
+	private Collection<AuditSection>			auditSections;
 
 	// AbstractService interface -------------------------------------------
 
@@ -48,8 +48,10 @@ public class AuditorAuditSectionListService extends AbstractService<Auditor, Aud
 	@Override
 	public void authorise() {
 		boolean status;
+		int projectSquadId = super.getRequest().getPrincipal().getRealmOfType(ProjectSquad.class).getId();
 
-		status = this.auditReport != null && (!this.auditReport.getDraftMode() || this.auditReport.getAuditor().isPrincipal());
+		boolean isMemeber = this.auditReport != null && this.auditReport.getProject() != null && this.repository.isMemberOfTheProject(this.auditReport.getProject().getId(), projectSquadId);
+		status = this.auditReport != null && (isMemeber || !this.auditReport.getDraftMode());
 
 		super.setAuthorised(status);
 	}

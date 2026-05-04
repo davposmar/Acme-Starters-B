@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.auditSection;
+package acme.features.projectSquad.auditSection;
 
 import javax.annotation.PostConstruct;
 
@@ -19,10 +19,10 @@ import org.springframework.stereotype.Controller;
 
 import acme.client.controllers.AbstractController;
 import acme.entities.audits.AuditSection;
-import acme.realms.Auditor;
+import acme.realms.ProjectSquad;
 
 @Controller
-public class AuditorAuditSectionController extends AbstractController<Auditor, AuditSection> {
+public class ProjectSquadAuditSectionController extends AbstractController<ProjectSquad, AuditSection> {
 
 	// Constructors -----------------------------------------------------------
 
@@ -30,11 +30,8 @@ public class AuditorAuditSectionController extends AbstractController<Auditor, A
 	protected void initialise() {
 		super.setMediaType(MediaType.TEXT_HTML);
 
-		super.addBasicCommand("list", AuditorAuditSectionListService.class);
-		super.addBasicCommand("show", AuditorAuditSectionShowService.class);
-		super.addBasicCommand("create", AuditorAuditSectionCreateService.class);
-		super.addBasicCommand("update", AuditorAuditSectionUpdateService.class);
-		super.addBasicCommand("delete", AuditorAuditSectionDeleteService.class);
+		super.addBasicCommand("list", ProjectSquadAuditSectionListService.class);
+		super.addBasicCommand("show", ProjectSquadAuditSectionShowService.class);
 	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * ProjectSquadAuditSectionController.java
+ * AnyAuditorController.java
  *
  * Copyright (C) 2012-2026 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.auditSection;
+package acme.features.projectSquad.auditReport;
 
 import javax.annotation.PostConstruct;
 
@@ -18,11 +18,11 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 
 import acme.client.controllers.AbstractController;
-import acme.entities.audits.AuditSection;
-import acme.realms.Auditor;
+import acme.entities.audits.AuditReport;
+import acme.realms.ProjectSquad;
 
 @Controller
-public class AuditorAuditSectionController extends AbstractController<Auditor, AuditSection> {
+public class ProjectSquadAuditReportController extends AbstractController<ProjectSquad, AuditReport> {
 
 	// Constructors -----------------------------------------------------------
 
@@ -30,11 +30,8 @@ public class AuditorAuditSectionController extends AbstractController<Auditor, A
 	protected void initialise() {
 		super.setMediaType(MediaType.TEXT_HTML);
 
-		super.addBasicCommand("list", AuditorAuditSectionListService.class);
-		super.addBasicCommand("show", AuditorAuditSectionShowService.class);
-		super.addBasicCommand("create", AuditorAuditSectionCreateService.class);
-		super.addBasicCommand("update", AuditorAuditSectionUpdateService.class);
-		super.addBasicCommand("delete", AuditorAuditSectionDeleteService.class);
+		super.addBasicCommand("list", ProjectSquadAuditReportListService.class);
+		super.addBasicCommand("show", ProjectSquadAuditReportShowService.class);
 	}
 
 }
