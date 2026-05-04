@@ -17,6 +17,7 @@ project-squad.project.form.button.strategy = Strategies
 project-squad.project.form.button.campaign = Campaigns
 project-squad.project.form.button.sponsorship = Sponsorships
 project-squad.project.form.button.member = Members
+project-squad.project.form.button.auditReport = Audit Reports
 project-squad.project.form.button.update = Update
 project-squad.project.form.button.delete = Delete
 project-squad.project.form.button.publish = Publish
