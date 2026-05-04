@@ -21,7 +21,7 @@ import acme.entities.projects.Project;
 import acme.realms.ProjectSquad;
 
 @Service
-public class ProjectSquadProjectUpdateService extends AbstractService<ProjectSquad, Project> {
+public class ProjectSquadProjectDeleteService extends AbstractService<ProjectSquad, Project> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -59,12 +59,17 @@ public class ProjectSquadProjectUpdateService extends AbstractService<ProjectSqu
 
 	@Override
 	public void validate() {
-		super.validateObject(this.project);
+		;
 	}
 
 	@Override
 	public void execute() {
-		this.repository.save(this.project);
+
+		this.repository.unlinkAllInventiosOfProject(this.project.getId());
+		this.repository.unlinkAllCampaignsOfProject(this.project.getId());
+		this.repository.unlinkAllStrategiesOfProject(this.project.getId());
+		this.repository.deleteAll(this.repository.findMembersByProject(this.project.getId()));
+		this.repository.delete(this.project);
 	}
 
 	@Override

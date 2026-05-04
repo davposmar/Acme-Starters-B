@@ -11,6 +11,11 @@
 acme.validation.project.duplicated-ticker.message = Referencia ya usada
 acme.validation.project.invention.message = El proyecto tiene que tener al menos un invento
 acme.validation.project.moments.message = El momento de la reunión de incio debe ser anterior al momento de fin del proyecto
+acme.validation.project.campaigns.message = No todas las campañas  pueden ser publicadas
+acme.validation.project.strategies.message = No todas las estrategias pueden ser publicadas
+acme.validation.project.inventions.message = No todas los inventos pueden ser publicadas
+
+
 acme.validation.invention.startMoment.message = El momento de inicio debe ser futuro
 acme.validation.invention.endMoment.message = El momento final debe ser futuro
 acme.validation.invention.part.message = El invento debe tener al menos una parte

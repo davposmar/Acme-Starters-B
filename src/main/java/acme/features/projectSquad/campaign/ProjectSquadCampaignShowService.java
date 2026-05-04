@@ -47,7 +47,8 @@ public class ProjectSquadCampaignShowService extends AbstractService<ProjectSqua
 	public void authorise() {
 		boolean status;
 
-		status = this.campaign != null && (this.campaign.getDraftMode() == false || this.repository.isMemberOfTheProject(this.campaign.getProject().getId(), this.projectSquadId));
+		boolean isMemeber = this.campaign != null && this.campaign.getProject() != null && this.repository.isMemberOfTheProject(this.campaign.getProject().getId(), this.projectSquadId);
+		status = this.campaign != null && (this.campaign.getDraftMode() == false || isMemeber);
 
 		super.setAuthorised(status);
 	}
@@ -55,6 +56,7 @@ public class ProjectSquadCampaignShowService extends AbstractService<ProjectSqua
 	@Override
 	public void unbind() {
 		super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "spokesperson.identity.fullName");
+		super.unbindGlobal("isOwner", this.campaign.getSpokesperson().isPrincipal());
 	}
 
 }

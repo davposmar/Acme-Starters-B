@@ -71,7 +71,9 @@ public class SpokespersonCampaignUpdateService extends AbstractService<Spokesper
 
 		this.repository.save(this.campaign);
 		if (project != null) {
-			project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), this.campaign.getMonthsActive());
+			long numPeople = this.repository.countNumPeople(project.getId());
+			//project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), this.campaign.getMonthsActive());
+			project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), this.campaign.getMonthsActive(), numPeople);
 			this.repository.save(project);
 		}
 	}

@@ -1,7 +1,5 @@
 
-package acme.features.inventor.invention;
-
-import java.util.Collection;
+package acme.features.projectSquad.invention;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,19 +7,18 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.services.AbstractService;
 import acme.entities.inventions.Invention;
-import acme.entities.inventions.Part;
 import acme.entities.projects.Project;
-import acme.realms.Inventor;
+import acme.realms.ProjectSquad;
 
 @Service
-public class InventorInventionDeleteService extends AbstractService<Inventor, Invention> {
+public class ProjectSquadInventionUnlinkService extends AbstractService<ProjectSquad, Invention> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private InventionRepository	repository;
+	private ProjectSquadInventionRepository	repository;
 
-	private Invention			invention;
+	private Invention						invention;
 
 	// AbstractService interface ----------------------------------------------
 
@@ -38,7 +35,7 @@ public class InventorInventionDeleteService extends AbstractService<Inventor, In
 	public void authorise() {
 		boolean status;
 
-		status = this.invention != null && this.invention.getDraftMode() && this.invention.getInventor().isPrincipal();
+		status = this.invention != null && this.invention.getInventor().isPrincipal() && this.invention.getProject() != null && this.invention.getProject().getDraftMode();
 		super.setAuthorised(status);
 	}
 
@@ -54,10 +51,7 @@ public class InventorInventionDeleteService extends AbstractService<Inventor, In
 
 	@Override
 	public void execute() {
-		Collection<Part> parts;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().getData("id", int.class);
 
 		Invention previousInvention = this.repository.findinventionById(id);
 		Project project = previousInvention.getProject();
@@ -67,10 +61,8 @@ public class InventorInventionDeleteService extends AbstractService<Inventor, In
 			project.updateEffortUsingComponentValues(previousInvention.getMonthsActive(), 0.0, numPeople);
 			this.repository.save(project);
 		}
-
-		parts = this.repository.findPartsByInventionId(this.invention.getId());
-		this.repository.deleteAll(parts);
-		this.repository.delete(this.invention);
+		previousInvention.setProject(null);
+		this.repository.save(previousInvention);
 	}
 
 	@Override
