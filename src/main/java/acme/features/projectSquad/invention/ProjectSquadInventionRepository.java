@@ -30,4 +30,7 @@ public interface ProjectSquadInventionRepository extends AbstractRepository {
 
 	@Query("SELECT  COUNT(m) > 0 FROM Member m  WHERE m.project.id = :projectId AND m.projectSquad.id = :projectSquadId ")
 	boolean isMemberOfTheProject(Integer projectId, Integer projectSquadId);
+
+	@Query("select count(m) from Member m where m.project.id = :projectId")
+	Long countNumPeople(int projectId);
 }

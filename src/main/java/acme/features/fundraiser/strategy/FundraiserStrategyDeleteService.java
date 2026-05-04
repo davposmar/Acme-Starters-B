@@ -75,7 +75,8 @@ public class FundraiserStrategyDeleteService extends AbstractService<Fundraiser,
 		Project project = previousStrategy.getProject();
 
 		if (project != null) {
-			project.updateEffortUsingComponentValues(previousStrategy.getMonthsActive(), 0.0);
+			long numPeople = this.repository.countNumPeople(project.getId());
+			project.updateEffortUsingComponentValues(previousStrategy.getMonthsActive(), 0.0, numPeople);
 			this.repository.save(project);
 		}
 

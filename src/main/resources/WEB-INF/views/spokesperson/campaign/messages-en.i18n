@@ -1,3 +1,5 @@
+spokesperson.campaign.project.form.label.ticker = Project Ticker: (Optional)
+spokesperson.campaign.project.form.button.assign = Assign Project
 
 spokesperson.campaign.form.title = Campaign form
 spokesperson.campaign.list.title = Listing of campaigns

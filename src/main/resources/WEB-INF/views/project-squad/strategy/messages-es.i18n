@@ -11,3 +11,5 @@ project-squad.strategy.form.label.description = Descripción
 project-squad.strategy.form.label.startMoment = Momento de inicio
 project-squad.strategy.form.label.endMoment = Momento de fin
 project-squad.strategy.form.label.moreInfo = Más info
+
+project-squad.strategy.form.button.tactics = Tácticas

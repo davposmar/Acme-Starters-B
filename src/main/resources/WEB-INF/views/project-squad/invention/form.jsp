@@ -33,7 +33,7 @@
 			<acme:button code="project-squad.invention.form.button.edit" action="/inventor/invention/show?id=${id}"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'show' && isOwner}">
-			<acme:submit code="project-squad.invention.form.button.unlink" action="/inventor/invention/create"/>
+			<acme:submit code="project-squad.invention.form.button.unlink" action="/project-squad/invention/unlink"/>
 		</jstl:when>
 	</jstl:choose>
 	

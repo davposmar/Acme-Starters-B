@@ -27,6 +27,7 @@
 	<acme:button code="project-squad.project.form.button.invention" action="/project-squad/invention/list?projectId=${id}"/>
 	<acme:button code="project-squad.project.form.button.strategy" action="/project-squad/strategy/list?projectId=${id}"/>
 	<acme:button code="project-squad.project.form.button.campaign" action="/project-squad/campaign/list?projectId=${id}"/>
+	<acme:button code="project-squad.project.form.button.sponsorship" action="/project-squad/sponsorship/list?projectId=${id}"/>
 	<acme:button code="project-squad.project.form.button.member" action="/project-squad/member/list?projectId=${id}"/>
 	<jstl:when test="${acme:anyOf(draftMode == false}">
 		<acme:button code="project-squad.project.form.button.auditReport" action="/project-squad/audit-report/list?projectId=${id}"/>

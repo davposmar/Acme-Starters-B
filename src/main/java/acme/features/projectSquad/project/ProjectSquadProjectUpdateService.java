@@ -54,7 +54,7 @@ public class ProjectSquadProjectUpdateService extends AbstractService<ProjectSqu
 
 	@Override
 	public void bind() {
-		super.bindObject(this.project, "ticker", "ticker", "title", "keyWords", "description", "kickOff", "closeOut");
+		super.bindObject(this.project, "ticker", "title", "keyWords", "description", "kickOff", "closeOut");
 	}
 
 	@Override

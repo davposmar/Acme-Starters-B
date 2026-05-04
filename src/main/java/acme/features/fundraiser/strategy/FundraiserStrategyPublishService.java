@@ -106,7 +106,9 @@ public class FundraiserStrategyPublishService extends AbstractService<Fundraiser
 		this.strategy.setDraftMode(false);
 		this.repository.save(this.strategy);
 		if (project != null) {
-			project.updateEffortUsingComponentValues(previousStrategy.getMonthsActive(), this.strategy.getMonthsActive());
+			long numPeople = this.repository.countNumPeople(project.getId());
+			//project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), this.campaign.getMonthsActive());
+			project.updateEffortUsingComponentValues(previousStrategy.getMonthsActive(), this.strategy.getMonthsActive(), numPeople);
 			this.repository.save(project);
 		}
 

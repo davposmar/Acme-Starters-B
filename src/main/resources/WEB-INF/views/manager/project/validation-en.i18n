@@ -11,6 +11,11 @@
 acme.validation.project.duplicated-ticker.message = The ticker is duplicated
 acme.validation.project.invention.message = The project must have at least one invention
 acme.validation.project.moments.message = kick off moment must be before Close out moment
+acme.validation.project.campaigns.message = All campaigns can not be published
+acme.validation.project.strategies.message = All strategies can not be published
+acme.validation.project.inventions.message = All inventions can not be published
+
+
 acme.validation.invention.startMoment.message = Start moment must be in the future
 acme.validation.invention.endMoment.message = End moment must be in the future
 acme.validation.invention.part.message = The invention requires at least one part

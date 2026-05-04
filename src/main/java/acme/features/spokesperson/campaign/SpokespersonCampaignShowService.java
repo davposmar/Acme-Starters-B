@@ -12,12 +12,17 @@
 
 package acme.features.spokesperson.campaign;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.components.models.Tuple;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
 import acme.entities.campaigns.Campaign;
+import acme.entities.projects.Project;
+import acme.realms.ProjectSquad;
 import acme.realms.Spokesperson;
 
 @Service
@@ -29,6 +34,8 @@ public class SpokespersonCampaignShowService extends AbstractService<Spokesperso
 	private SpokespersonCampaignRepository	repository;
 
 	private Campaign						campaign;
+	private Project							project;
+	private int								projectSquadId;
 
 	// AbstractService interface ----------------------------------------------
 
@@ -39,6 +46,10 @@ public class SpokespersonCampaignShowService extends AbstractService<Spokesperso
 
 		id = super.getRequest().getData("id", int.class);
 		this.campaign = this.repository.findCampaignById(id);
+
+		this.projectSquadId = super.getRequest().getPrincipal().getRealmOfType(ProjectSquad.class).getId();
+
+		this.project = this.campaign != null ? this.campaign.getProject() : null;
 	}
 
 	@Override
@@ -52,11 +63,23 @@ public class SpokespersonCampaignShowService extends AbstractService<Spokesperso
 
 	@Override
 	public void unbind() {
+		SelectChoices projects = null;
+		if (this.project == null || this.project != null && this.project.getDraftMode()) {
+			Collection<Project> availableProjects = this.repository.findMyNotPublishedProjects(this.projectSquadId);
+			projects = SelectChoices.from(availableProjects, "ticker", this.project != null ? this.project : this.campaign.getProject());
+		}
 		Tuple tuple;
 
-		tuple = super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "spokesperson.identity.fullName");
+		tuple = super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "spokesperson.identity.fullName", "project");
 		tuple.put("monthsActive", this.campaign.getMonthsActive());
 		tuple.put("effort", this.campaign.getEffort());
+		if (this.project == null || this.project != null && this.project.getDraftMode()) {
+			tuple.put("projects", projects);
+			tuple.put("canEdit", true);
+		} else {
+			tuple.put("canEdit", false);
+			tuple.put("proTick", this.project.getTicker());
+		}
 	}
 
 }

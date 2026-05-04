@@ -14,6 +14,7 @@ project-squad.project.form.label.manager = Manager:
 project-squad.project.form.button.invention = Inventos
 project-squad.project.form.button.strategy = Estrategias
 project-squad.project.form.button.campaign = Campañas
+project-squad.project.form.button.sponsorship = Patrocinios
 project-squad.project.form.button.auditReport = Reportes de Auditoría
 project-squad.project.form.button.update = Actualizar
 project-squad.project.form.button.delete = Eliminar

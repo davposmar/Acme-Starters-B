@@ -1,0 +1,10 @@
+project-squad.donation.form.title = Detalles donación
+project-squad.donation.list.title = Listado de donaciones
+
+project-squad.donation.form.label.name = Nombre:
+project-squad.donation.form.label.notes = Notas:
+project-squad.donation.form.label.money = Dinero:
+project-squad.donation.form.label.kind = Tipo:
+
+project-squad.donation.list.label.name = Nombre
+project-squad.donation.list.label.money = Dinero
