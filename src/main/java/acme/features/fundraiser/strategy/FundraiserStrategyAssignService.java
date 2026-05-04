@@ -81,6 +81,23 @@ public class FundraiserStrategyAssignService extends AbstractService<Fundraiser,
 
 	@Override
 	public void execute() {
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Strategy previousStrategy = this.repository.findStrategyById(id);
+		Project previousProject = previousStrategy.getProject();
+		if (previousProject != null) {
+			long numPeople = this.repository.countNumPeople(previousProject.getId());
+			previousProject.updateEffortUsingComponentValues(previousStrategy.getMonthsActive(), 0.0, numPeople);
+			this.repository.save(previousProject);
+		}
+		if (this.project != null) {
+			long numPeople = this.repository.countNumPeople(this.project.getId());
+			this.project.updateEffortUsingComponentValues(0.0, previousStrategy.getMonthsActive(), numPeople);
+			this.repository.save(this.project);
+		}
+
 		this.strategy.setProject(this.project);
 		this.repository.save(this.strategy);
 	}

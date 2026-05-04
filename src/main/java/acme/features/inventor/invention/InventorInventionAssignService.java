@@ -81,6 +81,23 @@ public class InventorInventionAssignService extends AbstractService<Inventor, In
 
 	@Override
 	public void execute() {
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Invention previousInvention = this.repository.findinventionById(id);
+		Project previousProject = previousInvention.getProject();
+		if (previousProject != null) {
+			long numPeople = this.repository.countNumPeople(previousProject.getId());
+			previousProject.updateEffortUsingComponentValues(previousInvention.getMonthsActive(), 0.0, numPeople);
+			this.repository.save(previousProject);
+		}
+		if (this.project != null) {
+			long numPeople = this.repository.countNumPeople(this.project.getId());
+			this.project.updateEffortUsingComponentValues(0.0, previousInvention.getMonthsActive(), numPeople);
+			this.repository.save(this.project);
+		}
+
 		this.invention.setProject(this.project);
 		this.repository.save(this.invention);
 	}

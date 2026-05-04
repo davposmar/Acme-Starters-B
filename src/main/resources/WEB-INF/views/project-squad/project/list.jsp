@@ -6,6 +6,7 @@
 <acme:list>
 	<acme:list-column code="projectSquad.project.list.label.ticker" path="ticker" width="20%"/>
 	<acme:list-column code="projectSquad.project.list.label.title" path="title" width="40%"/>
+	<acme:list-column code="projectSquad.project.list.label.draftMode" path="draftMode" width="20%"/>
 	<acme:list-column code="projectSquad.project.list.label.kickOff" path="kickOff" width="20%"/>
 	<acme:list-column code="projectSquad.project.list.label.closeOut" path="closeOut" width="20%"/>
 	<acme:list-hidden path="description"/>
