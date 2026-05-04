@@ -3,6 +3,7 @@ package acme.features.projectSquad.project;
 
 import java.util.Collection;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -53,5 +54,29 @@ public interface ProjectSquadProjectRepository extends AbstractRepository {
 
 	@Query("SELECT COUNT(i) FROM Invention i WHERE i.project.id = :projectId")
 	Long countInvetionsOfPorject(int projectId);
+
+	@Modifying
+	@Query("UPDATE Invention i SET i.draftMode = false WHERE i.project.id = :projectId ")
+	void publishAllInventiosOfProject(int projectId);
+
+	@Modifying
+	@Query("UPDATE Campaign c SET c.draftMode = false WHERE c.project.id = :projectId ")
+	void publishAllCampaignsOfProject(int projectId);
+
+	@Modifying
+	@Query("UPDATE Strategy s SET s.draftMode = false WHERE s.project.id = :projectId ")
+	void publishAllStrategiesOfProject(int projectId);
+
+	@Modifying
+	@Query("UPDATE Invention i SET i.project = null WHERE i.project.id = :projectId ")
+	void unlinkAllInventiosOfProject(int projectId);
+
+	@Modifying
+	@Query("UPDATE Campaign c SET c.project = null WHERE c.project.id = :projectId ")
+	void unlinkAllCampaignsOfProject(int projectId);
+
+	@Modifying
+	@Query("UPDATE Strategy s SET s.project = null WHERE s.project.id = :projectId ")
+	void unlinkAllStrategiesOfProject(int projectId);
 
 }

@@ -1,9 +1,7 @@
 
 package acme.features.projectSquad.project;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +9,6 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
-import acme.entities.campaigns.Campaign;
-import acme.entities.fundraising.Strategy;
-import acme.entities.inventions.Invention;
 import acme.entities.projects.Project;
 import acme.realms.ProjectSquad;
 
@@ -97,25 +92,10 @@ public class ProjectSquadProjectPublishService extends AbstractService<ProjectSq
 
 	@Override
 	public void execute() {
-		List<Invention> inventions = this.repository.findInventionsByProjectId(this.project.getId()).stream().map(invention -> {
-			invention.setDraftMode(false);
-			return invention;
-		}).toList();
 
-		Collection<Campaign> campaigns = this.repository.findCampaignsInProject(this.project.getId()).stream().map(campaign -> {
-			campaign.setDraftMode(false);
-			return campaign;
-		}).toList();
-
-		Collection<Strategy> strategies = this.repository.findStrategiesByProject(this.project.getId()).stream().map(strategy -> {
-			strategy.setDraftMode(false);
-			return strategy;
-		}).toList();
-
-		this.repository.saveAll(inventions);
-		this.repository.saveAll(campaigns);
-		this.repository.saveAll(strategies);
-
+		this.repository.publishAllInventiosOfProject(this.project.getId());
+		this.repository.publishAllCampaignsOfProject(this.project.getId());
+		this.repository.publishAllStrategiesOfProject(this.project.getId());
 		this.project.setDraftMode(false);
 		this.repository.save(this.project);
 
