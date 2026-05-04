@@ -16,5 +16,4 @@
 	<acme:form-double code="project-squad.audit-report.form.label.hours" path="hours"/>
 	
 	<acme:button code="project-squad.audit-report.form.button.audit-sections" action="/project-squad/audit-section/list?auditReportId=${id}"/>
-	<acme:button code="project-squad.audit-report.form.button.auditor" action="/project-squad/auditor/show?auditorId=${auditorId}"/>
 </acme:form>
