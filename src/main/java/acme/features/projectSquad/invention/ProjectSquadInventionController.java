@@ -21,6 +21,5 @@ public class ProjectSquadInventionController extends AbstractController<ProjectS
 
 		super.addBasicCommand("show", ProjectSquadInventionShowService.class);
 
-		super.addCustomCommand("unlink", "delete", ProjectSquadInventionUnlinkService.class);
 	}
 }

@@ -28,15 +28,4 @@
 	<acme:form-double readonly="true" code="project-squad.invention.form.label.cost" path="cost"/>
 	<acme:button code="project-squad.invention.form.button.part" action="/project-squad/part/list?inventionId=${id}"/>
 	
-	<jstl:choose>
-		<jstl:when test="${_command == 'show' && draftMode == false && isOwner}">
-			<acme:button code="project-squad.invention.form.button.edit" action="/inventor/invention/show?id=${id}"/>
-		</jstl:when>
-		<jstl:when test="${_command == 'show' && isOwner}">
-			<acme:submit code="project-squad.invention.form.button.unlink" action="/project-squad/invention/unlink"/>
-		</jstl:when>
-	</jstl:choose>
-	
-	
-	
 </acme:form>
