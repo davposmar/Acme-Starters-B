@@ -31,7 +31,6 @@ public class ProjectSquadInventorController extends AbstractController<ProjectSq
 		super.setMediaType(MediaType.TEXT_HTML);
 
 		super.addBasicCommand("list", ProjectSquadInventorListService.class);
-		super.addBasicCommand("show", ProjectSquadInventorShowService.class);
 	}
 
 }

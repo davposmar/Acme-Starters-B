@@ -31,7 +31,6 @@ public class ProjectSquadFundraiserController extends AbstractController<Project
 		super.setMediaType(MediaType.TEXT_HTML);
 
 		super.addBasicCommand("list", ProjectSquadFundraiserListService.class);
-		super.addBasicCommand("show", ProjectSquadFundraiserShowService.class);
 	}
 
 }
