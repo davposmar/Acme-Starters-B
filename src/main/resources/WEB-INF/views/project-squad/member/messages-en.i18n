@@ -14,5 +14,5 @@ project-squad.member.inventor.add = Add Inventor
 project-squad.member.spokesperson.form.label.username = Username
 project-squad.member.spokesperson.add = Add Spokesperson
 
-project-squad.member.spokesperson.form.label.username = Username
-project-squad.member.spokesperson.add = Add Fundraiser
+project-squad.member.fundraiser.form.label.username = Username
+project-squad.member.fundraiser.add = Add Fundraiser
