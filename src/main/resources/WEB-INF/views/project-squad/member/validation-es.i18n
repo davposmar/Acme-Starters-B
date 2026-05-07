@@ -10,5 +10,6 @@
 
 projectSquad.member.error.not-inventor = El usuario debe ser un inventor
 projectSquad.member.error.not-spokesperson = El usuario debe ser un portavoz
+projectSquad.member.error.not-fundraiser = El usuario debe ser un fundador
 
 projectSquad.member.error.already-exists = El usuario ya es un miembro 

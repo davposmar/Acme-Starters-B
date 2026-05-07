@@ -13,6 +13,10 @@
 		 	<acme:form-select readonly="false" code="project-squad.member.spokesperson.form.label.username" path="account" choices="${accounts}"/>
 			<acme:submit code="project-squad.member.spokesperson.add" action="/project-squad/member/addSpokesperson?projectId=${projectId}" />
 		</jstl:when>
+		<jstl:when test="${isFundraiser == true}">
+		 	<acme:form-select readonly="false" code="project-squad.member.fundraiser.form.label.username" path="account" choices="${accounts}"/>
+			<acme:submit code="project-squad.member.fundraiser.add" action="/project-squad/member/addFundraiser?projectId=${projectId}" />
+		</jstl:when>
 	</jstl:choose>
 
 </acme:form>
