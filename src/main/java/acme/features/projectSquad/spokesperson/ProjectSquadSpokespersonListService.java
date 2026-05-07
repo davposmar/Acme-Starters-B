@@ -54,5 +54,7 @@ public class ProjectSquadSpokespersonListService extends AbstractService<Project
 	@Override
 	public void unbind() {
 		super.unbindObjects(this.spokespersons, "identity.name", "cv", "achievements", "licensed");
+		super.unbindGlobal("projectId", this.projectId);
+		super.unbindGlobal("isManager", this.project.getManager().isPrincipal());
 	}
 }

@@ -31,7 +31,6 @@ public class ProjectSquadSpokespersonController extends AbstractController<Proje
 		super.setMediaType(MediaType.TEXT_HTML);
 
 		super.addBasicCommand("list", ProjectSquadSpokespersonListService.class);
-		super.addBasicCommand("show", ProjectSquadSpokespersonShowService.class);
 	}
 
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
-import acme.entities.fundraising.Strategy;
 import acme.entities.fundraising.Tactic;
 import acme.entities.fundraising.TacticKind;
 import acme.realms.ProjectSquad;
@@ -19,7 +18,6 @@ public class ProjectSquadTacticShowService extends AbstractService<ProjectSquad,
 	private ProjectSquadTacticRepository	repository;
 
 	private Tactic							tactic;
-	private Strategy						strategy;
 
 
 	@Override
@@ -28,7 +26,6 @@ public class ProjectSquadTacticShowService extends AbstractService<ProjectSquad,
 
 		id = super.getRequest().getData("id", int.class);
 		this.tactic = this.repository.findTacticById(id);
-		this.strategy = this.tactic.getStrategy();
 	}
 
 	@Override
@@ -36,7 +33,7 @@ public class ProjectSquadTacticShowService extends AbstractService<ProjectSquad,
 		boolean status;
 		int projectSquadId = super.getRequest().getPrincipal().getRealmOfType(ProjectSquad.class).getId();
 
-		status = this.tactic != null && (this.repository.isMemberOfTheProject(this.strategy.getProject().getId(), projectSquadId) || !this.tactic.getStrategy().getDraftMode());
+		status = this.tactic != null && this.tactic.getStrategy() != null && (this.repository.isMemberOfTheProject(this.tactic.getStrategy().getProject().getId(), projectSquadId) || !this.tactic.getStrategy().getDraftMode());
 
 		super.setAuthorised(status);
 	}

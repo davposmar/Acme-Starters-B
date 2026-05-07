@@ -6,3 +6,13 @@ project-squad.member.list.label.username = Nombre de usuario
 project-squad.member.list.button.addInventor = Añadir inventor
 project-squad.member.list.button.addFundraiser = Añadir fundador
 project-squad.member.list.button.addSpokesperson = Añadir portavoz
+
+project-squad.member.form.title = Añadir Member
+project-squad.member.inventor.form.label.username = Nombre de usuario
+project-squad.member.inventor.add = Añadir Inventor
+
+project-squad.member.spokesperson.form.label.username = Nombre de usuario
+project-squad.member.spokesperson.add = Añadir Portavoz
+
+project-squad.member.fundraiser.form.label.username = Nombre de usuario
+project-squad.member.fundraiser.add = Añadir Fundador

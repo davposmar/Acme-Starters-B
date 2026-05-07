@@ -42,7 +42,7 @@ public class ProjectSquadMemberListService extends AbstractService<ProjectSquad,
 	public void authorise() {
 		boolean res;
 
-		res = this.project != null && this.repository.isMemberOfTheProject(this.projectId, this.projectSquadId);
+		res = this.project != null && (this.repository.isMemberOfTheProject(this.projectId, this.projectSquadId) || !this.project.getDraftMode());
 		super.setAuthorised(res);
 	}
 

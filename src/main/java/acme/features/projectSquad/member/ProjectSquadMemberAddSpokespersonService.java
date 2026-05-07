@@ -1,0 +1,98 @@
+
+package acme.features.projectSquad.member;
+
+import java.util.Collection;
+import java.util.Map.Entry;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import acme.client.components.models.Tuple;
+import acme.client.components.principals.UserAccount;
+import acme.client.components.views.SelectChoices;
+import acme.client.services.AbstractService;
+import acme.entities.projects.Member;
+import acme.entities.projects.Project;
+import acme.realms.ProjectSquad;
+import acme.realms.Spokesperson;
+
+@Service
+public class ProjectSquadMemberAddSpokespersonService extends AbstractService<ProjectSquad, Member> {
+
+	@Autowired
+	private ProjectSquadMemberRepository	repository;
+	private Member							member;
+	private Project							project;
+	private UserAccount						account;
+
+
+	@Override
+	public void load() {
+		int projectId = super.getRequest().getData("projectId", int.class);
+
+		this.project = this.repository.findProjectById(projectId);
+
+		this.member = super.newObject(Member.class);
+		this.member.setProject(this.project);
+		this.account = null;
+
+	}
+
+	@Override
+	public void authorise() {
+		boolean isManager = this.project != null && this.project.getManager().isPrincipal();
+		boolean result = isManager;
+		super.setAuthorised(result);
+	}
+
+	@Override
+	public void bind() {
+		super.bindObject(this.member);
+		Entry<String, Object> accountEntry = this.getRequest().getDataEntries().stream().filter(entry -> entry.getKey().equals("account")).findFirst().orElse(null);
+		if (accountEntry != null) {
+			int userId = Integer.parseInt((String) accountEntry.getValue());
+			this.account = this.repository.findOneUserAccountById(userId);
+		}
+
+	}
+
+	@Override
+	public void validate() {
+		boolean isSpokespersonRole = this.account != null && this.account.hasRealmOfType(Spokesperson.class);
+		super.state(isSpokespersonRole, "*", "projectSquad.member.error.not-spokesperson");
+		if (isSpokespersonRole) {
+			int projectSquadId = this.account.getRealmOfType(ProjectSquad.class).getId();
+			boolean isInProject = this.repository.isMemberOfTheProject(this.project.getId(), projectSquadId);
+			super.state(!isInProject, "*", "projectSquad.member.error.already-exists");
+		}
+	}
+
+	@Override
+	public void execute() {
+		ProjectSquad projectSquad = this.account.getRealmOfType(ProjectSquad.class);
+		Long numPeople = this.repository.countNumPeople(this.project.getId());
+		this.project.updateEffortUsingComponentValues(0.0, 0.0, numPeople + 1);
+		this.repository.save(this.project);
+		this.member.setProjectSquad(projectSquad);
+		this.repository.save(this.member);
+	}
+
+	@Override
+	public void unbind() {
+		Collection<UserAccount> spokespersonNotInProject;
+		SelectChoices accounts;
+		Tuple tuple;
+		int projectId = super.getRequest().getData("projectId", int.class);
+
+		spokespersonNotInProject = this.repository.findAccountOfSpokespersonNotInProject(projectId);
+
+		accounts = SelectChoices.from(spokespersonNotInProject, "username", null);
+		tuple = super.unbindObject(this.member);
+		tuple.put("accounts", accounts);
+		tuple.put("account", null);
+		super.unbindGlobal("projectId", this.project.getId());
+		super.unbindGlobal("isSpokesperson", true);
+
+	}
+
+}

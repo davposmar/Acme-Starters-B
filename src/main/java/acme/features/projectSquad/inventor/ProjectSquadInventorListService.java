@@ -48,5 +48,6 @@ public class ProjectSquadInventorListService extends AbstractService<ProjectSqua
 	public void unbind() {
 		super.unbindObjects(this.inventors, "identity.name", "bio", "keyWords", "licensed");
 		super.unbindGlobal("projectId", this.projectId);
+		super.unbindGlobal("isManager", this.project.getManager().isPrincipal());
 	}
 }

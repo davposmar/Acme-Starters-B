@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
 import acme.entities.campaigns.Campaign;
+import acme.entities.projects.Project;
 
 @Service
 public class AnyCampaignListService extends AbstractService<Any, Campaign> {
@@ -36,12 +37,27 @@ public class AnyCampaignListService extends AbstractService<Any, Campaign> {
 
 	@Override
 	public void load() {
-		this.campaigns = this.repository.findPublishedCampaigns();
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+			this.campaigns = this.repository.findPublishedCampaignsByProjectId(projectId);
+		} else
+			this.campaigns = this.repository.findPublishedCampaigns();
 	}
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		boolean status = true;
+
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+
+			Project project = this.repository.findProjectById(projectId);
+
+			if (project == null || project.getDraftMode())
+				status = false;
+		}
+
+		super.setAuthorised(status);
 	}
 
 	@Override
@@ -49,6 +65,9 @@ public class AnyCampaignListService extends AbstractService<Any, Campaign> {
 		super.unbindObjects(this.campaigns, //
 			"ticker", "name", "description", //
 			"startMoment", "endMoment", "spokesperson.identity.fullName");
+
+		if (super.getRequest().hasData("projectId"))
+			super.unbindGlobal("projectId", super.getRequest().getData("projectId", int.class));
 	}
 
 }

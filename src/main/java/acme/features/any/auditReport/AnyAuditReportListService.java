@@ -1,5 +1,5 @@
 /*
- * ProjectSquadAuditReportListService.java
+ * AnyAuditReportListService.java
  *
  * Copyright (C) 2012-2026 Rafael Corchuelo.
  *
@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
 import acme.entities.audits.AuditReport;
+import acme.entities.projects.Project;
 
 @Service
 public class AnyAuditReportListService extends AbstractService<Any, AuditReport> {
@@ -36,12 +37,27 @@ public class AnyAuditReportListService extends AbstractService<Any, AuditReport>
 
 	@Override
 	public void load() {
-		this.auditReports = this.repository.findPublishedAuditReports();
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+			this.auditReports = this.repository.findPublishedAuditReportsByProjectId(projectId);
+		} else
+			this.auditReports = this.repository.findPublishedAuditReports();
 	}
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		boolean status = true;
+
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+
+			Project project = this.repository.findProjectById(projectId);
+
+			if (project == null || project.getDraftMode())
+				status = false;
+		}
+
+		super.setAuthorised(status);
 	}
 
 	@Override
@@ -49,6 +65,9 @@ public class AnyAuditReportListService extends AbstractService<Any, AuditReport>
 		super.unbindObjects(this.auditReports, //
 			"ticker", "name", "description", "startMoment", "endMoment",//
 			"auditor.identity.fullName");
+
+		if (super.getRequest().hasData("projectId"))
+			super.unbindGlobal("projectId", super.getRequest().getData("projectId", int.class));
 	}
 
 }
