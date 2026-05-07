@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
+import acme.entities.projects.Project;
 import acme.entities.sponsorships.Sponsorship;
 
 @Service
@@ -36,25 +37,33 @@ public class AnySponsorshipListService extends AbstractService<Any, Sponsorship>
 
 	@Override
 	public void load() {
-		// Nuestro escudo anti-500
 		if (super.getRequest().hasData("projectId")) {
 			int projectId = super.getRequest().getData("projectId", int.class);
 			this.sponsorships = this.repository.findPublishedSponsorshipsByProjectId(projectId);
 		} else
-			// Si no vienes de un proyecto, mostramos todos los sponsorships publicados
 			this.sponsorships = this.repository.findPublishedSponsorships();
 	}
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		boolean status = true;
+
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+
+			Project project = this.repository.findProjectById(projectId);
+
+			if (project == null || project.getDraftMode())
+				status = false;
+		}
+
+		super.setAuthorised(status);
 	}
 
 	@Override
 	public void unbind() {
 		super.unbindObjects(this.sponsorships, "ticker", "name", "description", "startMoment", "endMoment", "sponsor.identity.fullName");
 
-		// Rebotamos el projectId al JSP si es que existe
 		if (super.getRequest().hasData("projectId"))
 			super.unbindGlobal("projectId", super.getRequest().getData("projectId", int.class));
 	}

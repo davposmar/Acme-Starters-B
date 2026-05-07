@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.audits.AuditReport;
+import acme.entities.projects.Project;
 
 @Repository
 public interface AnyAuditReportRepository extends AbstractRepository {
@@ -31,5 +32,8 @@ public interface AnyAuditReportRepository extends AbstractRepository {
 
 	@Query("select a from AuditReport a where a.project.id = ?1 and a.project.draftMode = false")
 	Collection<AuditReport> findPublishedAuditReportsByProjectId(int projectId);
+
+	@Query("select p from Project p where p.id = ?1")
+	Project findProjectById(int id);
 
 }

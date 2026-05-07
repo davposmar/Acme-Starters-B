@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
 import acme.entities.campaigns.Campaign;
+import acme.entities.projects.Project;
 
 @Service
 public class AnyCampaignListService extends AbstractService<Any, Campaign> {
@@ -45,7 +46,18 @@ public class AnyCampaignListService extends AbstractService<Any, Campaign> {
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		boolean status = true;
+
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+
+			Project project = this.repository.findProjectById(projectId);
+
+			if (project == null || project.getDraftMode())
+				status = false;
+		}
+
+		super.setAuthorised(status);
 	}
 
 	@Override

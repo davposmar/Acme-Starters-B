@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.fundraising.Strategy;
+import acme.entities.projects.Project;
 import acme.realms.Fundraiser;
 
 @Repository
@@ -24,4 +25,7 @@ public interface AnyStrategyRepository extends AbstractRepository {
 
 	@Query("select s from Strategy s where s.project.id = ?1 and s.project.draftMode = false")
 	Collection<Strategy> findPublishedByProjectId(int projectId);
+
+	@Query("select p from Project p where p.id = ?1")
+	Project findProjectById(int id);
 }
