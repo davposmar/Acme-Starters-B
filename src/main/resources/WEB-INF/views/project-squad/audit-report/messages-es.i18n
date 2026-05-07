@@ -1,0 +1,22 @@
+
+project-squad.audit-report.form.title = Detalles de informe de auditoría
+project-squad.audit-report.list.title = Lista de informes de auditoría
+
+project-squad.audit-report.form.label.ticker = Referencia:
+project-squad.audit-report.form.label.name = Nombre:
+project-squad.audit-report.form.label.description = Descripción:
+project-squad.audit-report.form.label.startMoment = Fecha de comienzo:
+project-squad.audit-report.form.label.endMoment = Fecha de fin:
+project-squad.audit-report.form.label.moreInfo = Más información: (Opcional)
+project-squad.audit-report.form.label.auditor.identity.fullName = Auditor:
+project-squad.audit-report.form.label.monthsActive = Meses Activo: (Calculado)
+project-squad.audit-report.form.label.hours = Horas: (Calculado)
+
+project-squad.audit-report.form.button.audit-sections = Secciones de Auditoría
+project-squad.audit-report.form.button.auditor = Auditor
+
+project-squad.audit-report.list.label.ticker = Referencia 
+project-squad.audit-report.list.label.name = Nombre
+project-squad.audit-report.list.label.startMoment = Fecha de comienzo
+project-squad.audit-report.list.label.endMoment = Fecha de Fin
+project-squad.audit-report.list.label.auditor.identity.fullName = Auditor

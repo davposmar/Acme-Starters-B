@@ -39,8 +39,14 @@
 			<acme:submit code="auditor.audit-report.form.button.delete" action="/auditor/audit-report/delete"/>
 			<acme:submit code="auditor.audit-report.form.button.publish" action="/auditor/audit-report/publish"/>
 		</jstl:when>
-		<jstl:when test="${_command == 'create'}">
+		<jstl:when test="${acme:anyOf(_command, 'create')}">
+			<acme:form-textbox  code="auditor.audit-report.form.label.ticker" path="ticker"/>
+			<acme:form-textbox  code="auditor.audit-report.form.label.name" path="name"/>
+			<acme:form-textarea code="auditor.audit-report.form.label.description" path="description"/>
+			<acme:form-moment code="auditor.audit-report.form.label.startMoment" path="startMoment"/>
+			<acme:form-moment code="auditor.audit-report.form.label.endMoment" path="endMoment"/>
+			<acme:form-url  code="auditor.audit-report.form.label.moreInfo" path="moreInfo"/>
 			<acme:submit code="auditor.audit-report.form.button.create" action="/auditor/audit-report/create"/>
-		</jstl:when>		
+		</jstl:when>	
 	</jstl:choose>
 </acme:form>

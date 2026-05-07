@@ -94,6 +94,8 @@ public class Project extends AbstractEntity {
 
 
 	public Double computeEffort(final long people) {
+
+		//MemberRepository memberRepository = SpringHelper.getBean(MemberRepository.class)
 		Double months = this.getTotalActiveMonths();
 		//long people = this.memberRepository.countNumPeople(this.getId());
 		return months / people;

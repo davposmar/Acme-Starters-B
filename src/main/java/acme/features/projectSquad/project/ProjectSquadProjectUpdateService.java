@@ -41,7 +41,7 @@ public class ProjectSquadProjectUpdateService extends AbstractService<ProjectSqu
 
 		id = super.getRequest().getData("id", int.class);
 		this.project = this.repository.findProjectById(id);
-		this.isProjectManager = this.project.getManager().isPrincipal();
+		this.isProjectManager = this.project != null ? this.project.getManager().isPrincipal() : false;
 	}
 
 	@Override

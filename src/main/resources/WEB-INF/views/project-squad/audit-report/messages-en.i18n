@@ -1,0 +1,23 @@
+
+project-squad.audit-report.form.title = Audit report form
+project-squad.audit-report.list.title = Listing of audit reports
+
+project-squad.audit-report.form.label.ticker = Ticker:
+project-squad.audit-report.form.label.name = Name:
+project-squad.audit-report.form.label.description = Description:
+project-squad.audit-report.form.label.startMoment = Start Moment:
+project-squad.audit-report.form.label.endMoment = End Moment:
+project-squad.audit-report.form.label.moreInfo = More info: (Optional)
+project-squad.audit-report.form.label.auditor.identity.fullName = Auditor:
+project-squad.audit-report.form.label.monthsActive = Months Active: (Calculated)
+project-squad.audit-report.form.label.hours = Hours: (Calculated)
+
+project-squad.audit-report.form.button.audit-sections = Audit Sections
+project-squad.audit-report.form.button.auditor = Auditor
+
+project-squad.audit-report.list.label.ticker = Ticker 
+project-squad.audit-report.list.label.name = Name
+project-squad.audit-report.list.label.startMoment = Start Moment
+project-squad.audit-report.list.label.endMoment = End Moment
+project-squad.audit-report.list.label.auditor.identity.fullName = Auditor
+

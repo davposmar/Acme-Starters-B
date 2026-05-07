@@ -19,6 +19,8 @@ public class ProjectSquadInventionListService extends AbstractService<ProjectSqu
 	@Autowired
 	private ProjectSquadInventionRepository	repository;
 	private Project							project;
+	private int								projectId;
+	private int								projectSquadId;
 	private Collection<Invention>			inventions;
 
 	// AbstractService interface -------------------------------------------
@@ -26,16 +28,19 @@ public class ProjectSquadInventionListService extends AbstractService<ProjectSqu
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		boolean res;
+
+		res = this.project != null && (this.repository.isMemberOfTheProject(this.projectId, this.projectSquadId) || !this.project.getDraftMode());
+
+		super.setAuthorised(res);
 	}
 
 	@Override
 	public void load() {
-		int projectId;
-
-		projectId = super.getRequest().getData("projectId", int.class);
-		this.project = this.repository.findPorjectById(projectId);
-		this.inventions = this.repository.findInventionsByProjectId(projectId);
+		this.projectId = super.getRequest().getData("projectId", int.class);
+		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		this.project = this.repository.findPorjectById(this.projectId);
+		this.inventions = this.repository.findInventionsByProjectId(this.projectId);
 
 	}
 
