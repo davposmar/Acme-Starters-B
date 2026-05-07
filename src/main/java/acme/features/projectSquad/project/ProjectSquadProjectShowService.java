@@ -33,6 +33,8 @@ public class ProjectSquadProjectShowService extends AbstractService<ProjectSquad
 
 	private boolean							isManager;
 
+	private Integer							projectId;
+
 	private Boolean							isProjectManager;
 
 	// AbstractService interface ----------------------------------------------
@@ -40,12 +42,10 @@ public class ProjectSquadProjectShowService extends AbstractService<ProjectSquad
 
 	@Override
 	public void load() {
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		this.project = this.repository.findProjectById(id);
+		this.projectId = super.getRequest().getData("id", int.class);
+		this.project = this.repository.findProjectById(this.projectId);
 		this.isManager = super.getRequest().getPrincipal().hasRealmOfType(Manager.class);
-		this.isProjectManager = this.project.getManager().isPrincipal();
+		this.isProjectManager = this.project != null ? this.project.getManager().isPrincipal() : false;
 	}
 
 	@Override
@@ -53,7 +53,6 @@ public class ProjectSquadProjectShowService extends AbstractService<ProjectSquad
 		boolean status;
 		boolean isProjectSquad;
 		boolean isInProject;
-		Integer projectId = this.project.getId();
 		Integer projectSquadId;
 
 		var principal = super.getRequest().getPrincipal();
@@ -61,7 +60,7 @@ public class ProjectSquadProjectShowService extends AbstractService<ProjectSquad
 		isProjectSquad = principal.hasRealmOfType(ProjectSquad.class);
 		projectSquadId = isProjectSquad ? principal.getRealmOfType(ProjectSquad.class).getId() : null;
 
-		isInProject = projectSquadId != null && (this.isProjectManager || this.repository.isMemberOfTheProject(projectId, projectSquadId));
+		isInProject = projectSquadId != null && (this.isProjectManager || this.repository.isMemberOfTheProject(this.projectId, projectSquadId));
 		status = this.project != null && (isInProject || !this.project.getDraftMode());
 
 		super.setAuthorised(status);
