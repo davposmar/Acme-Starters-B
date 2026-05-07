@@ -38,8 +38,13 @@ public class ProjectSquadMemberCreateService extends AbstractService<ProjectSqua
 
 	@Override
 	public void authorise() {
+		boolean isInventorRole = this.squad != null && this.squad.getUserAccount().hasRealmOfType(Inventor.class);
+		boolean isFundraiserRole = this.squad != null && this.squad.getUserAccount().hasRealmOfType(Fundraiser.class);
+		boolean isSpokesperson = this.squad != null && this.squad.getUserAccount().hasRealmOfType(Spokesperson.class);
+		boolean canBeMember = isInventorRole || isFundraiserRole || isSpokesperson;
 		boolean isManager = this.project != null && this.project.getManager().isPrincipal();
-		super.setAuthorised(isManager);
+		boolean result = isManager && canBeMember;
+		super.setAuthorised(result);
 	}
 
 	@Override

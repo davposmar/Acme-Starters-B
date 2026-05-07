@@ -54,5 +54,7 @@ public class ProjectSquadFundraiserListService extends AbstractService<ProjectSq
 	@Override
 	public void unbind() {
 		super.unbindObjects(this.fundraisers, "identity.name", "bank", "statement", "agent");
+		super.unbindGlobal("projectId", this.projectId);
+		super.unbindGlobal("isManager", this.project.getManager().isPrincipal());
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.client.components.principals.UserAccount;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.projects.Member;
 import acme.entities.projects.Project;
@@ -31,4 +32,24 @@ public interface ProjectSquadMemberRepository extends AbstractRepository {
 
 	@Query("select ps from ProjectSquad ps where ps.id = ?1")
 	ProjectSquad findProjectSquadById(int id);
+
+	@Query("select ua from UserAccount ua where ua.id = :id")
+	UserAccount findOneUserAccountById(int id);
+
+	@Query("SELECT i.userAccount FROM Inventor i WHERE i.userAccount NOT IN (SELECT m.projectSquad.userAccount FROM Member m WHERE m.project.id = :projectId)")
+	Collection<UserAccount> findAccountOfInventorsNotInProject(int projectId);
+
+	@Query("SELECT s.userAccount FROM Spokesperson s WHERE s.userAccount NOT IN (SELECT m.projectSquad.userAccount FROM Member m WHERE m.project.id = :projectId)")
+	Collection<UserAccount> findAccountOfSpokespersonNotInProject(int projectId);
+
+	@Query("SELECT f.userAccount FROM Fundraiser f WHERE f.userAccount NOT IN (SELECT m.projectSquad.userAccount FROM Member m WHERE m.project.id = :projectId)")
+	Collection<UserAccount> findAccountOfFundraisersNotInProject(int projectId);
+
+	@Query("select count(m) from Member m where m.project.id = :projectId")
+	Long countNumPeople(int projectId);
+	/*
+	 * @Query("SELECT i.userAccount FROM Inventor i WHERE i.userAccount NOT IN (SELECT m.projectSquad.userAccount FROM Member m WHERE m.project.id = :projectId)")
+	 * Collection<UserAccount> findAccountOfNotInProject(int projectId);
+	 */
+
 }

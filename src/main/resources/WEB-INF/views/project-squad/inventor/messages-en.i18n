@@ -3,3 +3,6 @@ project-squad.inventor.list.label.name = Name
 project-squad.inventor.list.label.bio = Bio
 project-squad.inventor.list.label.keyWords = Key Words
 project-squad.inventor.list.label.licensed = Licensed
+
+
+project-squad.inventor.add = Add
