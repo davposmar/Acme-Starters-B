@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
-import acme.entities.campaigns.Campaign;
 import acme.entities.campaigns.Milestone;
 import acme.entities.campaigns.MilestoneKind;
 import acme.realms.ProjectSquad;
@@ -19,7 +18,6 @@ public class ProjectSquadMilestoneShowService extends AbstractService<ProjectSqu
 	private ProjectSquadMilestoneRepository	repository;
 
 	private Milestone						milestone;
-	private Campaign						campaign;
 
 
 	@Override
@@ -28,7 +26,6 @@ public class ProjectSquadMilestoneShowService extends AbstractService<ProjectSqu
 
 		id = super.getRequest().getData("id", int.class);
 		this.milestone = this.repository.findMilestoneById(id);
-		this.campaign = this.milestone.getCampaign();
 	}
 
 	@Override
@@ -36,7 +33,7 @@ public class ProjectSquadMilestoneShowService extends AbstractService<ProjectSqu
 		boolean status;
 		int projectSquadId = super.getRequest().getPrincipal().getRealmOfType(ProjectSquad.class).getId();
 
-		status = this.milestone != null && (this.repository.isMemberOfTheProject(this.campaign.getProject().getId(), projectSquadId) || !this.milestone.getCampaign().getDraftMode());
+		status = this.milestone != null && this.milestone.getCampaign() != null && (this.repository.isMemberOfTheProject(this.milestone.getCampaign().getProject().getId(), projectSquadId) || !this.milestone.getCampaign().getDraftMode());
 
 		super.setAuthorised(status);
 	}
