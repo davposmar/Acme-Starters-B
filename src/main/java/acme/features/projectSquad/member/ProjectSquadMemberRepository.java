@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.projects.Member;
 import acme.entities.projects.Project;
+import acme.realms.ProjectSquad;
 
 @Repository
 public interface ProjectSquadMemberRepository extends AbstractRepository {
@@ -22,4 +23,12 @@ public interface ProjectSquadMemberRepository extends AbstractRepository {
 	@Query("SELECT  COUNT(m) > 0 FROM Member m  WHERE m.project.id = :projectId AND m.projectSquad.id = :projectSquadId ")
 	boolean isMemberOfTheProject(Integer projectId, Integer projectSquadId);
 
+	@Query("select ps from ProjectSquad ps")
+	Collection<ProjectSquad> findAllProjectSquads();
+
+	@Query("select m.projectSquad from Member m where m.project.id = ?1")
+	Collection<ProjectSquad> findAssignedSquadsByProjectId(int projectId);
+
+	@Query("select ps from ProjectSquad ps where ps.id = ?1")
+	ProjectSquad findProjectSquadById(int id);
 }

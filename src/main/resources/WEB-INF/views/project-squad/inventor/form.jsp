@@ -9,7 +9,7 @@
 	<acme:form-textbox code="project-squad.inventor.form.label.keyWords" path="keyWords" readonly="true"/>
 	<acme:form-textbox code="project-squad.inventor.form.label.licensed" path="licensed" readonly="true"/>	
 	
-	<acme:submit code="project-squad.inventor.form.button.add" action="/project-squad/inventor/add?inventorId=${inventorId}"/>
+	<acme:submit code="project-squad.inventor.form.button.add" action="/project-squad/member/create?projectId=${param.projectId}&squadId=${id}"/>
 
 </acme:form>
 
