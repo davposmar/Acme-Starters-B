@@ -22,6 +22,10 @@ public class ProjectSquadMemberController extends AbstractController<ProjectSqua
 		super.addBasicCommand("list", ProjectSquadMemberListService.class);
 		super.addBasicCommand("create", ProjectSquadMemberCreateService.class);
 		super.addBasicCommand("show", ProjectSquadMemberShowService.class);
+
+		super.addCustomCommand("addInventor", "create", ProjectSquadMemberAddInventorService.class);
+		super.addCustomCommand("addSpokesperson", "create", ProjectSquadMemberAddSpokespersonService.class);
+		super.addCustomCommand("addFundraiser", "create", ProjectSquadMemberAddFundraiserService.class);
 	}
 
 }

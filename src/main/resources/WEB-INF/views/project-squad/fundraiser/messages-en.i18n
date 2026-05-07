@@ -11,3 +11,5 @@ project-squad.fundraiser.form.label.bank = Bank
 project-squad.fundraiser.form.label.statement = Statement
 project-squad.fundraiser.form.label.agent = Agent
 project-squad.fundraiser.form.button.add = Add to Project
+
+project-squad.fundraiser.add = Add
