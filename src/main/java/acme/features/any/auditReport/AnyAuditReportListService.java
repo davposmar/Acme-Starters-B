@@ -1,5 +1,5 @@
 /*
- * AuditorAuditReportListService.java
+ * AnyAuditReportListService.java
  *
  * Copyright (C) 2012-2026 Rafael Corchuelo.
  *
@@ -36,7 +36,11 @@ public class AnyAuditReportListService extends AbstractService<Any, AuditReport>
 
 	@Override
 	public void load() {
-		this.auditReports = this.repository.findPublishedAuditReports();
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+			this.auditReports = this.repository.findPublishedAuditReportsByProjectId(projectId);
+		} else
+			this.auditReports = this.repository.findPublishedAuditReports();
 	}
 
 	@Override
@@ -49,6 +53,9 @@ public class AnyAuditReportListService extends AbstractService<Any, AuditReport>
 		super.unbindObjects(this.auditReports, //
 			"ticker", "name", "description", "startMoment", "endMoment",//
 			"auditor.identity.fullName");
+
+		if (super.getRequest().hasData("projectId"))
+			super.unbindGlobal("projectId", super.getRequest().getData("projectId", int.class));
 	}
 
 }

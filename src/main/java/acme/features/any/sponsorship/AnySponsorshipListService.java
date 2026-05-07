@@ -36,7 +36,13 @@ public class AnySponsorshipListService extends AbstractService<Any, Sponsorship>
 
 	@Override
 	public void load() {
-		this.sponsorships = this.repository.findPublishedSponsorships();
+		// Nuestro escudo anti-500
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+			this.sponsorships = this.repository.findPublishedSponsorshipsByProjectId(projectId);
+		} else
+			// Si no vienes de un proyecto, mostramos todos los sponsorships publicados
+			this.sponsorships = this.repository.findPublishedSponsorships();
 	}
 
 	@Override
@@ -47,6 +53,10 @@ public class AnySponsorshipListService extends AbstractService<Any, Sponsorship>
 	@Override
 	public void unbind() {
 		super.unbindObjects(this.sponsorships, "ticker", "name", "description", "startMoment", "endMoment", "sponsor.identity.fullName");
+
+		// Rebotamos el projectId al JSP si es que existe
+		if (super.getRequest().hasData("projectId"))
+			super.unbindGlobal("projectId", super.getRequest().getData("projectId", int.class));
 	}
 
 }
