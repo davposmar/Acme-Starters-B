@@ -30,13 +30,18 @@ public class AnyInventionListService extends AbstractService<Any, Invention> {
 
 	@Override
 	public void load() {
-		this.inventions = this.repository.findPublicInventions();
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+			this.inventions = this.repository.findPublicInventionsByProjectId(projectId);
+		} else
+			this.inventions = this.repository.findPublicInventions();
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObjects(this.inventions, //
-			"ticker", "name", "startMoment", //
-			"draftMode", "endMoment", "moreInfo", "description", "inventor.identity.fullName");
+		super.unbindObjects(this.inventions, "ticker", "name", "startMoment", "draftMode", "endMoment", "moreInfo", "description", "inventor.identity.fullName");
+
+		if (super.getRequest().hasData("projectId"))
+			super.unbindGlobal("projectId", super.getRequest().getData("projectId", int.class));
 	}
 }

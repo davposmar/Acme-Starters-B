@@ -21,7 +21,11 @@ public class AnyStrategyListService extends AbstractService<Any, Strategy> {
 
 	@Override
 	public void load() {
-		this.strategies = this.repository.findPublishedStrategies();
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+			this.strategies = this.repository.findPublishedByProjectId(projectId);
+		} else
+			this.strategies = this.repository.findPublishedStrategies();
 	}
 
 	@Override
@@ -32,6 +36,9 @@ public class AnyStrategyListService extends AbstractService<Any, Strategy> {
 	@Override
 	public void unbind() {
 		super.unbindObjects(this.strategies, "ticker", "name", "description", "startMoment", "endMoment", "fundraiser.identity.fullName");
+
+		if (super.getRequest().hasData("projectId"))
+			super.unbindGlobal("projectId", super.getRequest().getData("projectId", int.class));
 	}
 
 }

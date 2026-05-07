@@ -21,4 +21,7 @@ public interface AnyStrategyRepository extends AbstractRepository {
 
 	@Query("Select f from Fundraiser f")
 	Collection<Fundraiser> findAllFundraisers();
+
+	@Query("select s from Strategy s where s.project.id = ?1 and s.project.draftMode = false")
+	Collection<Strategy> findPublishedByProjectId(int projectId);
 }

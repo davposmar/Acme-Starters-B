@@ -33,4 +33,6 @@ public interface AnyCampaignRepository extends AbstractRepository {
 	@Query("select s from Spokesperson s")
 	Collection<Spokesperson> findAllSpokespersons();
 
+	@Query("select c from Campaign c where c.project.id = ?1 and c.project.draftMode = false")
+	Collection<Campaign> findPublishedCampaignsByProjectId(int projectId);
 }

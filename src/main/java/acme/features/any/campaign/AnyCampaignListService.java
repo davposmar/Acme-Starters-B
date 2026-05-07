@@ -36,7 +36,11 @@ public class AnyCampaignListService extends AbstractService<Any, Campaign> {
 
 	@Override
 	public void load() {
-		this.campaigns = this.repository.findPublishedCampaigns();
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+			this.campaigns = this.repository.findPublishedCampaignsByProjectId(projectId);
+		} else
+			this.campaigns = this.repository.findPublishedCampaigns();
 	}
 
 	@Override
@@ -49,6 +53,9 @@ public class AnyCampaignListService extends AbstractService<Any, Campaign> {
 		super.unbindObjects(this.campaigns, //
 			"ticker", "name", "description", //
 			"startMoment", "endMoment", "spokesperson.identity.fullName");
+
+		if (super.getRequest().hasData("projectId"))
+			super.unbindGlobal("projectId", super.getRequest().getData("projectId", int.class));
 	}
 
 }
