@@ -30,6 +30,8 @@ public class ProjectSquadProjectDeleteService extends AbstractService<ProjectSqu
 
 	private Project							project;
 
+	private Integer							projectId;
+
 	private boolean							isProjectManager;
 
 	// AbstractService interface ----------------------------------------------
@@ -37,11 +39,10 @@ public class ProjectSquadProjectDeleteService extends AbstractService<ProjectSqu
 
 	@Override
 	public void load() {
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-		this.project = this.repository.findProjectById(id);
-		this.isProjectManager = this.project.getManager().isPrincipal();
+		this.projectId = super.getRequest().getData("id", int.class);
+		this.project = this.repository.findProjectById(this.projectId);
+		this.isProjectManager = this.project != null ? this.project.getManager().isPrincipal() : false;
 	}
 
 	@Override

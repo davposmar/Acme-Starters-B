@@ -3,3 +3,11 @@ project-squad.spokesperson.list.label.name = Name
 project-squad.spokesperson.list.label.cv = CV
 project-squad.spokesperson.list.label.achievements = Achievements
 project-squad.spokesperson.list.label.licensed = Licensed
+
+project-squad.spokesperson.form.title = Spokespersons
+project-squad.spokesperson.form.label.name = Name
+project-squad.spokesperson.form.label.cv = CV
+project-squad.spokesperson.form.label.achievements = Achievements
+project-squad.spokesperson.form.label.licensed = Licensed
+
+project-squad.spokesperson.form.button.add = Add to Project
