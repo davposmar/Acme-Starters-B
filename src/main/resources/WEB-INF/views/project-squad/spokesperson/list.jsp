@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 
-<acme:list>
+<acme:list navigable="false">
     <acme:list-column code="project-squad.spokesperson.list.label.name" path="identity.name" width="20%"/>
     <acme:list-column code="project-squad.spokesperson.list.label.cv" path="cv" width="20%"/>
     <acme:list-column code="project-squad.spokesperson.list.label.achievements" path="achievements" width="20%"/>

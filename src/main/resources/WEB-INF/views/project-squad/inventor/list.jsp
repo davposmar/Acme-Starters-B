@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 
-<acme:list>
+<acme:list navigable="false">
     <acme:list-column code="project-squad.inventor.list.label.name" path="identity.name" width="20%"/>
     <acme:list-column code="project-squad.inventor.list.label.bio" path="bio" width="20%"/>
     <acme:list-column code="project-squad.inventor.list.label.keyWords" path="keyWords" width="20%"/>
