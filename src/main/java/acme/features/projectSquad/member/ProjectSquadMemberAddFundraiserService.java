@@ -13,7 +13,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
 import acme.entities.projects.Member;
 import acme.entities.projects.Project;
-import acme.realms.Inventor;
+import acme.realms.Fundraiser;
 import acme.realms.ProjectSquad;
 
 @Service
@@ -58,7 +58,7 @@ public class ProjectSquadMemberAddFundraiserService extends AbstractService<Proj
 
 	@Override
 	public void validate() {
-		boolean isFundraiserRole = this.account != null && this.account.hasRealmOfType(Inventor.class);
+		boolean isFundraiserRole = this.account != null && this.account.hasRealmOfType(Fundraiser.class);
 		super.state(isFundraiserRole, "*", "projectSquad.member.error.not-fundraiser");
 		if (isFundraiserRole) {
 			int projectSquadId = this.account.getRealmOfType(ProjectSquad.class).getId();
