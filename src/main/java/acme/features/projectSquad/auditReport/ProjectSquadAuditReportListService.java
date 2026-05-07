@@ -49,7 +49,7 @@ public class ProjectSquadAuditReportListService extends AbstractService<ProjectS
 	public void authorise() {
 		boolean res;
 
-		res = this.project != null && !this.project.getDraftMode() && this.repository.isMemberOfTheProject(this.projectId, this.projectSquadId);
+		res = this.project != null && !this.project.getDraftMode();
 
 		super.setAuthorised(res);
 	}
