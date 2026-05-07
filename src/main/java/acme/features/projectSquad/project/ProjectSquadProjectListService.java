@@ -29,13 +29,10 @@ public class ProjectSquadProjectListService extends AbstractService<ProjectSquad
 	@Override
 	public void load() {
 		int porjectSquadId;
-		//Integer managerId;
 
 		porjectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		this.isManager = super.getRequest().getPrincipal().hasRealmOfType(Manager.class);
 
-		// managerId = this.isManager ? super.getRequest().getPrincipal().getRealmOfType(Manager.class).getId() : null;
-		//this.projects = this.repository.findProjectsByProjectSquadIdOrManagerId(porjectSquadId, managerId);
 		this.projects = this.repository.findProjectsByProjectSquadId(porjectSquadId);
 	}
 

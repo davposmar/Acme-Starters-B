@@ -59,8 +59,6 @@ public class ProjectValidator extends AbstractValidator<ValidProject, Project> {
 					super.state(context, correctDates, "*", "acme.validation.project.moments.message");
 				}
 
-				// MUST BE AFTER ALL ACTIVE DATES ????
-
 			}
 			result = !super.hasErrors(context);
 		}

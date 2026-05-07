@@ -17,11 +17,6 @@ import acme.entities.projects.Project;
 @Repository
 public interface ProjectSquadProjectRepository extends AbstractRepository {
 
-	/*
-	 * @Query("SELECT DISTINCT p FROM Project p  WHERE (p.manager.id = :managerId AND :managerId IS NOT NULL) OR EXISTS ( SELECT m FROM Member m WHERE m.project.id = p.id AND m.projectSquad.id = :projectSquadId ) ")
-	 * Collection<Project> findProjectsByProjectSquadIdOrManagerId(final int projectSquadId, Integer managerId);
-	 */
-
 	@Query("SELECT DISTINCT m.project FROM Member m WHERE m.projectSquad.id = :projectSquadId  ")
 	Collection<Project> findProjectsByProjectSquadId(final int projectSquadId);
 
