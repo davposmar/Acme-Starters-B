@@ -18,6 +18,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.projects.Project;
 import acme.entities.sponsorships.Sponsorship;
 
 @Repository
@@ -29,4 +30,9 @@ public interface AnySponsorshipRepository extends AbstractRepository {
 	@Query("select ss from Sponsorship ss where ss.draftMode = false")
 	Collection<Sponsorship> findPublishedSponsorships();
 
+	@Query("select s from Sponsorship s where s.project.id = ?1 and s.project.draftMode = false")
+	Collection<Sponsorship> findPublishedSponsorshipsByProjectId(int projectId);
+
+	@Query("select p from Project p where p.id = ?1")
+	Project findProjectById(int id);
 }

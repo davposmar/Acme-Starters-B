@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
 import acme.entities.fundraising.Strategy;
+import acme.entities.projects.Project;
 
 @Service
 public class AnyStrategyListService extends AbstractService<Any, Strategy> {
@@ -21,17 +22,35 @@ public class AnyStrategyListService extends AbstractService<Any, Strategy> {
 
 	@Override
 	public void load() {
-		this.strategies = this.repository.findPublishedStrategies();
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+			this.strategies = this.repository.findPublishedByProjectId(projectId);
+		} else
+			this.strategies = this.repository.findPublishedStrategies();
 	}
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		boolean status = true;
+
+		if (super.getRequest().hasData("projectId")) {
+			int projectId = super.getRequest().getData("projectId", int.class);
+
+			Project project = this.repository.findProjectById(projectId);
+
+			if (project == null || project.getDraftMode())
+				status = false;
+		}
+
+		super.setAuthorised(status);
 	}
 
 	@Override
 	public void unbind() {
 		super.unbindObjects(this.strategies, "ticker", "name", "description", "startMoment", "endMoment", "fundraiser.identity.fullName");
+
+		if (super.getRequest().hasData("projectId"))
+			super.unbindGlobal("projectId", super.getRequest().getData("projectId", int.class));
 	}
 
 }
