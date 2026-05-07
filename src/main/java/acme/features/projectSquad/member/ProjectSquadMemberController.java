@@ -20,6 +20,8 @@ public class ProjectSquadMemberController extends AbstractController<ProjectSqua
 		super.setMediaType(MediaType.TEXT_HTML);
 
 		super.addBasicCommand("list", ProjectSquadMemberListService.class);
+		super.addBasicCommand("create", ProjectSquadMemberCreateService.class);
+		super.addBasicCommand("show", ProjectSquadMemberShowService.class);
 	}
 
 }

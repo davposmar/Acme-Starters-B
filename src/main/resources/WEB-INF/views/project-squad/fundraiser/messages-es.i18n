@@ -3,3 +3,11 @@ project-squad.fundraiser.list.label.name = Nombre
 project-squad.fundraiser.list.label.bank = Banco
 project-squad.fundraiser.list.label.statement = Declaración
 project-squad.fundraiser.list.label.agent = Agente
+
+project-squad.fundraiser.form.title = Recaudador
+
+project-squad.fundraiser.form.label.name = Nombre
+project-squad.fundraiser.form.label.bank = Banco
+project-squad.fundraiser.form.label.statement = Declaración
+project-squad.fundraiser.form.label.agent = Agente
+project-squad.fundraiser.form.button.add = Añadir al Proyecto

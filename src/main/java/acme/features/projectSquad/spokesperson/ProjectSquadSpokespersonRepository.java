@@ -22,4 +22,7 @@ public interface ProjectSquadSpokespersonRepository extends AbstractRepository {
 	@Query("SELECT  COUNT(m) > 0 FROM Member m  WHERE m.project.id = :projectId AND m.projectSquad.id = :projectSquadId ")
 	boolean isMemberOfTheProject(Integer projectId, Integer projectSquadId);
 
+	@Query("select s from Spokesperson s where s.id = :spokespersonId")
+	Spokesperson findSpokespersonById(int spokespersonId);
+
 }
