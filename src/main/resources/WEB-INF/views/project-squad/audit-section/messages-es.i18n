@@ -1,0 +1,11 @@
+
+project-squad.audit-section.form.title = Detalles de sección de auditoría
+project-squad.audit-section.list.title = Lista de secciones de auditoría
+
+project-squad.audit-section.form.label.name = Nombre:
+project-squad.audit-section.form.label.notes = Notas:
+project-squad.audit-section.form.label.hours = Horas:
+project-squad.audit-section.form.label.kind = Tipo:
+
+project-squad.audit-section.list.label.name = Nombre
+project-squad.audit-section.list.label.hours = Horas
