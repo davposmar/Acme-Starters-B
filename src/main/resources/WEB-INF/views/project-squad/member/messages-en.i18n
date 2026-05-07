@@ -6,3 +6,7 @@ project-squad.member.list.label.username = Username
 project-squad.member.list.button.addInventor = Add Inventor
 project-squad.member.list.button.addFundraiser = Add Fundraiser
 project-squad.member.list.button.addSpokesperson = Add Spokesperson
+
+project-squad.member.form.title = Add Member
+project-squad.member.inventor.form.label.username = Username
+project-squad.member.inventor.add = Add Inventor

@@ -10,3 +10,6 @@
     <acme:list-column code="project-squad.inventor.list.label.keyWords" path="keyWords" width="20%"/>
     <acme:list-column code="project-squad.inventor.list.label.licensed" path="licensed" width="20%"/>
 </acme:list>
+<jstl:if test="${isManager}">
+	<acme:button code="project-squad.inventor.add" action="/project-squad/member/addInventor?projectId=${projectId}"/>
+</jstl:if>
