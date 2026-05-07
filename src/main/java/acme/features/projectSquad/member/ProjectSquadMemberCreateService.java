@@ -1,63 +1,57 @@
 
 package acme.features.projectSquad.member;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.components.principals.Principal;
 import acme.client.services.AbstractService;
 import acme.entities.projects.Member;
 import acme.entities.projects.Project;
+import acme.realms.Fundraiser;
+import acme.realms.Inventor;
 import acme.realms.ProjectSquad;
+import acme.realms.Spokesperson;
 
 @Service
 public class ProjectSquadMemberCreateService extends AbstractService<ProjectSquad, Member> {
-
-	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private ProjectSquadMemberRepository	repository;
 
 	private Member							member;
 	private Project							project;
-
-	// AbstractService interface ----------------------------------------------
+	private ProjectSquad					squad;
 
 
 	@Override
 	public void load() {
 		int projectId = super.getRequest().getData("projectId", int.class);
+		int squadId = super.getRequest().getData("squadId", int.class);
+
 		this.project = this.repository.findProjectById(projectId);
+		this.squad = this.repository.findProjectSquadById(squadId);
+
 		this.member = super.newObject(Member.class);
 		this.member.setProject(this.project);
+		this.member.setProjectSquad(this.squad);
 	}
 
 	@Override
 	public void authorise() {
-		boolean status = false;
-
-		if (this.project != null) {
-			Principal principal = super.getRequest().getPrincipal();
-			int managerId = principal.getActiveRealm().getId();
-			status = this.project.getManager().getId() == managerId && this.project.getDraftMode();
-		}
-
-		super.setAuthorised(status);
+		boolean isManager = this.project != null && this.project.getManager().isPrincipal();
+		super.setAuthorised(isManager);
 	}
 
 	@Override
 	public void bind() {
-		super.bindObject(this.member, "projectSquad");
+		;
 	}
 
 	@Override
 	public void validate() {
 		super.validateObject(this.member);
-
-		if (this.member.getProjectSquad() != null) {
-			boolean isAlreadyMember = this.repository.isMemberOfTheProject(this.project.getId(), this.member.getProjectSquad().getId());
+		if (this.squad != null) {
+			boolean isAlreadyMember = this.repository.isMemberOfTheProject(this.project.getId(), this.squad.getId());
 			super.state(!isAlreadyMember, "projectSquad", "projectSquad.member.error.already-exists");
 		}
 	}
@@ -65,27 +59,26 @@ public class ProjectSquadMemberCreateService extends AbstractService<ProjectSqua
 	@Override
 	public void execute() {
 		this.repository.save(this.member);
-		int numberOfPeople = this.repository.findMembersByProjectId(this.project.getId()).size();
-
-		double totalActiveMonths = this.project.getTotalActiveMonths();
-		double newEffort = 0.0;
-
-		if (numberOfPeople > 0)
-			newEffort = totalActiveMonths / numberOfPeople;
-
-		this.project.setEffort(newEffort);
-		this.repository.save(this.project);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObject(this.member, "projectSquad");
-		Collection<ProjectSquad> squads = this.repository.findAllProjectSquads();
-		super.getRequest().addData("projectSquads", squads);
-	}
+		// 1. Pasamos los datos básicos del miembro/squad
+		super.unbindObject(this.member, "projectSquad.userAccount.username", "projectSquad.userAccount.identity.name", "projectSquad.userAccount.identity.surname");
 
-	@Override
-	public void onSuccess() {
-		;
+		// 2. DETECTAMOS EL ROL DINÁMICAMENTE
+		// Miramos qué tipo de perfil tiene el usuario para mostrarlo en el JSP
+		String roleName = "";
+		if (this.squad.getUserAccount().hasRealmOfType(Inventor.class))
+			roleName = "Inventor";
+		else if (this.squad.getUserAccount().hasRealmOfType(Fundraiser.class))
+			roleName = "Fundraiser";
+		else if (this.squad.getUserAccount().hasRealmOfType(Spokesperson.class))
+			roleName = "Spokesperson";
+
+		// 3. Pasamos el nombre del rol y los IDs como globals
+		super.unbindGlobal("roleName", roleName);
+		super.unbindGlobal("projectId", this.project.getId());
+		super.unbindGlobal("squadId", this.squad.getId());
 	}
 }

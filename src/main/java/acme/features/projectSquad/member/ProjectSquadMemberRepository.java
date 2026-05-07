@@ -25,4 +25,10 @@ public interface ProjectSquadMemberRepository extends AbstractRepository {
 
 	@Query("select ps from ProjectSquad ps")
 	Collection<ProjectSquad> findAllProjectSquads();
+
+	@Query("select m.projectSquad from Member m where m.project.id = ?1")
+	Collection<ProjectSquad> findAssignedSquadsByProjectId(int projectId);
+
+	@Query("select ps from ProjectSquad ps where ps.id = ?1")
+	ProjectSquad findProjectSquadById(int id);
 }
