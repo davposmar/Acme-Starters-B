@@ -10,4 +10,6 @@
 
 
 projectSquad.member.error.not-inventor = User must be an inventor
+projectSquad.member.error.not-spokesperson = User must be an spokesperson
+
 projectSquad.member.error.already-exists = User is already a member

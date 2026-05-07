@@ -11,3 +11,6 @@
     <acme:list-column code="project-squad.spokesperson.list.label.licensed" path="licensed" width="20%"/>
     <acme:list-hidden path="id"/>
 </acme:list>
+<jstl:if test="${isManager}">
+	<acme:button code="project-squad.spokesperson.add" action="/project-squad/member/addSpokesperson?projectId=${projectId}"/>
+</jstl:if>

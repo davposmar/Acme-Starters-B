@@ -16,7 +16,7 @@ public interface ProjectSquadSpokespersonRepository extends AbstractRepository {
 	@Query("select p from Project p where p.id = :projectId")
 	Project findProjectById(int projectId);
 
-	@Query("SELECT s FROM Spokesperson s WHERE s NOT IN (SELECT m.projectSquad FROM Member m WHERE m.project.id = :projectId)")
+	@Query("SELECT s FROM Spokesperson s WHERE s.userAccount NOT IN (SELECT m.projectSquad.userAccount FROM Member m WHERE m.project.id = :projectId)")
 	Collection<Spokesperson> findSpokespersonsNotInProject(int projectId);
 
 	@Query("SELECT  COUNT(m) > 0 FROM Member m  WHERE m.project.id = :projectId AND m.projectSquad.id = :projectSquadId ")
