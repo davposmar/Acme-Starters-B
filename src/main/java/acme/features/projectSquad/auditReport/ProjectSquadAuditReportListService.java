@@ -10,38 +10,48 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.any.auditReport;
+package acme.features.projectSquad.auditReport;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
 import acme.entities.audits.AuditReport;
+import acme.entities.projects.Project;
+import acme.realms.ProjectSquad;
 
 @Service
-public class AnyAuditReportListService extends AbstractService<Any, AuditReport> {
+public class ProjectSquadAuditReportListService extends AbstractService<ProjectSquad, AuditReport> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AnyAuditReportRepository	repository;
-
-	private Collection<AuditReport>		auditReports;
+	private ProjectSquadAuditReportRepository	repository;
+	private int									projectId;
+	private int									projectSquadId;
+	private Project								project;
+	private Collection<AuditReport>				auditReports;
 
 	// AbstractService interface -------------------------------------------
 
 
 	@Override
 	public void load() {
-		this.auditReports = this.repository.findPublishedAuditReports();
+		this.projectId = super.getRequest().getData("projectId", int.class);
+		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		this.project = this.repository.findProjectById(this.projectId);
+		this.auditReports = this.repository.findAuditReportsByProjectId(this.projectId);
 	}
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		boolean res;
+
+		res = this.project != null && !this.project.getDraftMode() && this.repository.isMemberOfTheProject(this.projectId, this.projectSquadId);
+
+		super.setAuthorised(res);
 	}
 
 	@Override
