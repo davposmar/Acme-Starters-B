@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
-import acme.entities.inventions.Invention;
 import acme.entities.inventions.Part;
 import acme.entities.inventions.PartKind;
 import acme.realms.ProjectSquad;
@@ -21,7 +20,6 @@ public class ProjectSquadPartShowService extends AbstractService<ProjectSquad, P
 	private ProjectSquadPartRepository	repository;
 
 	private Part						part;
-	private Invention					invention;
 
 	// AbstractService interface -------------------------------------------
 
@@ -32,7 +30,6 @@ public class ProjectSquadPartShowService extends AbstractService<ProjectSquad, P
 
 		id = super.getRequest().getData("id", int.class);
 		this.part = this.repository.findPartById(id);
-		this.invention = this.part.getInvention();
 	}
 
 	@Override
@@ -40,8 +37,8 @@ public class ProjectSquadPartShowService extends AbstractService<ProjectSquad, P
 		boolean status;
 		int projectSquadId = super.getRequest().getPrincipal().getRealmOfType(ProjectSquad.class).getId();
 
-		boolean isMemeber = this.invention != null && this.invention.getProject() != null && this.repository.isMemberOfTheProject(this.invention.getProject().getId(), projectSquadId);
-		status = this.invention != null && (isMemeber || !this.invention.getDraftMode());
+		boolean isMemeber = this.part != null && this.part.getInvention() != null && this.part.getInvention().getProject() != null && this.repository.isMemberOfTheProject(this.part.getInvention().getProject().getId(), projectSquadId);
+		status = this.part != null && this.part.getInvention() != null && (isMemeber || !this.part.getInvention().getDraftMode());
 
 		super.setAuthorised(status);
 	}
