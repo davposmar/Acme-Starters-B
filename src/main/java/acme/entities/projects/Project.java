@@ -19,7 +19,6 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
-import acme.client.components.validation.ValidNumber;
 import acme.constraints.ValidHeader;
 import acme.constraints.ValidProject;
 import acme.constraints.ValidText;
@@ -80,12 +79,12 @@ public class Project extends AbstractEntity {
 	private Boolean				draftMode;
 
 	@Mandatory
-	@ValidNumber(min = 0)
+	// @ValidNumber(min = 0)
 	@Column
 	private Double				totalActiveMonths;
 
 	@Mandatory
-	@ValidNumber(min = 0)
+	// @ValidNumber(min = 0)
 	@Column
 	private Double				effort;
 
