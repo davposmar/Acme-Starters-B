@@ -5,9 +5,9 @@ invention-71,inventor-01,JK99-PROD71,X,Duis aute irure dolor in reprehenderit in
 invention-72,inventor-02,LM11-PROD72,Solar Tracker v4,Excepteur sint occaecat cupidatat non proident sunt in culpa.,2026/12/01 09:00,2027/12/01 09:00,http://example.org/a/b?a=1&b=2#dolor,FALSE,project-01
 invention-73,inventor-01,OP22-PROD73,โลเริ่ม อิปซัม,Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.,2026/04/01 00:00,2027/04/01 00:00,,FALSE,project-56
 invention-74,inventor-02,RE33-PROD74,Vertical Garden,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",2026/11/11 11:11,2027/11/11 11:11,http://agro.io,FALSE,project-01
-invention-75,inventor-01,AB01-DRAFT75,<script>alert('Hacked!');</script>,Experimental propulsion system testing security.,2027/03/01 00:00,2030/03/01 00:00,,TRUE,project-56
+invention-75,inventor-01,AB01-DRAFT75,<script>alert('Hacked!');</script>,Experimental propulsion system testing security.,2027/03/01 00:00,2030/03/01 00:00,,FALSE,project-56
 invention-76,inventor-02,BC02-DRAFT76,Mini Reactor,'or 'A'='A,2026/09/01 00:00,2028/09/01 00:00,,TRUE,project-00
-invention-77,inventor-01,CD03-DRAFT77,洛伦·伊普森,Neural Interface research and development.,2028/01/01 00:00,2030/01/01 00:00,https://www.lorem-ipsum.org,TRUE,project-56
+invention-77,inventor-01,CD03-DRAFT77,洛伦·伊普森,Neural Interface research and development.,2028/01/01 00:00,2030/01/01 00:00,https://www.lorem-ipsum.org,FALSE,project-56
 invention-78,inventor-02,DE04-DRAFT78,Graphene Battery with High Density and Fast Charge Capacity,High density storage solution.,2026/05/20 00:00,2027/05/20 00:00,,TRUE,project-00
-invention-79,inventor-01,EF05-DRAFT79,Underwater Wi-Fi,Submarine communication protocol.,2027/06/01 00:00,2028/06/01 00:00,,TRUE,project-56
+invention-79,inventor-01,EF05-DRAFT79,Underwater Wi-Fi,Submarine communication protocol.,2027/06/01 00:00,2028/06/01 00:00,,FALSE,project-56
 invention-80,inventor-02,FG06-DRAFT80,<marquee>Hacked</marquee>,Carbon capture industrial filter.,2026/10/10 10:00,2028/10/10 10:00,http://example.org/a,TRUE,project-00
