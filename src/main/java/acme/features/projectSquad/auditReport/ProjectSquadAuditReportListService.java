@@ -30,7 +30,6 @@ public class ProjectSquadAuditReportListService extends AbstractService<ProjectS
 	@Autowired
 	private ProjectSquadAuditReportRepository	repository;
 	private int									projectId;
-	private int									projectSquadId;
 	private Project								project;
 	private Collection<AuditReport>				auditReports;
 
@@ -40,7 +39,6 @@ public class ProjectSquadAuditReportListService extends AbstractService<ProjectS
 	@Override
 	public void load() {
 		this.projectId = super.getRequest().getData("projectId", int.class);
-		this.projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		this.project = this.repository.findProjectById(this.projectId);
 		this.auditReports = this.repository.findAuditReportsByProjectId(this.projectId);
 	}

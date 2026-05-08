@@ -73,7 +73,7 @@ public class InventorInventionAssignService extends AbstractService<Inventor, In
 		if (this.invention != null && this.project != null) {
 			boolean projectIsAvailable;
 
-			projectIsAvailable = this.repository.findMyNotPublishedProjects(this.projectSquadId).stream().anyMatch(project -> project.getId() == this.project.getId());
+			projectIsAvailable = this.repository.findMyNotPublishedProjects(this.projectSquadId).stream().anyMatch(p -> p.getId() == this.project.getId());
 			super.state(projectIsAvailable, "project", "inventor.acme.validation.project.not-found.message");
 		}
 
