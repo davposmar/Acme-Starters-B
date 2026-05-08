@@ -1,13 +1,13 @@
 key,ticker,name,description,startMoment,endMoment,moreInfo,draftMode,key:fundraiser,key:project
 strategy-99,TI00-Strat99,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet consectetur adipiscing elit,2026/06/01 09:00,2028/12/31 23:59,http://lorem.com/ipsum,FALSE,fundraiser-00,project-56
-strategy-100,AB00-STR100,لوريم إيبسوم,Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua,2026/08/20 10:00,2029/08/20 10:00,http://www.lorem-ipsum.org,FALSE,fundraiser-01,project-57
-strategy-101,JK99-STR101,L,Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris,2027/01/15 00:00,2028/01/15 00:00,,FALSE,fundraiser-02,project-58
-strategy-102,LM11-STR102,BASE http://lorem.com/ipsum,Excepteur sint occaecat cupidatat non proident,2026/12/01 09:00,2027/12/01 09:00,http://example.org/a/b?a=1&b=2,FALSE,fundraiser-00,project-59
-strategy-103,OP22-STR103,โลเริ่ม อิปซัม,Curabitur pretium tincidunt lacus. Nulla gravida orci a odio,2026/04/01 00:00,2027/04/01 00:00,,FALSE,fundraiser-01,project-56
-strategy-104,RE33-STR104,洛伦·伊普森,Integer in mauris eu nibh euismod gravi. Quismodo locandi mollis tenor est,2026/11/11 11:11,2027/11/11 11:11,http://agro.io,FALSE,fundraiser-02,project-57
-strategy-105,AB01-STR105,<script>alert('Hacked!');</script>,Done tut minima portallis gravi non sequiturimus,2027/03/01 00:00,2030/03/01 00:00,,TRUE,fundraiser-00,project-60
-strategy-106,BC02-STR106,'or 'A'='A,Tallis venetia roma ladico. Nun summa estis tripoli,2026/09/01 00:00,2028/09/01 00:00,,TRUE,fundraiser-01,project-61
-strategy-107,CD03-STR107,Lorem ipsum dolor sit amet,consectetur adipiscing elit. Sed do: eiusmod tempor incididunt,2028/01/01 00:00,2030/01/01 00:00,https://www.lorem-ipsum.org,TRUE,fundraiser-02,project-62
-strategy-108,DE04-STR108,BASE,Excepteur sint occaecat cupidatat non proident sunt in culpa,2026/05/20 00:00,2027/05/20 00:00,,TRUE,fundraiser-00,project-63
-strategy-109,EF05-STR109,<marquee>Hacked</marquee>,Curabitur pretium tincidunt lacus. Nulla gravida orci a odio,2027/06/01 00:00,2028/06/01 00:00,,TRUE,fundraiser-01,project-68
-strategy-110,FG06-STR110,لوريم إيبسوم,Ut enim ad minim veniam? Quis nostrud exercitation ullamco,2026/10/10 10:00,2028/10/10 10:00,http://example.org/a,TRUE,fundraiser-02,project-69
+strategy-100,AB00-STR100,لوريم إيبسوم,Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua,2026/08/20 10:00,2029/08/20 10:00,http://www.lorem-ipsum.org,FALSE,fundraiser-01,project-00
+strategy-101,JK99-STR101,L,Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris,2027/01/15 00:00,2028/01/15 00:00,,FALSE,fundraiser-02,project-00
+strategy-102,LM11-STR102,BASE http://lorem.com/ipsum,Excepteur sint occaecat cupidatat non proident,2026/12/01 09:00,2027/12/01 09:00,http://example.org/a/b?a=1&b=2,FALSE,fundraiser-00,project-56
+strategy-103,OP22-STR103,โลเริ่ม อิปซัม,Curabitur pretium tincidunt lacus. Nulla gravida orci a odio,2026/04/01 00:00,2027/04/01 00:00,,FALSE,fundraiser-01,project-00
+strategy-104,RE33-STR104,洛伦·伊普森,Integer in mauris eu nibh euismod gravi. Quismodo locandi mollis tenor est,2026/11/11 11:11,2027/11/11 11:11,http://agro.io,FALSE,fundraiser-02,project-00
+strategy-105,AB01-STR105,<script>alert('Hacked!');</script>,Done tut minima portallis gravi non sequiturimus,2027/03/01 00:00,2030/03/01 00:00,,TRUE,fundraiser-00,project-56
+strategy-106,BC02-STR106,'or 'A'='A,Tallis venetia roma ladico. Nun summa estis tripoli,2026/09/01 00:00,2028/09/01 00:00,,TRUE,fundraiser-01,project-00
+strategy-107,CD03-STR107,Lorem ipsum dolor sit amet,consectetur adipiscing elit. Sed do: eiusmod tempor incididunt,2028/01/01 00:00,2030/01/01 00:00,https://www.lorem-ipsum.org,TRUE,fundraiser-02,project-00
+strategy-108,DE04-STR108,BASE,Excepteur sint occaecat cupidatat non proident sunt in culpa,2026/05/20 00:00,2027/05/20 00:00,,TRUE,fundraiser-00,project-56
+strategy-109,EF05-STR109,<marquee>Hacked</marquee>,Curabitur pretium tincidunt lacus. Nulla gravida orci a odio,2027/06/01 00:00,2028/06/01 00:00,,TRUE,fundraiser-01,project-00
+strategy-110,FG06-STR110,لوريم إيبسوم,Ut enim ad minim veniam? Quis nostrud exercitation ullamco,2026/10/10 10:00,2028/10/10 10:00,http://example.org/a,TRUE,fundraiser-02,project-00
