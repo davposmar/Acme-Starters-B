@@ -21,7 +21,6 @@ public class ProjectSquadFundraiserListService extends AbstractService<ProjectSq
 
 	private Project								project;
 	private int									projectId;
-	private int									projectSquadId;
 	private Collection<Fundraiser>				fundraisers;
 
 	// AbstractService interface ----------------------------------------------
@@ -38,15 +37,11 @@ public class ProjectSquadFundraiserListService extends AbstractService<ProjectSq
 	@Override
 	public void authorise() {
 		boolean res;
-		int projectId;
 		int projectSquadId;
-		Project project;
 
-		projectId = super.getRequest().getData("projectId", int.class);
 		projectSquadId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		project = this.repository.findProjectById(projectId);
 
-		res = project != null && this.repository.isMemberOfTheProject(projectId, projectSquadId);
+		res = this.project != null && this.repository.isMemberOfTheProject(this.projectId, projectSquadId);
 
 		super.setAuthorised(res);
 	}

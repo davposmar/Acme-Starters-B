@@ -52,7 +52,6 @@ public class AuthenticatedInventorUpdateService extends AbstractService<Authenti
 	@Override
 	public void execute() {
 		this.repository.save(this.inventor);
-		// TODO : IT'S REQUIRED SOMETHING ELSE.
 	}
 
 	@Override
