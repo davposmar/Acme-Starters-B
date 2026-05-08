@@ -73,7 +73,7 @@ public class FundraiserStrategyAssignService extends AbstractService<Fundraiser,
 		if (this.strategy != null && this.project != null) {
 			boolean projectIsAvailable;
 
-			projectIsAvailable = this.repository.findMyNotPublishedProjects(this.projectSquadId).stream().anyMatch(project -> project.getId() == this.project.getId());
+			projectIsAvailable = this.repository.findMyNotPublishedProjects(this.projectSquadId).stream().anyMatch(p -> p.getId() == this.project.getId());
 			super.state(projectIsAvailable, "project", "fundraiser.acme.validation.project.not-found.message");
 		}
 

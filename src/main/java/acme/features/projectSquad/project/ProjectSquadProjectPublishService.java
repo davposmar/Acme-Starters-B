@@ -66,15 +66,11 @@ public class ProjectSquadProjectPublishService extends AbstractService<ProjectSq
 		{
 			Date startMoment, endMoment;
 			boolean isValidInterval;
-			boolean isStartFuture;
-			boolean isEndFuture;
 
 			startMoment = this.project.getKickOff();
 			endMoment = this.project.getCloseOut();
 
 			if (startMoment != null && endMoment != null) {
-				isStartFuture = MomentHelper.isFuture(startMoment);
-				isEndFuture = MomentHelper.isFuture(endMoment);
 				isValidInterval = MomentHelper.isAfter(endMoment, startMoment);
 				super.state(isValidInterval, "*", "acme.validation.project.moments.message");
 				//super.state(isStartFuture, "startMoment", "acme.validation.invention.startMoment.message");

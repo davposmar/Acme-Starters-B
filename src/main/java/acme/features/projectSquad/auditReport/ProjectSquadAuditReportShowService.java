@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import acme.client.components.models.Tuple;
 import acme.client.services.AbstractService;
 import acme.entities.audits.AuditReport;
-import acme.entities.projects.Project;
 import acme.realms.ProjectSquad;
 
 @Service
@@ -30,7 +29,6 @@ public class ProjectSquadAuditReportShowService extends AbstractService<ProjectS
 	private ProjectSquadAuditReportRepository	repository;
 
 	private AuditReport							auditReport;
-	private Project								project;
 
 	// AbstractService interface -------------------------------------------
 
@@ -41,8 +39,6 @@ public class ProjectSquadAuditReportShowService extends AbstractService<ProjectS
 
 		id = super.getRequest().getData("id", int.class);
 		this.auditReport = this.repository.findAuditReportById(id);
-
-		this.project = this.auditReport != null ? this.auditReport.getProject() : null;
 	}
 
 	@Override
