@@ -6,7 +6,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -34,6 +36,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidStrategy
+@Table(indexes = {
+	@Index(columnList = "project_id, draftMode"), @Index(columnList = "draftMode"), @Index(columnList = "ticker"), @Index(columnList = "name")
+})
 public class Strategy extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------
