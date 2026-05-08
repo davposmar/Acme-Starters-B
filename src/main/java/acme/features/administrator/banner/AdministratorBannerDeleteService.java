@@ -42,7 +42,7 @@ public class AdministratorBannerDeleteService extends AbstractService<Administra
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		super.setAuthorised(this.banner != null);
 	}
 
 	@Override

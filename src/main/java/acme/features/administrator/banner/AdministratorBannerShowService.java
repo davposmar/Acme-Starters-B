@@ -42,7 +42,7 @@ public class AdministratorBannerShowService extends AbstractService<Administrato
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		super.setAuthorised(this.banner != null);
 	}
 
 	@Override
