@@ -1,0 +1,11 @@
+project-squad.tactic.list.title = Title
+project-squad.tactic.list.label.name = Name
+project-squad.tactic.list.label.kind = Kind
+project-squad.tactic.list.label.expectedPercentage = Expected Percentage
+
+project-squad.tactic.form.title = Title
+project-squad.tactic.form.label.strategy = Strategy
+project-squad.tactic.form.label.name = Name
+project-squad.tactic.form.label.notes = Notes
+project-squad.tactic.form.label.expectedPercentage = Excepted Percentage
+project-squad.tactic.form.label.kind = Kind

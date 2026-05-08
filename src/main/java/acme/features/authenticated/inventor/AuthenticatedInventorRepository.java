@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.components.principals.UserAccount;
 import acme.client.repositories.AbstractRepository;
 import acme.realms.Inventor;
+import acme.realms.ProjectSquad;
 
 @Repository
 public interface AuthenticatedInventorRepository extends AbstractRepository {
@@ -16,5 +17,8 @@ public interface AuthenticatedInventorRepository extends AbstractRepository {
 
 	@Query("select i from Inventor i where i.userAccount.id = :id")
 	Inventor findInventorByUserAccountId(int id);
+
+	@Query("select p from ProjectSquad p  where p.userAccount.id = :id")
+	ProjectSquad findProjectSquadByUserAccountId(int id);
 
 }

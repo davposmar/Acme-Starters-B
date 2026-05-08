@@ -6,7 +6,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
 import acme.client.components.validation.ValidScore;
@@ -24,6 +27,7 @@ import acme.constraints.ValidHeader;
 import acme.constraints.ValidStrategy;
 import acme.constraints.ValidText;
 import acme.constraints.ValidTicker;
+import acme.entities.projects.Project;
 import acme.realms.Fundraiser;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +36,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidStrategy
+@Table(indexes = {
+	@Index(columnList = "project_id, draftMode"), @Index(columnList = "draftMode"), @Index(columnList = "ticker"), @Index(columnList = "name")
+})
 public class Strategy extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------
@@ -77,6 +84,11 @@ public class Strategy extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Fundraiser			fundraiser;
+
+	@Optional
+	@Valid
+	@ManyToOne
+	private Project				project;
 
 	// Derived attributes --------------------------------------------
 

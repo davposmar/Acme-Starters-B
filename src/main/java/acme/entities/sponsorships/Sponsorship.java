@@ -6,7 +6,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -27,6 +29,7 @@ import acme.constraints.ValidHeader;
 import acme.constraints.ValidSponsorship;
 import acme.constraints.ValidText;
 import acme.constraints.ValidTicker;
+import acme.entities.projects.Project;
 import acme.features.donation.SponsorshipRepository;
 import acme.realms.Sponsor;
 import lombok.Getter;
@@ -36,6 +39,9 @@ import lombok.Setter;
 @ValidSponsorship
 @Getter
 @Setter
+@Table(indexes = {
+	@Index(columnList = "draftMode"), @Index(columnList = "ticker")
+})
 public class Sponsorship extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -116,6 +122,11 @@ public class Sponsorship extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Sponsor sponsor;
+	private Sponsor	sponsor;
+
+	@Optional
+	@Valid
+	@ManyToOne(optional = true)
+	private Project	project;
 
 }

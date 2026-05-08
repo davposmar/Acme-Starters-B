@@ -12,11 +12,15 @@
 
 package acme.features.sponsor.sponsorship;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.components.models.Tuple;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractService;
+import acme.entities.projects.Project;
 import acme.entities.sponsorships.Sponsorship;
 import acme.realms.Sponsor;
 
@@ -29,6 +33,7 @@ public class SponsorSponsorshipShowService extends AbstractService<Sponsor, Spon
 	private SponsorSponsorshipRepository	repository;
 
 	private Sponsorship						sponsorship;
+	private Project							project;
 
 	// AbstractService interface -------------------------------------------
 
@@ -39,6 +44,8 @@ public class SponsorSponsorshipShowService extends AbstractService<Sponsor, Spon
 
 		id = super.getRequest().getData("id", int.class);
 		this.sponsorship = this.repository.findSponsorshipById(id);
+
+		this.project = this.sponsorship != null ? this.sponsorship.getProject() : null;
 	}
 
 	@Override
@@ -52,12 +59,22 @@ public class SponsorSponsorshipShowService extends AbstractService<Sponsor, Spon
 
 	@Override
 	public void unbind() {
+		SelectChoices projects = null;
+		if (!this.sponsorship.getDraftMode()) {
+			Collection<Project> publishedProjects;
+
+			publishedProjects = this.repository.findPublishedProjects();
+			projects = SelectChoices.from(publishedProjects, "ticker", this.project != null ? this.project : this.sponsorship.getProject());
+		}
 		Tuple tuple;
 
-		tuple = super.unbindObject(this.sponsorship, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "sponsor.identity.fullName");
+		tuple = super.unbindObject(this.sponsorship, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "sponsor.identity.fullName", "project");
 		tuple.put("monthsActive", this.sponsorship.getMonthsActive());
 		tuple.put("totalMoney", this.sponsorship.getTotalMoney());
 		tuple.put("sponsorId", this.sponsorship.getSponsor().getId());
+
+		if (!this.sponsorship.getDraftMode())
+			tuple.put("projects", projects);
 	}
 
 }

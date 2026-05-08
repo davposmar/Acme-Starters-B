@@ -1,0 +1,30 @@
+
+any.project.form.title = Project form
+any.project.list.title = Listing of projects
+
+any.project.form.label.ticker = Ticker:
+any.project.form.label.title = Title:
+any.project.form.label.description = Description:
+any.project.form.label.keyWords = Key words:
+any.project.form.label.kickOff = Kick off moment:
+any.project.form.label.closeOut = Close out moment:
+any.project.form.label.effort = Effort: (Calculated)
+any.project.form.label.manager = Manager:
+
+any.project.form.button.invention = Inventions
+any.project.form.button.strategy = Strategies
+any.project.form.button.campaign = Campaigns
+any.project.form.button.sponsorship = Sponsorships
+any.project.form.button.audit-report = Audit Reports
+any.project.form.button.member = Members
+any.project.form.button.update = Update
+any.project.form.button.delete = Delete
+any.project.form.button.publish = Publish
+
+
+
+any.project.list.label.ticker = Ticker
+any.project.list.label.title = Title
+any.project.list.label.kickOff = Kick off
+any.project.list.label.closeOut = Close Out
+

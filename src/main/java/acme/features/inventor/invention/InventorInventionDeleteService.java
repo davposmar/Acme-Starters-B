@@ -10,6 +10,7 @@ import acme.client.components.models.Tuple;
 import acme.client.services.AbstractService;
 import acme.entities.inventions.Invention;
 import acme.entities.inventions.Part;
+import acme.entities.projects.Project;
 import acme.realms.Inventor;
 
 @Service
@@ -54,6 +55,18 @@ public class InventorInventionDeleteService extends AbstractService<Inventor, In
 	@Override
 	public void execute() {
 		Collection<Part> parts;
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Invention previousInvention = this.repository.findinventionById(id);
+		Project project = previousInvention.getProject();
+
+		if (project != null) {
+			long numPeople = this.repository.countNumPeople(project.getId());
+			project.updateEffortUsingComponentValues(previousInvention.getMonthsActive(), 0.0, numPeople);
+			this.repository.save(project);
+		}
 
 		parts = this.repository.findPartsByInventionId(this.invention.getId());
 		this.repository.deleteAll(parts);

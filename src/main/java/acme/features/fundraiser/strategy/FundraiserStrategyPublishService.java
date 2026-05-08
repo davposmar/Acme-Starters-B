@@ -21,6 +21,7 @@ import acme.client.components.models.Tuple;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.entities.fundraising.Strategy;
+import acme.entities.projects.Project;
 import acme.realms.Fundraiser;
 
 @Service
@@ -94,8 +95,23 @@ public class FundraiserStrategyPublishService extends AbstractService<Fundraiser
 
 	@Override
 	public void execute() {
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Strategy previousStrategy = this.repository.findStrategyById(id);
+
+		Project project = previousStrategy.getProject();
+
 		this.strategy.setDraftMode(false);
 		this.repository.save(this.strategy);
+		if (project != null) {
+			long numPeople = this.repository.countNumPeople(project.getId());
+			//project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), this.campaign.getMonthsActive());
+			project.updateEffortUsingComponentValues(previousStrategy.getMonthsActive(), this.strategy.getMonthsActive(), numPeople);
+			this.repository.save(project);
+		}
+
 	}
 
 	@Override

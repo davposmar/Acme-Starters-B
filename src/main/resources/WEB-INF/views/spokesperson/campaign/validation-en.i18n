@@ -13,3 +13,5 @@ acme.validation.campaign.milestone.message = The campaign must have at least one
 acme.validation.campaign.moments.message = Start moment must be before end moment
 acme.validation.campaign.startMoment.message = Start moment must be in the future
 acme.validation.campaign.endMoment.message = End moment must be in the future
+
+spokesperson.acme.validation.project.not-found.message = The project ticker must correspond to an unpublished project of which you are a member

@@ -1,0 +1,13 @@
+project-squad.spokesperson.list.title = Portavoces
+project-squad.spokesperson.list.label.name = Nombre
+project-squad.spokesperson.list.label.cv = CV
+project-squad.spokesperson.list.label.achievements = Logros
+project-squad.spokesperson.list.label.licensed = Licenciado
+
+project-squad.spokesperson.form.label.name = Nombre
+project-squad.spokesperson.form.label.cv = CV
+project-squad.spokesperson.form.label.achievements = Logros
+project-squad.spokesperson.form.label.licensed = Licenciado
+project-squad.spokesperson.form.button.add = Añadir al Proyecto
+
+project-squad.spokesperson.add = Añadir

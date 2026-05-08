@@ -1,0 +1,85 @@
+/*
+ * SpokespersonCampaignUpdateService.java
+ *
+ * Copyright (C) 2012-2026 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.features.projectSquad.project;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import acme.client.components.models.Tuple;
+import acme.client.services.AbstractService;
+import acme.entities.projects.Project;
+import acme.realms.ProjectSquad;
+
+@Service
+public class ProjectSquadProjectDeleteService extends AbstractService<ProjectSquad, Project> {
+
+	// Internal state ---------------------------------------------------------
+
+	@Autowired
+	private ProjectSquadProjectRepository	repository;
+
+	private Project							project;
+
+	private Integer							projectId;
+
+	private boolean							isProjectManager;
+
+	// AbstractService interface ----------------------------------------------
+
+
+	@Override
+	public void load() {
+
+		this.projectId = super.getRequest().getData("id", int.class);
+		this.project = this.repository.findProjectById(this.projectId);
+		this.isProjectManager = this.project != null ? this.project.getManager().isPrincipal() : false;
+	}
+
+	@Override
+	public void authorise() {
+		boolean status;
+
+		status = this.project != null && this.project.getDraftMode() && this.project.getManager().isPrincipal();
+		super.setAuthorised(status);
+	}
+
+	@Override
+	public void bind() {
+		super.bindObject(this.project, "ticker", "title", "keyWords", "description", "kickOff", "closeOut");
+	}
+
+	@Override
+	public void validate() {
+		;
+	}
+
+	@Override
+	public void execute() {
+
+		this.repository.unlinkAllInventiosOfProject(this.project.getId());
+		this.repository.unlinkAllCampaignsOfProject(this.project.getId());
+		this.repository.unlinkAllStrategiesOfProject(this.project.getId());
+		this.repository.deleteAll(this.repository.findMembersByProject(this.project.getId()));
+		this.repository.delete(this.project);
+	}
+
+	@Override
+	public void unbind() {
+		Tuple tuple;
+
+		tuple = super.unbindObject(this.project, "ticker", "title", "keyWords", "description", "kickOff", "closeOut", "draftMode", "manager.identity.fullName");
+		tuple.put("effort", this.project.getEffort());
+		super.unbindGlobal("isManager", this.isProjectManager);
+	}
+
+}

@@ -17,6 +17,7 @@ master.menu.anonymous.list-campaigns = Campaigns
 master.menu.anonymous.list-sponsorships = Sponsorships
 master.menu.anonymous.list-inventions = Inventions
 master.menu.anonymous.list-strategies = Strategies
+master.menu.anonymous.list-projects = Projects
 
 # master.menu.authenticated #######################################################
 
@@ -26,6 +27,7 @@ master.menu.authenticated = Authenticated
 
 master.menu.administrator = Administrator
 master.menu.administrator.list-user-accounts = List user accounts
+master.menu.administrator.list-banners = List ad banners
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
@@ -65,6 +67,16 @@ master.menu.inventor.list-my-inventions = List my inventions
 master.menu.fundraiser = Fundraiser
 master.menu.fundraiser.list-my-strategies = List my strategies
 
+# master.menu.projectSquad ##########################################################
+
+master.menu.projectSquad = Projects
+master.menu.projectSquad.list-my-projects = List my projects
+
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.dashboard = Dashboard
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
@@ -83,3 +95,5 @@ master.menu.user-account.become-inventor = Become an inventor
 master.menu.user-account.inventor-profile = Inventor profile
 master.menu.user-account.become-fundraiser = Become a fundraiser
 master.menu.user-account.fundraiser-profile = Fundraiser profile
+master.menu.user-account.become-manager = Become a manager
+master.menu.user-account.manager-profile = Manger profile

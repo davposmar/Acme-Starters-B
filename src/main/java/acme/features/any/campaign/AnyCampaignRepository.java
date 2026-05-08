@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.campaigns.Campaign;
+import acme.entities.projects.Project;
 import acme.realms.Spokesperson;
 
 @Repository
@@ -33,4 +34,9 @@ public interface AnyCampaignRepository extends AbstractRepository {
 	@Query("select s from Spokesperson s")
 	Collection<Spokesperson> findAllSpokespersons();
 
+	@Query("select c from Campaign c where c.project.id = ?1 and c.project.draftMode = false")
+	Collection<Campaign> findPublishedCampaignsByProjectId(int projectId);
+
+	@Query("select p from Project p where p.id = ?1")
+	Project findProjectById(int id);
 }

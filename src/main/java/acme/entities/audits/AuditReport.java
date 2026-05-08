@@ -6,7 +6,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -26,6 +28,7 @@ import acme.constraints.ValidAuditReport;
 import acme.constraints.ValidHeader;
 import acme.constraints.ValidText;
 import acme.constraints.ValidTicker;
+import acme.entities.projects.Project;
 import acme.features.audits.AuditSectionRepository;
 import acme.realms.Auditor;
 import lombok.Getter;
@@ -35,6 +38,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidAuditReport
+@Table(indexes = {
+	@Index(columnList = "project_id, draftMode"), @Index(columnList = "draftMode"), @Index(columnList = "ticker")
+})
 public class AuditReport extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -113,5 +119,10 @@ public class AuditReport extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Auditor auditor;
+	private Auditor	auditor;
+
+	@Optional
+	@Valid
+	@ManyToOne(optional = true)
+	private Project	project;
 }

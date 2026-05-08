@@ -1,0 +1,13 @@
+key,name,notes,expectedPercentage,kind,key:strategy
+tactic-99,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet consectetur adipiscing elit,50.00,SUBTLE,strategy-99
+tactic-100,لوريم إيبسوم,Sed do: eiusmod tempor incididunt ut labore et dolore,0.00,AGGRESSIVE,strategy-100
+tactic-101,L,Ut enim ad minim veniam? Quis nostrud exercitation,0.01,TENDER,strategy-101
+tactic-102,BASE http://lorem.com/ipsum,Excepteur sint occaecat cupidatat non proident,99.99,SUBTLE,strategy-102
+tactic-103,โลเริ่ม อิปซัม,Curabitur pretium tincidunt lacus. Nulla gravida orci a odio,100.00,AGGRESSIVE,strategy-103
+tactic-104,洛伦·伊普森,Integer in mauris eu nibh euismod gravi,50.00,TENDER,strategy-104
+tactic-105,<script>alert('Hacked!');</script>,Done tut minima portallis gravi non sequiturimus,25.00,SUBTLE,strategy-105
+tactic-106,'or 'A'='A,Tallis venetia roma ladico. Nun summa estis tripoli,75.00,AGGRESSIVE,strategy-106
+tactic-107,Lorem ipsum,consectetur adipiscing elit. Sed do: eiusmod tempor,12.50,TENDER,strategy-107
+tactic-108,BASE,Excepteur sint occaecat cupidatat non proident,5.00,SUBTLE,strategy-108
+tactic-109,<marquee>Hacked</marquee>,Curabitur pretium tincidunt lacus,60.00,AGGRESSIVE,strategy-109
+tactic-110,لوريم إيبسوم,Ut enim ad minim veniam? Quis nostrud exercitation,90.00,TENDER,strategy-110

@@ -1,0 +1,31 @@
+
+project-squad.sponsorship.form.title = Detalles patrocinio
+project-squad.sponsorship.list.title = Listado de patrocinios
+
+project-squad.sponsorship.form.label.ticker = Referencia:
+project-squad.sponsorship.form.label.name = Nombre:
+project-squad.sponsorship.form.label.description = Descripción:
+project-squad.sponsorship.form.label.startMoment = Fecha de inicio:
+project-squad.sponsorship.form.label.endMoment = Fecha de fin:
+project-squad.sponsorship.form.label.moreInfo = Más información: (Optional)
+project-squad.sponsorship.form.label.project-squad.identity.fullName = Espónsor:
+project-squad.sponsorship.form.label.monthsActive = Meses Activo: (Calculado)
+project-squad.sponsorship.form.label.totalMoney = Dinero total: (Calculado)
+
+project-squad.sponsorship.form.button.donations = Donaciones
+project-squad.sponsorship.form.button.update = Actualizar
+project-squad.sponsorship.form.button.delete = Borrar
+project-squad.sponsorship.form.button.publish = Publicar
+project-squad.sponsorship.form.button.create = Crear
+
+project-squad.sponsorship.project.form.label.ticker = Referencia del Proyecto: (Opcional)
+project-squad.sponsorship.project.form.button.assign = Asignar Proyecto
+
+project-squad.sponsorship.list.label.ticker = Referencia 
+project-squad.sponsorship.list.label.name = Nombre
+project-squad.sponsorship.list.label.startMoment = Fecha de inicio
+project-squad.sponsorship.list.label.endMoment = Fecha de fin
+project-squad.sponsorship.list.label.draftMode = Modo borrador
+
+project-squad.sponsorship.list.button.create = Crear
+

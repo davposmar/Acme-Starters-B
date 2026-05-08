@@ -21,6 +21,7 @@ import acme.client.components.models.Tuple;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.entities.campaigns.Campaign;
+import acme.entities.projects.Project;
 import acme.realms.Spokesperson;
 
 @Service
@@ -94,8 +95,21 @@ public class SpokespersonCampaignPublishService extends AbstractService<Spokespe
 
 	@Override
 	public void execute() {
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+
+		Campaign previousCampaign = this.repository.findCampaignById(id);
+		Project project = previousCampaign.getProject();
+
 		this.campaign.setDraftMode(false);
 		this.repository.save(this.campaign);
+		if (project != null) {
+			long numPeople = this.repository.countNumPeople(project.getId());
+			//project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), this.campaign.getMonthsActive());
+			project.updateEffortUsingComponentValues(previousCampaign.getMonthsActive(), this.campaign.getMonthsActive(), numPeople);
+			this.repository.save(project);
+		}
 	}
 
 	@Override

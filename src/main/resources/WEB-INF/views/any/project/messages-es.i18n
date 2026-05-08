@@ -1,0 +1,30 @@
+
+project-squad.project.form.title = Detalles del proyecto
+project-squad.project.list.title = Lista de proyectos
+
+project-squad.project.form.label.ticker = Referencia:
+project-squad.project.form.label.title = Título:
+project-squad.project.form.label.keyWords = Palabras claves:
+project-squad.project.form.label.description = Descripción:
+project-squad.project.form.label.kickOff = Fecha de la reunión de incio:
+project-squad.project.form.label.closeOut = Fecha de fin del proyecto:
+project-squad.project.form.label.effort = Esfuerzo: (Calculado)
+project-squad.project.form.label.manager = Manager:
+
+project-squad.project.form.button.invention = Inventos
+project-squad.project.form.button.strategy = Estrategias
+project-squad.project.form.button.campaign = Campañas
+project-squad.project.form.button.sponsorship = Patrocinios
+project-squad.project.form.button.audit-report = Auditorías
+project-squad.project.form.button.update = Actualizar
+project-squad.project.form.button.delete = Eliminar
+project-squad.project.form.button.publish = Publicar
+project-squad.project.form.button.create = Crear
+project-squad.project.form.button.member = Miembros
+
+projectSquad.project.list.label.ticker = Referencia
+projectSquad.project.list.label.title = Título
+projectSquad.project.list.label.kickOff = Fecha de Reunión de incio
+projectSquad.project.list.label.closeOut = Fecha de fin del proyecto
+projectSquad.project.list.button.create = Crear
+

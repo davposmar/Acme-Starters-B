@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.components.principals.UserAccount;
 import acme.client.repositories.AbstractRepository;
+import acme.realms.ProjectSquad;
 import acme.realms.Spokesperson;
 
 @Repository
@@ -27,5 +28,8 @@ public interface AuthenticatedSpokespersonRepository extends AbstractRepository 
 
 	@Query("select ua from UserAccount ua where ua.id = :id")
 	UserAccount findOneUserAccountById(int id);
+
+	@Query("select p from ProjectSquad p  where p.userAccount.id = :id")
+	ProjectSquad findProjectSquadByUserAccountId(int id);
 
 }

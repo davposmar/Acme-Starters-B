@@ -1,0 +1,33 @@
+﻿key,name,description,cost,kind,key:invention
+# Published
+part-33,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",EUR 500000.00,CORE,invention-69
+# Draft Mode
+part-34,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",EUR 500000.00,CORE,invention-69
+part-35,Motor Principal,"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",EUR 500000.00,CORE,invention-70
+part-36,Carcasa Reforzada,Protección externa de aluminio.,EUR 0.01,MANDATORY,invention-71
+part-37,Sensor Proximidad,Mejora opcional de precisión.,EUR 999999.99,OPTIONAL,invention-72
+part-38,โลเริ่ม อิปซัม,Ut enim ad minim veniam? Quis nostrud exercitation.,EUR 1200.50,CORE,invention-73
+part-39,Unidad de Control,Cerebro del sistema.,EUR 0.00,CORE,invention-74
+part-40,Chipset A1,Core processing unit for the prototype.,EUR 1000000.00,CORE,invention-75
+part-41,Cables,Basic connectivity set.,EUR 50.50,MANDATORY,invention-76
+part-42,لوريم إيبسوم,Sample of the new industrial alloy.,EUR 9000.00,CORE,invention-77
+part-43,Lubricant,Special high-temp lubricant.,EUR 150.00,OPTIONAL,invention-78
+part-44,Main Frame,The structure of the research unit.,EUR 4500.00,CORE,invention-79
+part-45,Safety Valve,Mandatory security component.,EUR 230.10,MANDATORY,invention-80
+part-48,High-Gain Antenna,Sed do: eiusmod tempor incididunt ut labore.,EUR 500000.00,CORE,invention-69
+part-49,Data Processor,Main board for calculations.,EUR 350.50,MANDATORY,invention-69
+part-50,Heating Element,Industrial grade heater for polymers.,EUR 1500.00,CORE,invention-70
+part-51,Cooling Fan,Standard fan for thermal control.,EUR 45.00,OPTIONAL,invention-70
+part-52,Nano-Mesh Filter,Membrane for water filtration.,EUR 600.00,CORE,invention-71
+part-53,Servo Motor,High torque motor for tracking.,EUR 210.00,CORE,invention-72
+part-54,Gyroscope,Triple-axis motion sensor.,EUR 89.99,CORE,invention-73
+part-55,Water Pump,Submersible 12V pump.,EUR 35.00,CORE,invention-74
+part-56,Nutrient Tank,30L plastic container.,EUR 20.00,MANDATORY,invention-74
+part-57,<marquee>Hacked</marquee>,Reinforced steel chamber.,EUR 8000.00,CORE,invention-75
+part-58,Fuel Injector,<script>alert('Hacked!');</script>,EUR 1200.00,MANDATORY,invention-75
+part-59,Lead Shielding,'or 'A'='A,EUR 15000.00,CORE,invention-76
+part-60,Gold Electrode,Bio-compatible sensor.,EUR 500.00,CORE,invention-77
+part-61,Graphene Sheet,Single layer carbon structure.,EUR 2200.00,CORE,invention-78
+part-62,Acoustic Modulator,Underwater sound emitter.,EUR 4300.00,CORE,invention-79
+part-63,Zeolite Filter,Mineral based CO2 absorber.,EUR 750.25,CORE,invention-80
+part-64,Pressure Gauge,Digital pressure monitor.,EUR 110.00,MANDATORY,invention-80

@@ -9,6 +9,7 @@ import acme.client.components.principals.UserAccount;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractService;
 import acme.realms.Inventor;
+import acme.realms.ProjectSquad;
 
 @Service
 public class AuthenticatedInventorCreateService extends AbstractService<Authenticated, Inventor> {
@@ -57,7 +58,14 @@ public class AuthenticatedInventorCreateService extends AbstractService<Authenti
 	@Override
 	public void execute() {
 		this.repository.save(this.inventor);
-		// TODO : IT'S REQUIRED SOMETHING ELSE.
+		ProjectSquad projectSquad;
+
+		projectSquad = this.repository.findProjectSquadByUserAccountId(this.inventor.getUserAccount().getId());
+		if (projectSquad == null) {
+			projectSquad = super.newObject(ProjectSquad.class);
+			projectSquad.setUserAccount(this.inventor.getUserAccount());
+			this.repository.save(projectSquad);
+		}
 	}
 
 	@Override
